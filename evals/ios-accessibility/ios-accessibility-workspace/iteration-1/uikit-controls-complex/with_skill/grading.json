@@ -1,0 +1,29 @@
+{
+  "eval_id": 27,
+  "eval_name": "uikit-controls-complex",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Sets isAccessibilityElement = false on the container (it's a container, not an element)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Overrides accessibilityElements to return UIAccessibilityElement array",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Sets accessibilityFrame using UIAccessibility.convertToScreenCoordinates",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Each element has accessibilityLabel and accessibilityValue",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

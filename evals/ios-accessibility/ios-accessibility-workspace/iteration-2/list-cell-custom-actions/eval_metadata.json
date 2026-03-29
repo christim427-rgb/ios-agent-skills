@@ -1,0 +1,28 @@
+{
+  "eval_id": 3,
+  "eval_name": "list-cell-custom-actions",
+  "topic": "voiceover-labels",
+  "prompt": "This list has multiple cells, each with a title and 3 action buttons. VoiceOver users are complaining it takes too many swipes:\n\n```swift\nForEach(items) { item in\n    HStack {\n        Text(item.title)\n        Spacer()\n        Button(\"Like\") { like(item) }\n        Button(\"Share\") { share(item) }\n        Button(\"Delete\") { delete(item) }\n    }\n}\n```",
+  "assertions": [
+    {
+      "id": "VL3.1",
+      "text": "Uses accessibilityCustomActions to consolidate multiple buttons into swipe-up/down actions",
+      "rationale": "Skill's custom actions section solves repeated button lists"
+    },
+    {
+      "id": "VL3.2",
+      "text": "Groups the cell with .accessibilityElement(children:) to create one VoiceOver stop per cell",
+      "rationale": "WITHOUT keeps buttons as separate stops"
+    },
+    {
+      "id": "VL3.3",
+      "text": "Explains that users swipe up/down to cycle through custom actions",
+      "rationale": "Skill documents the VoiceOver interaction pattern"
+    },
+    {
+      "id": "VL3.4",
+      "text": "Each custom action closure returns a Bool (true for success)",
+      "rationale": "Skill shows correct signature"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "eval_id": 6,
+  "eval_name": "adjustable-rating-stepper",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Replaces onTapGesture with Button or uses accessibilityAdjustableAction",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    },
+    {
+      "text": "Adds .accessibilityAdjustableAction with increment/decrement cases",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Adds .accessibilityValue with current rating as human-readable text",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Groups stars into a single accessibility element with .accessibilityElement()",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 4
+}

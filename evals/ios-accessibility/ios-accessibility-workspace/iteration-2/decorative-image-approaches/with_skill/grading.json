@@ -1,0 +1,19 @@
+{
+  "eval_id": 34,
+  "eval_name": "decorative-image-approaches",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "States both hide the image from VoiceOver",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Recommends Image(decorative:) as the preferred SwiftUI approach",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 2,
+  "total": 2
+}

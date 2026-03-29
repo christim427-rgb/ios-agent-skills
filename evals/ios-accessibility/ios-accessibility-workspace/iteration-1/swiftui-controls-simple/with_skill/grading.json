@@ -1,0 +1,24 @@
+{
+  "eval_id": 22,
+  "eval_name": "swiftui-controls-simple",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Identifies onTapGesture as invisible to VoiceOver and assistive technology",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Replaces with Button and adds accessibilityLabel",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions Switch Control and/or eye tracking as also affected",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

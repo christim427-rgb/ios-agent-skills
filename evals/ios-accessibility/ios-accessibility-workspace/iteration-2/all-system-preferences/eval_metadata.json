@@ -1,0 +1,33 @@
+{
+  "eval_id": 21,
+  "eval_name": "all-system-preferences",
+  "topic": "motion-preferences",
+  "prompt": "What system accessibility preferences should I check beyond Reduce Motion? I want to build a truly adaptive UI.",
+  "assertions": [
+    {
+      "id": "MP3.1",
+      "text": "Lists reduceTransparency with replacement pattern (solid bg vs .ultraThinMaterial)",
+      "rationale": "Skill documents reduce transparency replacement"
+    },
+    {
+      "id": "MP3.2",
+      "text": "Lists differentiateWithoutColor for color-only indicators",
+      "rationale": "Skill's complete environment values list"
+    },
+    {
+      "id": "MP3.3",
+      "text": "Lists legibilityWeight (.bold) for bold text preference",
+      "rationale": "Skill rule 15: check ALL system preferences including legibilityWeight"
+    },
+    {
+      "id": "MP3.4",
+      "text": "Lists colorSchemeContrast for Increase Contrast preference",
+      "rationale": "Skill rule 15: includes increased contrast"
+    },
+    {
+      "id": "MP3.5",
+      "text": "Mentions accessibilityIgnoresInvertColors for photos/videos",
+      "rationale": "Skill's smart invert section"
+    }
+  ]
+}

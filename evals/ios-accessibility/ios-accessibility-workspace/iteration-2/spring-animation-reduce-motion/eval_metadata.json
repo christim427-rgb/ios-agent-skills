@@ -1,0 +1,23 @@
+{
+  "eval_id": 20,
+  "eval_name": "spring-animation-reduce-motion",
+  "topic": "motion-preferences",
+  "prompt": "My app has a spring animation that should respect Reduce Motion:\n\n```swift\nwithAnimation(.spring(response: 0.5, dampingFraction: 0.3)) {\n    showDetail.toggle()\n}\n```",
+  "assertions": [
+    {
+      "id": "MP2.1",
+      "text": "Checks reduceMotion environment value before applying spring animation",
+      "rationale": "Skill's AI failure F9"
+    },
+    {
+      "id": "MP2.2",
+      "text": "Provides alternative animation for reduce motion (e.g., .none or .easeInOut)",
+      "rationale": "Skill shows conditional animation pattern"
+    },
+    {
+      "id": "MP2.3",
+      "text": "Shows the ternary pattern: reduceMotion ? .none : .spring()",
+      "rationale": "Skill's exact code pattern"
+    }
+  ]
+}

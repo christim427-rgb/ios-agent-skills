@@ -1,0 +1,28 @@
+{
+  "eval_id": 15,
+  "eval_name": "layout-adaptation-accessibility-sizes",
+  "topic": "dynamic-type",
+  "prompt": "My horizontal layout breaks when users set accessibility text sizes. The HStack overflows and clips:\n\n```swift\nHStack {\n    Image(systemName: \"person.fill\")\n    Text(user.name).font(.headline)\n    Spacer()\n    Text(user.role).font(.subheadline)\n}\n```",
+  "assertions": [
+    {
+      "id": "DT3.1",
+      "text": "Checks dynamicTypeSize.isAccessibilitySize to switch layout",
+      "rationale": "Skill's layout adaptation pattern"
+    },
+    {
+      "id": "DT3.2",
+      "text": "Uses ViewThatFits or AnyLayout to switch HStack to VStack",
+      "rationale": "Skill documents ViewThatFits (iOS 16+)"
+    },
+    {
+      "id": "DT3.3",
+      "text": "Uses @ScaledMetric for the image/icon size so it scales with Dynamic Type",
+      "rationale": "Skill rule 14: non-text dimensions must use @ScaledMetric"
+    },
+    {
+      "id": "DT3.4",
+      "text": "Wraps content in ScrollView for overflow at large sizes",
+      "rationale": "Skill rule 14: wrap in ScrollView for overflow"
+    }
+  ]
+}

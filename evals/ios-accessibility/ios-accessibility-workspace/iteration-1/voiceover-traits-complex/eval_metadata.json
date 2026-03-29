@@ -1,0 +1,28 @@
+{
+  "eval_id": 6,
+  "eval_name": "voiceover-traits-complex",
+  "topic": "voiceover-traits",
+  "prompt": "I need to build a custom rating stepper in SwiftUI (1-5 stars). VoiceOver should let users adjust the value by swiping up/down:\n\n```swift\nstruct RatingStepper: View {\n    @Binding var rating: Int\n    var body: some View {\n        HStack {\n            ForEach(1...5, id: \\.self) { i in\n                Image(systemName: i <= rating ? \"star.fill\" : \"star\")\n                    .onTapGesture { rating = i }\n            }\n        }\n    }\n}\n```",
+  "assertions": [
+    {
+      "id": "VT3.1",
+      "text": "Replaces onTapGesture with Button or uses accessibilityAdjustableAction",
+      "rationale": "Skill's #1 critical rule: never onTapGesture for interactive elements"
+    },
+    {
+      "id": "VT3.2",
+      "text": "Adds .accessibilityAdjustableAction with increment/decrement cases",
+      "rationale": "Skill's adjustable controls pattern for custom steppers"
+    },
+    {
+      "id": "VT3.3",
+      "text": "Adds .accessibilityValue with current rating as human-readable text",
+      "rationale": "Skill requires value for stateful controls"
+    },
+    {
+      "id": "VT3.4",
+      "text": "Groups stars into a single accessibility element with .accessibilityElement()",
+      "rationale": "Individual stars should not be separate VoiceOver stops"
+    }
+  ]
+}

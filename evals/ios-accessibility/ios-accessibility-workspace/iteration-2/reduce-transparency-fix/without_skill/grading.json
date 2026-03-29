@@ -1,0 +1,24 @@
+{
+  "eval_id": 35,
+  "eval_name": "reduce-transparency-fix",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Checks @Environment(\\.accessibilityReduceTransparency)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Replaces .ultraThinMaterial with solid Color(.systemBackground) when enabled",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Uses AnyShapeStyle or conditional for the SwiftUI type mismatch",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

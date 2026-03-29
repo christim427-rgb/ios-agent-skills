@@ -1,0 +1,18 @@
+{
+  "eval_id": 4,
+  "eval_name": "header-trait-rotor",
+  "topic": "voiceover-traits",
+  "prompt": "How do I make VoiceOver announce a section heading?",
+  "assertions": [
+    {
+      "id": "VT1.1",
+      "text": "Uses .accessibilityAddTraits(.isHeader)",
+      "rationale": "Skill's critical rule: always add .isHeader on section headings"
+    },
+    {
+      "id": "VT1.2",
+      "text": "Mentions that .isHeader enables rotor heading navigation",
+      "rationale": "Skill explains WHY headers matter \u2014 rotor navigation"
+    }
+  ]
+}

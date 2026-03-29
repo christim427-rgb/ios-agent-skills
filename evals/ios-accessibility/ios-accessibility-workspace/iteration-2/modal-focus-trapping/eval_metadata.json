@@ -1,0 +1,28 @@
+{
+  "eval_id": 12,
+  "eval_name": "modal-focus-trapping",
+  "topic": "voiceover-actions",
+  "prompt": "I have a custom modal presented programmatically (not using .sheet). VoiceOver can still read content behind it:\n\n```swift\nfunc showModal() {\n    let modalView = CustomModalView()\n    view.addSubview(modalView)\n    UIAccessibility.post(notification: .screenChanged, argument: modalView)\n}\n```",
+  "assertions": [
+    {
+      "id": "VA3.1",
+      "text": "Sets accessibilityViewIsModal = true on the modal view",
+      "rationale": "Skill's modal pattern requires this"
+    },
+    {
+      "id": "VA3.2",
+      "text": "Warns that accessibilityViewIsModal only hides SIBLINGS, not all other views",
+      "rationale": "Skill's gotcha: sibling-only hiding"
+    },
+    {
+      "id": "VA3.3",
+      "text": "Mentions view hierarchy matters \u2014 modal should be direct child of container",
+      "rationale": "WITHOUT rarely explains sibling-only behavior"
+    },
+    {
+      "id": "VA3.4",
+      "text": "Recommends implementing accessibilityPerformEscape for dismiss gesture",
+      "rationale": "Skill's magic tap/escape section"
+    }
+  ]
+}

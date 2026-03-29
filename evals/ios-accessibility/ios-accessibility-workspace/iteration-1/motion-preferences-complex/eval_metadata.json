@@ -1,0 +1,33 @@
+{
+  "eval_id": 21,
+  "eval_name": "motion-preferences-complex",
+  "topic": "motion-preferences",
+  "prompt": "What system accessibility preferences should I check beyond Reduce Motion? I want to build a truly adaptive UI.",
+  "assertions": [
+    {
+      "id": "MP3.1",
+      "text": "Lists reduceTransparency with replacement pattern (solid bg vs .ultraThinMaterial)",
+      "rationale": "Skill documents reduce transparency \u2192 solid background replacement"
+    },
+    {
+      "id": "MP3.2",
+      "text": "Lists differentiateWithoutColor for color-only indicators",
+      "rationale": "Skill's complete environment values list"
+    },
+    {
+      "id": "MP3.3",
+      "text": "Lists legibilityWeight (.bold) for bold text preference",
+      "rationale": "Skill documents bold text environment value"
+    },
+    {
+      "id": "MP3.4",
+      "text": "Lists colorSchemeContrast for Increase Contrast preference",
+      "rationale": "Skill includes increased contrast; WITHOUT typically misses 2+ settings"
+    },
+    {
+      "id": "MP3.5",
+      "text": "Mentions accessibilityIgnoresInvertColors for photos/videos",
+      "rationale": "Skill's smart invert section for real-world content"
+    }
+  ]
+}

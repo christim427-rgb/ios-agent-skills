@@ -1,0 +1,23 @@
+{
+  "eval_id": 32,
+  "eval_name": "testing-medium",
+  "topic": "testing",
+  "prompt": "I want to add accessibility auditing to every UI test without writing it in each test method. What's the pattern?",
+  "assertions": [
+    {
+      "id": "TE2.1",
+      "text": "Puts performAccessibilityAudit() in tearDown/tearDownWithError",
+      "rationale": "Skill's regression pattern: audit in tearDown"
+    },
+    {
+      "id": "TE2.2",
+      "text": "Shows how to filter known issues with the closure parameter",
+      "rationale": "Skill documents the issue filter closure to ignore known issues"
+    },
+    {
+      "id": "TE2.3",
+      "text": "Mentions this catches regressions at zero additional test-writing cost",
+      "rationale": "Skill's CI integration: every UI test also validates accessibility"
+    }
+  ]
+}

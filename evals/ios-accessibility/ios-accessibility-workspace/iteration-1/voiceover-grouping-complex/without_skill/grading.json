@@ -1,0 +1,24 @@
+{
+  "eval_id": 9,
+  "eval_name": "voiceover-grouping-complex",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Uses .accessibilityChildren to provide virtual accessible elements for data points",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Adds an .accessibilityLabel on the Canvas describing the chart type",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Each data point child has its own accessibilityLabel with meaningful description",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

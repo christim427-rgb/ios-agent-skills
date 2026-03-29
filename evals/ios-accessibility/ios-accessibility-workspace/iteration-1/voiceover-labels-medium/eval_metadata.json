@@ -1,0 +1,23 @@
+{
+  "eval_id": 2,
+  "eval_name": "voiceover-labels-medium",
+  "topic": "voiceover-labels",
+  "prompt": "I have a product card with a name, price, and rating. How should I label it for VoiceOver?\n\n```swift\nVStack {\n    Text(product.name)\n    Text(\"$\\(product.price)\")\n    HStack {\n        ForEach(0..<5) { i in\n            Image(systemName: i < product.rating ? \"star.fill\" : \"star\")\n        }\n    }\n}\n```",
+  "assertions": [
+    {
+      "id": "VL2.1",
+      "text": "Uses .accessibilityElement(children: .combine) or .ignore with custom label",
+      "rationale": "Skill's grouping decision tree leads to .combine or .ignore for product cards"
+    },
+    {
+      "id": "VL2.2",
+      "text": "Hides decorative star images from VoiceOver",
+      "rationale": "Individual star images should not each be separate VoiceOver stops"
+    },
+    {
+      "id": "VL2.3",
+      "text": "Provides a natural-language rating description (e.g., '4 out of 5 stars') not raw numbers",
+      "rationale": "Skill emphasizes human-readable values; WITHOUT often leaves raw star count"
+    }
+  ]
+}

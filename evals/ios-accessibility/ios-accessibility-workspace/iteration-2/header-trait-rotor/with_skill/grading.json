@@ -1,0 +1,19 @@
+{
+  "eval_id": 4,
+  "eval_name": "header-trait-rotor",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Uses .accessibilityAddTraits(.isHeader)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions that .isHeader enables rotor heading navigation",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 2,
+  "total": 2
+}

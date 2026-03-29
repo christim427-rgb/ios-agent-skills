@@ -1,0 +1,24 @@
+{
+  "eval_id": 17,
+  "eval_name": "color-contrast-medium",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Identifies color-only indicator as accessibility failure (WCAG 1.4.1)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Adds shape and/or text alongside color (checkmark/xmark icons or text labels)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions accessibilityDifferentiateWithoutColor environment value",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    }
+  ],
+  "pass_count": 2,
+  "total": 3
+}

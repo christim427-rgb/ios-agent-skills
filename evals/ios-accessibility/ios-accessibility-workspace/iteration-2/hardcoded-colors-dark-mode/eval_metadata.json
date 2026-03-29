@@ -1,0 +1,23 @@
+{
+  "eval_id": 16,
+  "eval_name": "hardcoded-colors-dark-mode",
+  "topic": "color-contrast",
+  "prompt": "What's the accessibility problem here?\n\n```swift\nText(\"Hello\").foregroundColor(.black)\n    .background(Color.white)\n```",
+  "assertions": [
+    {
+      "id": "CC1.1",
+      "text": "Identifies hardcoded colors as dark mode failure",
+      "rationale": "Skill's AI failure F3"
+    },
+    {
+      "id": "CC1.2",
+      "text": "Recommends .foregroundStyle(.primary) and Color(.systemBackground)",
+      "rationale": "Skill provides semantic color mapping"
+    },
+    {
+      "id": "CC1.3",
+      "text": "Mentions that .foregroundColor is deprecated, use .foregroundStyle",
+      "rationale": "Skill's AI failure F4: deprecated API"
+    }
+  ]
+}

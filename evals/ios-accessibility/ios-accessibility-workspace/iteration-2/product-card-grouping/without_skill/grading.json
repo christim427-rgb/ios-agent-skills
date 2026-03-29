@@ -1,0 +1,24 @@
+{
+  "eval_id": 2,
+  "eval_name": "product-card-grouping",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Uses .accessibilityElement(children: .combine) or .ignore with custom label",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Hides individual star images from VoiceOver (accessibilityHidden or ignoring children)",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    },
+    {
+      "text": "Provides a natural-language rating description (e.g., '4 out of 5 stars')",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 2,
+  "total": 3
+}

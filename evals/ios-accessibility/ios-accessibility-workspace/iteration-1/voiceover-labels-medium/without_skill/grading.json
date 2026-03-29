@@ -1,0 +1,24 @@
+{
+  "eval_id": 2,
+  "eval_name": "voiceover-labels-medium",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Uses .accessibilityElement(children: .combine) or .ignore with custom label",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Hides decorative star images from VoiceOver",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Provides a natural-language rating description (e.g., '4 out of 5 stars') not raw numbers",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

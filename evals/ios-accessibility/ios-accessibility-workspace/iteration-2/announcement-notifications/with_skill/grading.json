@@ -1,0 +1,24 @@
+{
+  "eval_id": 11,
+  "eval_name": "announcement-notifications",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Uses AccessibilityNotification.Announcement (iOS 17+) or UIAccessibility.post(notification: .announcement)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Distinguishes .announcement (no focus change) from .layoutChanged and .screenChanged",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions that announcements can be lost if VoiceOver is already speaking",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

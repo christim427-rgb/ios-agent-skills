@@ -1,0 +1,19 @@
+{
+  "eval_id": 31,
+  "eval_name": "testing-simple",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Uses performAccessibilityAudit() (Xcode 15+)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Shows the audit can be selective with specific types (e.g., .contrast, .dynamicType)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 2,
+  "total": 2
+}

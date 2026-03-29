@@ -1,0 +1,28 @@
+{
+  "eval_id": 27,
+  "eval_name": "custom-drawn-graph-uikit",
+  "topic": "uikit-controls",
+  "prompt": "I have a custom-drawn graph in UIKit using drawRect. VoiceOver can't access any of the data points:\n\n```swift\nclass GraphView: UIView {\n    var dataPoints: [DataPoint] = []\n    override func draw(_ rect: CGRect) { /* Custom drawing */ }\n}\n```",
+  "assertions": [
+    {
+      "id": "UK3.1",
+      "text": "Sets isAccessibilityElement = false on the container",
+      "rationale": "Skill's UIAccessibilityElement pattern"
+    },
+    {
+      "id": "UK3.2",
+      "text": "Overrides accessibilityElements to return UIAccessibilityElement array",
+      "rationale": "Skill's complete pattern with UIAccessibilityElement"
+    },
+    {
+      "id": "UK3.3",
+      "text": "Sets accessibilityFrame using UIAccessibility.convertToScreenCoordinates",
+      "rationale": "Skill includes coordinate conversion"
+    },
+    {
+      "id": "UK3.4",
+      "text": "Each element has accessibilityLabel and accessibilityValue",
+      "rationale": "WITHOUT often provides only container label"
+    }
+  ]
+}

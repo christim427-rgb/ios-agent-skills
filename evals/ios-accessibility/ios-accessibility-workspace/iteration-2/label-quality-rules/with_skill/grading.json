@@ -1,0 +1,24 @@
+{
+  "eval_id": 1,
+  "eval_name": "label-quality-rules",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Identifies that the label should not include the element type ('button')",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Identifies that the label should not describe appearance ('heart icon')",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Provides corrected label describing the action (e.g., 'Add to favorites' or 'Favorite')",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

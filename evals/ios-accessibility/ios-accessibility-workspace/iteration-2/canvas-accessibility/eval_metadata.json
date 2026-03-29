@@ -1,0 +1,23 @@
+{
+  "eval_id": 9,
+  "eval_name": "canvas-accessibility",
+  "topic": "voiceover-grouping",
+  "prompt": "I have a Canvas-based chart that's completely invisible to VoiceOver. How do I make the data points accessible?\n\n```swift\nCanvas { context, size in\n    for point in dataPoints {\n        let rect = CGRect(x: point.x * size.width, y: (1 - point.y) * size.height, width: 10, height: 10)\n        context.fill(Path(ellipseIn: rect), with: .color(.blue))\n    }\n}\n```",
+  "assertions": [
+    {
+      "id": "VG3.1",
+      "text": "Uses .accessibilityChildren to provide virtual accessible elements for data points",
+      "rationale": "Skill's Canvas pattern uses .accessibilityChildren"
+    },
+    {
+      "id": "VG3.2",
+      "text": "Adds an .accessibilityLabel on the Canvas describing the chart type",
+      "rationale": "Skill requires chart-level description"
+    },
+    {
+      "id": "VG3.3",
+      "text": "Each data point child has its own accessibilityLabel with meaningful description",
+      "rationale": "WITHOUT often provides only container label"
+    }
+  ]
+}

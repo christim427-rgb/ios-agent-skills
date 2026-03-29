@@ -1,0 +1,29 @@
+{
+  "eval_id": 18,
+  "eval_name": "color-contrast-complex",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "States WCAG AA requires 4.5:1 for normal text and 3:1 for large text",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Calculates or estimates the contrast ratio for the given colors",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions testing contrast independently for both light AND dark modes",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions Increase Contrast setting (colorSchemeContrast == .increased) may need 7:1",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    }
+  ],
+  "pass_count": 3,
+  "total": 4
+}

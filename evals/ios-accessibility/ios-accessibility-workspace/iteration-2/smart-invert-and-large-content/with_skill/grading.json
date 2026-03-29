@@ -1,0 +1,29 @@
+{
+  "eval_id": 36,
+  "eval_name": "smart-invert-and-large-content",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Uses accessibilityIgnoresInvertColors = true on photos/images",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions setting on parent cascades to subviews",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Uses accessibilityShowsLargeContentViewer for toolbar buttons that can't scale",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Caps Dynamic Type at xxxLarge for toolbar and shows Large Content Viewer as fallback",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

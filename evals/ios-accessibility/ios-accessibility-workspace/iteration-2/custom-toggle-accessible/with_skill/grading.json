@@ -1,0 +1,29 @@
+{
+  "eval_id": 23,
+  "eval_name": "custom-toggle-accessible",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Replaces onTapGesture with Button or native Toggle",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Adds .accessibilityAddTraits(.isToggle) or uses native Toggle for toggle semantics",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Adds .accessibilityValue with current state ('On'/'Off')",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Groups the control elements or uses .accessibilityElement(children:)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

@@ -1,0 +1,24 @@
+{
+  "eval_id": 14,
+  "eval_name": "uifontmetrics-custom-font",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Uses UIFontMetrics(forTextStyle:).scaledFont(for:)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Sets adjustsFontForContentSizeCategory = true",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Sets numberOfLines = 0 to allow text wrapping",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    }
+  ],
+  "pass_count": 2,
+  "total": 3
+}

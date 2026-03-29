@@ -1,0 +1,23 @@
+{
+  "eval_id": 7,
+  "eval_name": "combine-vs-ignore",
+  "topic": "voiceover-grouping",
+  "prompt": "What's the difference between .accessibilityElement(children: .combine) and .ignore?",
+  "assertions": [
+    {
+      "id": "VG1.1",
+      "text": "Explains .combine merges children labels with pauses between them",
+      "rationale": "Skill documents comma-separated reading behavior"
+    },
+    {
+      "id": "VG1.2",
+      "text": "Explains .ignore hides children and requires a custom label on parent",
+      "rationale": "Skill emphasizes .ignore needs manual label"
+    },
+    {
+      "id": "VG1.3",
+      "text": "Recommends .ignore + custom label when natural sentence reading is needed",
+      "rationale": "Skill's decision tree for natural sentences"
+    }
+  ]
+}

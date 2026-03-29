@@ -1,0 +1,24 @@
+{
+  "eval_id": 24,
+  "eval_name": "form-label-association",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Uses .accessibilityLabel on each TextField to explicitly associate the label text",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Uses .accessibilityLabeledPair or explicit accessibilityLabel for cross-hierarchy association",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Adds .textContentType (.username, .emailAddress, .password) for autofill",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    }
+  ],
+  "pass_count": 2,
+  "total": 3
+}

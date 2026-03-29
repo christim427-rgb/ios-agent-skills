@@ -1,0 +1,18 @@
+{
+  "eval_id": 19,
+  "eval_name": "motion-preferences-simple",
+  "topic": "motion-preferences",
+  "prompt": "How do I check if the user has Reduce Motion enabled?",
+  "assertions": [
+    {
+      "id": "MP1.1",
+      "text": "Shows @Environment(\\.accessibilityReduceMotion) for SwiftUI",
+      "rationale": "Skill documents both SwiftUI and UIKit approaches"
+    },
+    {
+      "id": "MP1.2",
+      "text": "Recommends replacing motion with crossfade/opacity, not removing all animation",
+      "rationale": "Skill: 'Don't remove ALL animation \u2014 replace with subtle crossfade'"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "eval_id": 33,
+  "eval_name": "voiceover-manual-protocol",
+  "topic": "testing",
+  "prompt": "Give me a comprehensive VoiceOver manual testing protocol \u2014 what should I check and in what order?",
+  "assertions": [
+    {
+      "id": "TE3.1",
+      "text": "Includes linear navigation test (swipe right through entire screen)",
+      "rationale": "Skill's 10-step protocol"
+    },
+    {
+      "id": "TE3.2",
+      "text": "Includes rotor heading navigation test",
+      "rationale": "Skill verifies section structure via rotor"
+    },
+    {
+      "id": "TE3.3",
+      "text": "Mentions Screen Curtain test (triple three-finger tap) as gold standard",
+      "rationale": "Skill: 'the gold standard VoiceOver test'"
+    },
+    {
+      "id": "TE3.4",
+      "text": "Tests modal focus trapping (escape gesture dismisses)",
+      "rationale": "Skill's protocol step"
+    }
+  ]
+}

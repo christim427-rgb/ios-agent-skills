@@ -1,0 +1,24 @@
+{
+  "eval_id": 7,
+  "eval_name": "combine-vs-ignore",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Explains .combine merges children labels with pauses between them",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Explains .ignore hides children and requires a custom label on parent",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Recommends .ignore + custom label when natural sentence reading is needed",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    }
+  ],
+  "pass_count": 2,
+  "total": 3
+}

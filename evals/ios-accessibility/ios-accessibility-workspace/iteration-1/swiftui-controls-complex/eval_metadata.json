@@ -1,0 +1,23 @@
+{
+  "eval_id": 24,
+  "eval_name": "swiftui-controls-complex",
+  "topic": "swiftui-controls",
+  "prompt": "I'm building a form with labeled inputs. The labels and text fields are in separate VStack columns and VoiceOver doesn't associate them:\n\n```swift\nHStack {\n    VStack(alignment: .trailing) {\n        Text(\"Username\")\n        Text(\"Email\")\n        Text(\"Password\")\n    }\n    VStack(alignment: .leading) {\n        TextField(\"\", text: $username)\n        TextField(\"\", text: $email)\n        SecureField(\"\", text: $password)\n    }\n}\n```",
+  "assertions": [
+    {
+      "id": "SC3.1",
+      "text": "Uses .accessibilityLabel on each TextField to explicitly associate the label text",
+      "rationale": "Skill's TextField pattern: explicit label when prompt is different"
+    },
+    {
+      "id": "SC3.2",
+      "text": "Uses .accessibilityLabeledPair or explicit accessibilityLabel for cross-hierarchy association",
+      "rationale": "Skill documents accessibilityLabeledPair for non-sibling label+control"
+    },
+    {
+      "id": "SC3.3",
+      "text": "Adds .textContentType (.username, .emailAddress, .password) for autofill",
+      "rationale": "Skill's WCAG 1.3.5 mapping requires textContentType"
+    }
+  ]
+}

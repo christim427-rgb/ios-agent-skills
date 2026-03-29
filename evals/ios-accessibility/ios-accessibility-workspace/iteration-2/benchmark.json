@@ -1,0 +1,304 @@
+{
+  "skill_name": "ios-accessibility",
+  "model": "sonnet-4.6",
+  "iteration": 2,
+  "summary": {
+    "with_skill": {
+      "pass": 115,
+      "total": 115,
+      "rate": 100.0
+    },
+    "without_skill": {
+      "pass": 94,
+      "total": 115,
+      "rate": 81.7
+    },
+    "delta": 18.3
+  },
+  "by_topic": {
+    "color-contrast": {
+      "with_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 9,
+        "total": 10,
+        "rate": 90.0
+      },
+      "delta": 10.0
+    },
+    "dynamic-type": {
+      "with_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 7,
+        "total": 10,
+        "rate": 70.0
+      },
+      "delta": 30.0
+    },
+    "motion-preferences": {
+      "with_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 7,
+        "total": 10,
+        "rate": 70.0
+      },
+      "delta": 30.0
+    },
+    "swiftui-controls": {
+      "with_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 7,
+        "total": 10,
+        "rate": 70.0
+      },
+      "delta": 30.0
+    },
+    "system-preferences": {
+      "with_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 7,
+        "total": 9,
+        "rate": 77.8
+      },
+      "delta": 22.2
+    },
+    "testing": {
+      "with_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "delta": 0.0
+    },
+    "uikit-controls": {
+      "with_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "delta": 0.0
+    },
+    "voiceover-actions": {
+      "with_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 8,
+        "total": 10,
+        "rate": 80.0
+      },
+      "delta": 20.0
+    },
+    "voiceover-grouping": {
+      "with_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 8,
+        "total": 9,
+        "rate": 88.9
+      },
+      "delta": 11.1
+    },
+    "voiceover-labels": {
+      "with_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 8,
+        "total": 10,
+        "rate": 80.0
+      },
+      "delta": 20.0
+    },
+    "voiceover-traits": {
+      "with_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 8,
+        "total": 9,
+        "rate": 88.9
+      },
+      "delta": 11.1
+    },
+    "wcag-mapping": {
+      "with_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 6,
+        "total": 9,
+        "rate": 66.7
+      },
+      "delta": 33.3
+    }
+  },
+  "discriminating_assertions": [
+    {
+      "id": "VL2.2",
+      "eval": "product-card-grouping",
+      "topic": "voiceover-labels",
+      "text": "Hides individual star images from VoiceOver (accessibilityHidden or ignoring children)"
+    },
+    {
+      "id": "VL3.4",
+      "eval": "list-cell-custom-actions",
+      "topic": "voiceover-labels",
+      "text": "Each custom action closure returns a Bool (true for success)"
+    },
+    {
+      "id": "VT3.1",
+      "eval": "adjustable-rating-stepper",
+      "topic": "voiceover-traits",
+      "text": "Replaces onTapGesture with Button or uses accessibilityAdjustableAction"
+    },
+    {
+      "id": "VG1.3",
+      "eval": "combine-vs-ignore",
+      "topic": "voiceover-grouping",
+      "text": "Recommends .ignore + custom label when natural sentence reading is needed"
+    },
+    {
+      "id": "VA2.3",
+      "eval": "announcement-notifications",
+      "topic": "voiceover-actions",
+      "text": "Mentions that announcements can be lost if VoiceOver is already speaking"
+    },
+    {
+      "id": "VA3.4",
+      "eval": "modal-focus-trapping",
+      "topic": "voiceover-actions",
+      "text": "Recommends implementing accessibilityPerformEscape for dismiss gesture"
+    },
+    {
+      "id": "DT1.3",
+      "eval": "hardcoded-font-fix",
+      "topic": "dynamic-type",
+      "text": "Mentions that 25%+ of iOS users change their text size"
+    },
+    {
+      "id": "DT2.3",
+      "eval": "uifontmetrics-custom-font",
+      "topic": "dynamic-type",
+      "text": "Sets numberOfLines = 0 to allow text wrapping"
+    },
+    {
+      "id": "DT3.3",
+      "eval": "layout-adaptation-accessibility-sizes",
+      "topic": "dynamic-type",
+      "text": "Uses @ScaledMetric for the image/icon size so it scales with Dynamic Type"
+    },
+    {
+      "id": "CC3.3",
+      "eval": "wcag-contrast-calculation",
+      "topic": "color-contrast",
+      "text": "Mentions testing contrast independently for both light AND dark modes"
+    },
+    {
+      "id": "MP1.2",
+      "eval": "reduce-motion-check",
+      "topic": "motion-preferences",
+      "text": "Recommends replacing motion with crossfade/opacity, not removing all animation"
+    },
+    {
+      "id": "MP3.1",
+      "eval": "all-system-preferences",
+      "topic": "motion-preferences",
+      "text": "Lists reduceTransparency with replacement pattern (solid bg vs .ultraThinMaterial)"
+    },
+    {
+      "id": "MP3.5",
+      "eval": "all-system-preferences",
+      "topic": "motion-preferences",
+      "text": "Mentions accessibilityIgnoresInvertColors for photos/videos"
+    },
+    {
+      "id": "SC1.1",
+      "eval": "ontapgesture-invisible",
+      "topic": "swiftui-controls",
+      "text": "Identifies onTapGesture as invisible to VoiceOver and assistive technology"
+    },
+    {
+      "id": "SC2.2",
+      "eval": "custom-toggle-accessible",
+      "topic": "swiftui-controls",
+      "text": "Adds .accessibilityAddTraits(.isToggle) or uses native Toggle for toggle semantics"
+    },
+    {
+      "id": "SC3.3",
+      "eval": "form-label-association",
+      "topic": "swiftui-controls",
+      "text": "Adds .textContentType (.username, .emailAddress, .password) for autofill"
+    },
+    {
+      "id": "WC2.1",
+      "eval": "drag-and-drop-accessibility",
+      "topic": "wcag-mapping",
+      "text": "References WCAG 2.5.7 (Dragging Movements) \u2014 new in WCAG 2.2"
+    },
+    {
+      "id": "WC2.3",
+      "eval": "drag-and-drop-accessibility",
+      "topic": "wcag-mapping",
+      "text": "Mentions minimum target size (24x24pt WCAG 2.5.8, or 44x44pt Apple HIG)"
+    },
+    {
+      "id": "WC3.3",
+      "eval": "wcag-auto-vs-manual",
+      "topic": "wcag-mapping",
+      "text": "Lists criteria that DON'T apply to native iOS apps (e.g., 4.1.1 Parsing, 2.4.1 Bypass Blocks)"
+    },
+    {
+      "id": "SP3.2",
+      "eval": "smart-invert-and-large-content",
+      "topic": "system-preferences",
+      "text": "Mentions setting on parent cascades to subviews"
+    },
+    {
+      "id": "SP3.4",
+      "eval": "smart-invert-and-large-content",
+      "topic": "system-preferences",
+      "text": "Caps Dynamic Type at xxxLarge for toolbar and shows Large Content Viewer as fallback"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "eval_id": 26,
+  "eval_name": "disabled-controls-visibility",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Identifies isAccessibilityElement = false as the problem",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Recommends .notEnabled trait: VoiceOver reads 'dimmed'",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Explains WHY 'dimmed' matters \u2014 user knows control exists",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

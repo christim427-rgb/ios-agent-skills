@@ -1,0 +1,24 @@
+{
+  "eval_id": 8,
+  "eval_name": "voiceover-grouping-medium",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Groups each row with .accessibilityElement(children: .combine) or .ignore",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Provides a natural label for at least one row (e.g., 'Storage: 5 gigabytes for Basic, 100 gigabytes for Pro')",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions shouldGroupAccessibilityChildren or accessibilitySortPriority for ordering",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

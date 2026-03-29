@@ -1,0 +1,1944 @@
+{
+  "skill_name": "ios-accessibility",
+  "model": "sonnet-4.6",
+  "summary": {
+    "with_skill": {
+      "pass": 108,
+      "total": 115,
+      "rate": 93.9
+    },
+    "without_skill": {
+      "pass": 97,
+      "total": 115,
+      "rate": 84.3
+    },
+    "delta": 9.6
+  },
+  "by_tier": {
+    "simple": {
+      "with_skill": {
+        "pass": 31,
+        "total": 31,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 29,
+        "total": 31,
+        "rate": 93.5
+      },
+      "delta": 6.5
+    },
+    "medium": {
+      "with_skill": {
+        "pass": 33,
+        "total": 37,
+        "rate": 89.2
+      },
+      "without_skill": {
+        "pass": 31,
+        "total": 37,
+        "rate": 83.8
+      },
+      "delta": 5.4
+    },
+    "complex": {
+      "with_skill": {
+        "pass": 44,
+        "total": 47,
+        "rate": 93.6
+      },
+      "without_skill": {
+        "pass": 37,
+        "total": 47,
+        "rate": 78.7
+      },
+      "delta": 14.9
+    }
+  },
+  "by_topic": {
+    "color-contrast": {
+      "with_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 8,
+        "total": 10,
+        "rate": 80.0
+      },
+      "delta": 20.0
+    },
+    "dynamic-type": {
+      "with_skill": {
+        "pass": 8,
+        "total": 10,
+        "rate": 80.0
+      },
+      "without_skill": {
+        "pass": 7,
+        "total": 10,
+        "rate": 70.0
+      },
+      "delta": 10.0
+    },
+    "motion-preferences": {
+      "with_skill": {
+        "pass": 9,
+        "total": 10,
+        "rate": 90.0
+      },
+      "without_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "delta": -10.0
+    },
+    "swiftui-controls": {
+      "with_skill": {
+        "pass": 8,
+        "total": 10,
+        "rate": 80.0
+      },
+      "without_skill": {
+        "pass": 8,
+        "total": 10,
+        "rate": 80.0
+      },
+      "delta": 0.0
+    },
+    "system-preferences": {
+      "with_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 6,
+        "total": 9,
+        "rate": 66.7
+      },
+      "delta": 33.3
+    },
+    "testing": {
+      "with_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 7,
+        "total": 9,
+        "rate": 77.8
+      },
+      "delta": 22.2
+    },
+    "uikit-controls": {
+      "with_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "delta": 0.0
+    },
+    "voiceover-actions": {
+      "with_skill": {
+        "pass": 10,
+        "total": 10,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 9,
+        "total": 10,
+        "rate": 90.0
+      },
+      "delta": 10.0
+    },
+    "voiceover-grouping": {
+      "with_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "delta": 0.0
+    },
+    "voiceover-labels": {
+      "with_skill": {
+        "pass": 9,
+        "total": 10,
+        "rate": 90.0
+      },
+      "without_skill": {
+        "pass": 8,
+        "total": 10,
+        "rate": 80.0
+      },
+      "delta": 10.0
+    },
+    "voiceover-traits": {
+      "with_skill": {
+        "pass": 9,
+        "total": 9,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 8,
+        "total": 9,
+        "rate": 88.9
+      },
+      "delta": 11.1
+    },
+    "wcag-mapping": {
+      "with_skill": {
+        "pass": 8,
+        "total": 9,
+        "rate": 88.9
+      },
+      "without_skill": {
+        "pass": 7,
+        "total": 9,
+        "rate": 77.8
+      },
+      "delta": 11.1
+    }
+  },
+  "per_eval": [
+    {
+      "eval_name": "voiceover-labels-simple",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies that the label should not include the element type ('button')",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Identifies that the label should not describe appearance ('heart icon')",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Provides corrected label describing the action (e.g., 'Add to favorites' or 'Favorite')",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-labels-simple",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies that the label should not include the element type ('button')",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Identifies that the label should not describe appearance ('heart icon')",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Provides corrected label describing the action (e.g., 'Add to favorites' or 'Favorite')",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-labels-medium",
+      "variant": "with_skill",
+      "pass_count": 2,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Uses .accessibilityElement(children: .combine) or .ignore with custom label",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Hides decorative star images from VoiceOver",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Provides a natural-language rating description (e.g., '4 out of 5 stars') not raw numbers",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-labels-medium",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Uses .accessibilityElement(children: .combine) or .ignore with custom label",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Hides decorative star images from VoiceOver",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Provides a natural-language rating description (e.g., '4 out of 5 stars') not raw numbers",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-labels-complex",
+      "variant": "with_skill",
+      "pass_count": 4,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Uses accessibilityCustomActions to consolidate multiple buttons into swipe-up/down actions",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Groups the cell with .accessibilityElement(children:) to create one VoiceOver stop per cell",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Explains that users swipe up/down to cycle through custom actions",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Each custom action closure returns a Bool (true for success)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-labels-complex",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Uses accessibilityCustomActions to consolidate multiple buttons into swipe-up/down actions",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Groups the cell with .accessibilityElement(children:) to create one VoiceOver stop per cell",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Explains that users swipe up/down to cycle through custom actions",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Each custom action closure returns a Bool (true for success)",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-traits-simple",
+      "variant": "with_skill",
+      "pass_count": 2,
+      "total": 2,
+      "assertions": [
+        {
+          "text": "Uses .accessibilityAddTraits(.isHeader)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions that .isHeader enables rotor heading navigation",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-traits-simple",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 2,
+      "assertions": [
+        {
+          "text": "Uses .accessibilityAddTraits(.isHeader)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions that .isHeader enables rotor heading navigation",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-traits-medium",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies that assignment (=) destroys existing traits like .button",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends .insert(.selected) instead of = .selected",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Shows the correct code with .accessibilityTraits.insert(.selected)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-traits-medium",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies that assignment (=) destroys existing traits like .button",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends .insert(.selected) instead of = .selected",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Shows the correct code with .accessibilityTraits.insert(.selected)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-traits-complex",
+      "variant": "with_skill",
+      "pass_count": 4,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Replaces onTapGesture with Button or uses accessibilityAdjustableAction",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds .accessibilityAdjustableAction with increment/decrement cases",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds .accessibilityValue with current rating as human-readable text",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Groups stars into a single accessibility element with .accessibilityElement()",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-traits-complex",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Replaces onTapGesture with Button or uses accessibilityAdjustableAction",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Adds .accessibilityAdjustableAction with increment/decrement cases",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds .accessibilityValue with current rating as human-readable text",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Groups stars into a single accessibility element with .accessibilityElement()",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-grouping-simple",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Explains .combine merges children labels with pauses between them",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Explains .ignore hides children and requires a custom label on parent",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends .ignore + custom label when natural sentence reading is needed",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-grouping-simple",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Explains .combine merges children labels with pauses between them",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Explains .ignore hides children and requires a custom label on parent",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends .ignore + custom label when natural sentence reading is needed",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-grouping-medium",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Groups each row with .accessibilityElement(children: .combine) or .ignore",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Provides a natural label for at least one row (e.g., 'Storage: 5 gigabytes for Basic, 100 gigabytes for Pro')",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions shouldGroupAccessibilityChildren or accessibilitySortPriority for ordering",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-grouping-medium",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Groups each row with .accessibilityElement(children: .combine) or .ignore",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Provides a natural label for at least one row (e.g., 'Storage: 5 gigabytes for Basic, 100 gigabytes for Pro')",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions shouldGroupAccessibilityChildren or accessibilitySortPriority for ordering",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-grouping-complex",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Uses .accessibilityChildren to provide virtual accessible elements for data points",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds an .accessibilityLabel on the Canvas describing the chart type",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Each data point child has its own accessibilityLabel with meaningful description",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-grouping-complex",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Uses .accessibilityChildren to provide virtual accessible elements for data points",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds an .accessibilityLabel on the Canvas describing the chart type",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Each data point child has its own accessibilityLabel with meaningful description",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-actions-simple",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "States hints describe the RESULT of the action, not the action itself",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "States hints begin with a verb (third person)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Warns against redundant hints like 'Tap to delete' on a delete button",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-actions-simple",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "States hints describe the RESULT of the action, not the action itself",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "States hints begin with a verb (third person)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Warns against redundant hints like 'Tap to delete' on a delete button",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-actions-medium",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Uses AccessibilityNotification.Announcement (iOS 17+) or UIAccessibility.post(notification: .announcement)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Distinguishes .announcement (no focus change) from .layoutChanged and .screenChanged",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions that announcements can be lost if VoiceOver is already speaking",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-actions-medium",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Uses AccessibilityNotification.Announcement (iOS 17+) or UIAccessibility.post(notification: .announcement)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Distinguishes .announcement (no focus change) from .layoutChanged and .screenChanged",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Mentions that announcements can be lost if VoiceOver is already speaking",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-actions-complex",
+      "variant": "with_skill",
+      "pass_count": 4,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Sets accessibilityViewIsModal = true on the modal view",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Warns that accessibilityViewIsModal only hides SIBLINGS, not all other views",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions view hierarchy matters \u2014 modal should be direct child of container",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends implementing accessibilityPerformEscape for dismiss gesture",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "voiceover-actions-complex",
+      "variant": "without_skill",
+      "pass_count": 4,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Sets accessibilityViewIsModal = true on the modal view",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Warns that accessibilityViewIsModal only hides SIBLINGS, not all other views",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions view hierarchy matters \u2014 modal should be direct child of container",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends implementing accessibilityPerformEscape for dismiss gesture",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "dynamic-type-simple",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies hardcoded font size as an accessibility issue",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends a specific Dynamic Type text style replacement (e.g., .title)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions that 25%+ of iOS users change their text size",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "dynamic-type-simple",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies hardcoded font size as an accessibility issue",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends a specific Dynamic Type text style replacement (e.g., .title)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions that 25%+ of iOS users change their text size",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    },
+    {
+      "eval_name": "dynamic-type-medium",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Uses UIFontMetrics(forTextStyle:).scaledFont(for:)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Sets adjustsFontForContentSizeCategory = true",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Sets numberOfLines = 0 to allow text wrapping",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "dynamic-type-medium",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Uses UIFontMetrics(forTextStyle:).scaledFont(for:)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Sets adjustsFontForContentSizeCategory = true",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Sets numberOfLines = 0 to allow text wrapping",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "dynamic-type-complex",
+      "variant": "with_skill",
+      "pass_count": 2,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Checks dynamicTypeSize.isAccessibilitySize to switch layout",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Uses ViewThatFits or AnyLayout to switch HStack\u2192VStack",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Uses @ScaledMetric for the image/icon size",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Wraps content in ScrollView for overflow at large sizes",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    },
+    {
+      "eval_name": "dynamic-type-complex",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Checks dynamicTypeSize.isAccessibilitySize to switch layout",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Uses ViewThatFits or AnyLayout to switch HStack\u2192VStack",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Uses @ScaledMetric for the image/icon size",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Wraps content in ScrollView for overflow at large sizes",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    },
+    {
+      "eval_name": "color-contrast-simple",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies hardcoded colors as dark mode failure",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends .foregroundStyle(.primary) and Color(.systemBackground)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions that .foregroundColor is deprecated, use .foregroundStyle",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "color-contrast-simple",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies hardcoded colors as dark mode failure",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends .foregroundStyle(.primary) and Color(.systemBackground)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions that .foregroundColor is deprecated, use .foregroundStyle",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "color-contrast-medium",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies color-only indicator as accessibility failure (WCAG 1.4.1)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds shape and/or text alongside color (checkmark/xmark icons or text labels)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions accessibilityDifferentiateWithoutColor environment value",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "color-contrast-medium",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies color-only indicator as accessibility failure (WCAG 1.4.1)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds shape and/or text alongside color (checkmark/xmark icons or text labels)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions accessibilityDifferentiateWithoutColor environment value",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    },
+    {
+      "eval_name": "color-contrast-complex",
+      "variant": "with_skill",
+      "pass_count": 4,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "States WCAG AA requires 4.5:1 for normal text and 3:1 for large text",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Calculates or estimates the contrast ratio for the given colors",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions testing contrast independently for both light AND dark modes",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions Increase Contrast setting (colorSchemeContrast == .increased) may need 7:1",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "color-contrast-complex",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "States WCAG AA requires 4.5:1 for normal text and 3:1 for large text",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Calculates or estimates the contrast ratio for the given colors",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions testing contrast independently for both light AND dark modes",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions Increase Contrast setting (colorSchemeContrast == .increased) may need 7:1",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    },
+    {
+      "eval_name": "motion-preferences-simple",
+      "variant": "with_skill",
+      "pass_count": 2,
+      "total": 2,
+      "assertions": [
+        {
+          "text": "Shows @Environment(\\.accessibilityReduceMotion) for SwiftUI",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends replacing motion with crossfade/opacity, not removing all animation",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "motion-preferences-simple",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 2,
+      "assertions": [
+        {
+          "text": "Shows @Environment(\\.accessibilityReduceMotion) for SwiftUI",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends replacing motion with crossfade/opacity, not removing all animation",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "motion-preferences-medium",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Checks reduceMotion environment value before applying spring animation",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Provides alternative animation for reduce motion (e.g., .none or .easeInOut)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Shows the ternary pattern: reduceMotion ? .none : .spring()",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "motion-preferences-medium",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Checks reduceMotion environment value before applying spring animation",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Provides alternative animation for reduce motion (e.g., .none or .easeInOut)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Shows the ternary pattern: reduceMotion ? .none : .spring()",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "motion-preferences-complex",
+      "variant": "with_skill",
+      "pass_count": 4,
+      "total": 5,
+      "assertions": [
+        {
+          "text": "Lists reduceTransparency with replacement pattern (solid bg vs .ultraThinMaterial)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Lists differentiateWithoutColor for color-only indicators",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Lists legibilityWeight (.bold) for bold text preference",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Lists colorSchemeContrast for Increase Contrast preference",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions accessibilityIgnoresInvertColors for photos/videos",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "motion-preferences-complex",
+      "variant": "without_skill",
+      "pass_count": 5,
+      "total": 5,
+      "assertions": [
+        {
+          "text": "Lists reduceTransparency with replacement pattern (solid bg vs .ultraThinMaterial)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Lists differentiateWithoutColor for color-only indicators",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Lists legibilityWeight (.bold) for bold text preference",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Lists colorSchemeContrast for Increase Contrast preference",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions accessibilityIgnoresInvertColors for photos/videos",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "swiftui-controls-simple",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies onTapGesture as invisible to VoiceOver and assistive technology",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Replaces with Button and adds accessibilityLabel",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions Switch Control and/or eye tracking as also affected",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "swiftui-controls-simple",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies onTapGesture as invisible to VoiceOver and assistive technology",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Replaces with Button and adds accessibilityLabel",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions Switch Control and/or eye tracking as also affected",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "swiftui-controls-medium",
+      "variant": "with_skill",
+      "pass_count": 2,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Replaces onTapGesture with Button",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds .accessibilityAddTraits(.isToggle) for toggle behavior",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Adds .accessibilityValue with current state ('On'/'Off')",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Groups the control with .accessibilityElement(children:)",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    },
+    {
+      "eval_name": "swiftui-controls-medium",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Replaces onTapGesture with Button",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds .accessibilityAddTraits(.isToggle) for toggle behavior",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Adds .accessibilityValue with current state ('On'/'Off')",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Groups the control with .accessibilityElement(children:)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "swiftui-controls-complex",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Uses .accessibilityLabel on each TextField to explicitly associate the label text",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Uses .accessibilityLabeledPair or explicit accessibilityLabel for cross-hierarchy association",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds .textContentType (.username, .emailAddress, .password) for autofill",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "swiftui-controls-complex",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Uses .accessibilityLabel on each TextField to explicitly associate the label text",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Uses .accessibilityLabeledPair or explicit accessibilityLabel for cross-hierarchy association",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Adds .textContentType (.username, .emailAddress, .password) for autofill",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "uikit-controls-simple",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Explains accessibilityIdentifier is for UI testing only, not read by VoiceOver",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends setting accessibilityLabel for VoiceOver",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Shows both properties set independently (label for users, identifier for tests)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "uikit-controls-simple",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Explains accessibilityIdentifier is for UI testing only, not read by VoiceOver",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends setting accessibilityLabel for VoiceOver",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Shows both properties set independently (label for users, identifier for tests)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "uikit-controls-medium",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies isAccessibilityElement = false as the problem \u2014 hides the control entirely",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends .notEnabled trait instead: VoiceOver reads 'dimmed'",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Explains WHY 'dimmed' matters \u2014 user knows the control exists and what to do to enable it",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "uikit-controls-medium",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Identifies isAccessibilityElement = false as the problem \u2014 hides the control entirely",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends .notEnabled trait instead: VoiceOver reads 'dimmed'",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Explains WHY 'dimmed' matters \u2014 user knows the control exists and what to do to enable it",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "uikit-controls-complex",
+      "variant": "with_skill",
+      "pass_count": 4,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Sets isAccessibilityElement = false on the container (it's a container, not an element)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Overrides accessibilityElements to return UIAccessibilityElement array",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Sets accessibilityFrame using UIAccessibility.convertToScreenCoordinates",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Each element has accessibilityLabel and accessibilityValue",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "uikit-controls-complex",
+      "variant": "without_skill",
+      "pass_count": 4,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Sets isAccessibilityElement = false on the container (it's a container, not an element)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Overrides accessibilityElements to return UIAccessibilityElement array",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Sets accessibilityFrame using UIAccessibility.convertToScreenCoordinates",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Each element has accessibilityLabel and accessibilityValue",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "wcag-mapping-simple",
+      "variant": "with_skill",
+      "pass_count": 2,
+      "total": 2,
+      "assertions": [
+        {
+          "text": "References WCAG 1.4.4 (Resize Text)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Maps to iOS API: preferredFont(forTextStyle:) or Dynamic Type styles",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "wcag-mapping-simple",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 2,
+      "assertions": [
+        {
+          "text": "References WCAG 1.4.4 (Resize Text)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Maps to iOS API: preferredFont(forTextStyle:) or Dynamic Type styles",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "wcag-mapping-medium",
+      "variant": "with_skill",
+      "pass_count": 2,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "References WCAG 2.5.7 (Dragging Movements) \u2014 new in WCAG 2.2",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends single-tap alternative using accessibilityCustomActions",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions minimum target size requirement (24x24pt WCAG, 44x44pt Apple HIG)",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    },
+    {
+      "eval_name": "wcag-mapping-medium",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "References WCAG 2.5.7 (Dragging Movements) \u2014 new in WCAG 2.2",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends single-tap alternative using accessibilityCustomActions",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions minimum target size requirement (24x24pt WCAG, 44x44pt Apple HIG)",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    },
+    {
+      "eval_name": "wcag-mapping-complex",
+      "variant": "with_skill",
+      "pass_count": 4,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Lists at least 3 automatically handled criteria (e.g., 4.1.2, 2.5.2, 2.1.1)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Lists 1.1.1 (Non-text Content) as requiring manual implementation",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Lists criteria that DON'T apply to native iOS apps (e.g., 4.1.1 Parsing, 2.4.1 Bypass Blocks)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Identifies at least one WCAG 2.2 NEW criterion (2.5.7, 2.5.8, 3.3.7, or 3.3.8)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "wcag-mapping-complex",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Lists at least 3 automatically handled criteria (e.g., 4.1.2, 2.5.2, 2.1.1)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Lists 1.1.1 (Non-text Content) as requiring manual implementation",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Lists criteria that DON'T apply to native iOS apps (e.g., 4.1.1 Parsing, 2.4.1 Bypass Blocks)",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Identifies at least one WCAG 2.2 NEW criterion (2.5.7, 2.5.8, 3.3.7, or 3.3.8)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "testing-simple",
+      "variant": "with_skill",
+      "pass_count": 2,
+      "total": 2,
+      "assertions": [
+        {
+          "text": "Uses performAccessibilityAudit() (Xcode 15+)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Shows the audit can be selective with specific types (e.g., .contrast, .dynamicType)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "testing-simple",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 2,
+      "assertions": [
+        {
+          "text": "Uses performAccessibilityAudit() (Xcode 15+)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Shows the audit can be selective with specific types (e.g., .contrast, .dynamicType)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "testing-medium",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Puts performAccessibilityAudit() in tearDown/tearDownWithError",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Shows how to filter known issues with the closure parameter",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions this catches regressions at zero additional test-writing cost",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "testing-medium",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Puts performAccessibilityAudit() in tearDown/tearDownWithError",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Shows how to filter known issues with the closure parameter",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions this catches regressions at zero additional test-writing cost",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "testing-complex",
+      "variant": "with_skill",
+      "pass_count": 4,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Includes linear navigation test (swipe right through entire screen)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Includes rotor heading navigation test",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions Screen Curtain test (triple three-finger tap) as gold standard",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Tests modal focus trapping (escape gesture dismisses)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "testing-complex",
+      "variant": "without_skill",
+      "pass_count": 3,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Includes linear navigation test (swipe right through entire screen)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Includes rotor heading navigation test",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions Screen Curtain test (triple three-finger tap) as gold standard",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Tests modal focus trapping (escape gesture dismisses)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "system-preferences-simple",
+      "variant": "with_skill",
+      "pass_count": 2,
+      "total": 2,
+      "assertions": [
+        {
+          "text": "States both hide the image from VoiceOver",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends Image(decorative:) as the preferred SwiftUI approach",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "system-preferences-simple",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 2,
+      "assertions": [
+        {
+          "text": "States both hide the image from VoiceOver",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Recommends Image(decorative:) as the preferred SwiftUI approach",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "system-preferences-medium",
+      "variant": "with_skill",
+      "pass_count": 3,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Checks @Environment(\\.accessibilityReduceTransparency)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Replaces .ultraThinMaterial with solid Color(.systemBackground) when enabled",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Uses AnyShapeStyle or conditional for the SwiftUI type mismatch",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "system-preferences-medium",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 3,
+      "assertions": [
+        {
+          "text": "Checks @Environment(\\.accessibilityReduceTransparency)",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Replaces .ultraThinMaterial with solid Color(.systemBackground) when enabled",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Uses AnyShapeStyle or conditional for the SwiftUI type mismatch",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    },
+    {
+      "eval_name": "system-preferences-complex",
+      "variant": "with_skill",
+      "pass_count": 4,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Uses accessibilityIgnoresInvertColors = true on photos/images",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions setting on parent cascades to subviews",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Uses accessibilityShowsLargeContentViewer for toolbar buttons that can't scale",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Caps Dynamic Type at xxxLarge for toolbar and shows Large Content Viewer as fallback",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        }
+      ]
+    },
+    {
+      "eval_name": "system-preferences-complex",
+      "variant": "without_skill",
+      "pass_count": 2,
+      "total": 4,
+      "assertions": [
+        {
+          "text": "Uses accessibilityIgnoresInvertColors = true on photos/images",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Mentions setting on parent cascades to subviews",
+          "passed": true,
+          "evidence": "Checked assertion keywords"
+        },
+        {
+          "text": "Uses accessibilityShowsLargeContentViewer for toolbar buttons that can't scale",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        },
+        {
+          "text": "Caps Dynamic Type at xxxLarge for toolbar and shows Large Content Viewer as fallback",
+          "passed": false,
+          "evidence": "Keywords not found in response"
+        }
+      ]
+    }
+  ]
+}

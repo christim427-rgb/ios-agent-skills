@@ -1,0 +1,29 @@
+{
+  "eval_id": 12,
+  "eval_name": "modal-focus-trapping",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Sets accessibilityViewIsModal = true on the modal view",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Warns that accessibilityViewIsModal only hides SIBLINGS, not all other views",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions view hierarchy matters \u2014 modal should be direct child of container",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Recommends implementing accessibilityPerformEscape for dismiss gesture",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

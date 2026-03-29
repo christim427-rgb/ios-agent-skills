@@ -1,0 +1,29 @@
+{
+  "eval_id": 15,
+  "eval_name": "dynamic-type-complex",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Checks dynamicTypeSize.isAccessibilitySize to switch layout",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Uses ViewThatFits or AnyLayout to switch HStack\u2192VStack",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Uses @ScaledMetric for the image/icon size",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    },
+    {
+      "text": "Wraps content in ScrollView for overflow at large sizes",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    }
+  ],
+  "pass_count": 2,
+  "total": 4
+}

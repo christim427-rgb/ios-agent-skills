@@ -1,0 +1,23 @@
+{
+  "eval_id": 25,
+  "eval_name": "identifier-vs-label",
+  "topic": "uikit-controls",
+  "prompt": "My button's accessibilityIdentifier is set but VoiceOver doesn't read anything useful. Why?\n\n```swift\nbutton.accessibilityIdentifier = \"favoriteButton\"\n```",
+  "assertions": [
+    {
+      "id": "UK1.1",
+      "text": "Explains accessibilityIdentifier is for UI testing only, not read by VoiceOver",
+      "rationale": "Skill's AI failure F8"
+    },
+    {
+      "id": "UK1.2",
+      "text": "Recommends setting accessibilityLabel for VoiceOver",
+      "rationale": "Skill's identifier/label table"
+    },
+    {
+      "id": "UK1.3",
+      "text": "Shows both properties set independently (label for users, identifier for tests)",
+      "rationale": "Skill's corrected code sets both"
+    }
+  ]
+}

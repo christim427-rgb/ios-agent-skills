@@ -1,0 +1,24 @@
+{
+  "eval_id": 5,
+  "eval_name": "voiceover-traits-medium",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Identifies that assignment (=) destroys existing traits like .button",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Recommends .insert(.selected) instead of = .selected",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Shows the correct code with .accessibilityTraits.insert(.selected)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

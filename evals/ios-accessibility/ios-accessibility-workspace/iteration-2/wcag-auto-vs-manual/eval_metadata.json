@@ -1,0 +1,28 @@
+{
+  "eval_id": 30,
+  "eval_name": "wcag-auto-vs-manual",
+  "topic": "wcag-mapping",
+  "prompt": "Which WCAG 2.2 criteria are automatically handled by standard UIKit/SwiftUI controls and which require manual implementation? Give me the top 5 that developers miss most.",
+  "assertions": [
+    {
+      "id": "WC3.1",
+      "text": "Lists at least 3 automatically handled criteria (e.g., 4.1.2, 2.5.2, 2.1.1)",
+      "rationale": "Skill documents 6 auto-handled criteria"
+    },
+    {
+      "id": "WC3.2",
+      "text": "Lists 1.1.1 (Non-text Content) as requiring manual implementation",
+      "rationale": "Skill marks this as high-priority AI failure"
+    },
+    {
+      "id": "WC3.3",
+      "text": "Lists criteria that DON'T apply to native iOS apps (e.g., 4.1.1 Parsing, 2.4.1 Bypass Blocks)",
+      "rationale": "Skill documents non-applicable criteria"
+    },
+    {
+      "id": "WC3.4",
+      "text": "Identifies at least one WCAG 2.2 NEW criterion (2.5.7, 2.5.8, 3.3.7, or 3.3.8)",
+      "rationale": "Skill documents all WCAG 2.2 additions"
+    }
+  ]
+}

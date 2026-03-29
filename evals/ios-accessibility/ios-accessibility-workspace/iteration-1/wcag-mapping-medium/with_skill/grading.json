@@ -1,0 +1,24 @@
+{
+  "eval_id": 29,
+  "eval_name": "wcag-mapping-medium",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "References WCAG 2.5.7 (Dragging Movements) \u2014 new in WCAG 2.2",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Recommends single-tap alternative using accessibilityCustomActions",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions minimum target size requirement (24x24pt WCAG, 44x44pt Apple HIG)",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    }
+  ],
+  "pass_count": 2,
+  "total": 3
+}

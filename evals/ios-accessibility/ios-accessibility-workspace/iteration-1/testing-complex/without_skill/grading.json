@@ -1,0 +1,29 @@
+{
+  "eval_id": 33,
+  "eval_name": "testing-complex",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Includes linear navigation test (swipe right through entire screen)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Includes rotor heading navigation test",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions Screen Curtain test (triple three-finger tap) as gold standard",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    },
+    {
+      "text": "Tests modal focus trapping (escape gesture dismisses)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 4
+}

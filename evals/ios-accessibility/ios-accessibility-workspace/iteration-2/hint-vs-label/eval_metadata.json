@@ -1,0 +1,23 @@
+{
+  "eval_id": 10,
+  "eval_name": "hint-vs-label",
+  "topic": "voiceover-actions",
+  "prompt": "When should I use accessibilityHint vs accessibilityLabel?",
+  "assertions": [
+    {
+      "id": "VA1.1",
+      "text": "States hints describe the RESULT of the action, not the action itself",
+      "rationale": "Skill's hint rules"
+    },
+    {
+      "id": "VA1.2",
+      "text": "States hints begin with a verb (third person)",
+      "rationale": "Skill documents verb-first hint format"
+    },
+    {
+      "id": "VA1.3",
+      "text": "Warns against redundant hints like 'Tap to delete' on a delete button",
+      "rationale": "Skill has explicit anti-pattern for redundant hints"
+    }
+  ]
+}

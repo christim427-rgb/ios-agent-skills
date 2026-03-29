@@ -1,0 +1,29 @@
+{
+  "eval_id": 23,
+  "eval_name": "swiftui-controls-medium",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Replaces onTapGesture with Button",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Adds .accessibilityAddTraits(.isToggle) for toggle behavior",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    },
+    {
+      "text": "Adds .accessibilityValue with current state ('On'/'Off')",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Groups the control with .accessibilityElement(children:)",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    }
+  ],
+  "pass_count": 2,
+  "total": 4
+}

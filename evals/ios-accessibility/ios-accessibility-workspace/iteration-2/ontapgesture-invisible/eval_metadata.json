@@ -1,0 +1,23 @@
+{
+  "eval_id": 22,
+  "eval_name": "ontapgesture-invisible",
+  "topic": "swiftui-controls",
+  "prompt": "What's the accessibility issue with this?\n\n```swift\nImage(systemName: \"plus\")\n    .onTapGesture { addItem() }\n```",
+  "assertions": [
+    {
+      "id": "SC1.1",
+      "text": "Identifies onTapGesture as invisible to VoiceOver and assistive technology",
+      "rationale": "Skill's #1 AI failure"
+    },
+    {
+      "id": "SC1.2",
+      "text": "Replaces with Button and adds accessibilityLabel",
+      "rationale": "Skill's critical rule: always use Button"
+    },
+    {
+      "id": "SC1.3",
+      "text": "Mentions Switch Control and/or eye tracking as also affected",
+      "rationale": "Skill documents that ALL assistive tech is affected"
+    }
+  ]
+}

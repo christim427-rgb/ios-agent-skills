@@ -1,0 +1,29 @@
+{
+  "eval_id": 15,
+  "eval_name": "layout-adaptation-accessibility-sizes",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Checks dynamicTypeSize.isAccessibilitySize to switch layout",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Uses ViewThatFits or AnyLayout to switch HStack to VStack",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Uses @ScaledMetric for the image/icon size so it scales with Dynamic Type",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Wraps content in ScrollView for overflow at large sizes",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

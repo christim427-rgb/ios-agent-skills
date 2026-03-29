@@ -1,0 +1,23 @@
+{
+  "eval_id": 11,
+  "eval_name": "voiceover-actions-medium",
+  "topic": "voiceover-actions",
+  "prompt": "I need to post a VoiceOver announcement when an async operation completes. What notification should I use?",
+  "assertions": [
+    {
+      "id": "VA2.1",
+      "text": "Uses AccessibilityNotification.Announcement (iOS 17+) or UIAccessibility.post(notification: .announcement)",
+      "rationale": "Skill documents both SwiftUI and UIKit notification APIs"
+    },
+    {
+      "id": "VA2.2",
+      "text": "Distinguishes .announcement (no focus change) from .layoutChanged and .screenChanged",
+      "rationale": "Skill's notification table distinguishes all three types"
+    },
+    {
+      "id": "VA2.3",
+      "text": "Mentions that announcements can be lost if VoiceOver is already speaking",
+      "rationale": "Skill warns about announcement interruption; WITHOUT rarely mentions this"
+    }
+  ]
+}

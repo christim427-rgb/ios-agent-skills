@@ -1,0 +1,290 @@
+[
+  {
+    "eval": "adjustable-rating-stepper",
+    "score_a": 9,
+    "score_b": 8,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) covers the problem more deeply: explains onTapGesture failure pattern explicitly, explains why each design decision matters, adds guidance on boundary clamping and @unknown default. B (without_skill) adds a UIKit implementation which is a plus but lacks the depth of explanation. A wins on correctness and explanation quality."
+  },
+  {
+    "eval": "all-system-preferences",
+    "score_a": 8,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) provides a structured reference with code examples for each preference, a decision table, and a comprehensive SwiftUI view pattern. A (without_skill) provides broader coverage including UIKit notifications and interaction/hearing preferences, which is more complete. A wins on breadth but B wins on depth for the core preferences. Tie-break to B for structured decision table."
+  },
+  {
+    "eval": "announcement-notifications",
+    "score_a": 9,
+    "score_b": 7,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) is substantially more complete: covers notification types table, iOS 17 announcement priority (AttributedString with .accessibilitySpeechAnnouncementPriority), anti-patterns to avoid (spamming, background thread), and @AccessibilityFocusState. B (without_skill) is correct but misses priority API and anti-patterns. A is clearly superior."
+  },
+  {
+    "eval": "canvas-accessibility",
+    "score_a": 8,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) is more comprehensive: covers accessibilityChildren, UIKit UIAccessibilityElement with frame conversion, chart summary with heading trait, and accessibilityRepresentation as an alternative. A (without_skill) covers similar ground but adds ZStack overlay approach and data table alternative. Both are strong. B edges out with .accessibilityRepresentation coverage and checklist."
+  },
+  {
+    "eval": "color-only-status-indicator",
+    "score_a": 9,
+    "score_b": 7,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) is notably more thorough: covers WCAG criteria table, compact badge pattern, ContactCard grouping pattern, and explains each approach. B (without_skill) has 5 separate fixes but the combined solution uses .foregroundColor (deprecated) and lacks the depth of WCAG criterion coverage and the grouping pattern."
+  },
+  {
+    "eval": "combine-vs-ignore",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) has a richer decision tree, side-by-side comparison table, covers .contain, and critically explains the Buttons inside .combine gotcha with the lost action problem. A (without_skill) covers the same core concepts but is more concise without the button gotcha warning. B wins on practical completeness."
+  },
+  {
+    "eval": "custom-drawn-graph-uikit",
+    "score_a": 9,
+    "score_b": 8,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) is more thorough: explains isAccessibilityElement=false rationale, covers UIAccessibility.convertToScreenCoordinates vs accessibilityFrameInContainerSpace, adds layoutSubviews notification, and provides a SwiftUI Canvas alternative. B (without_skill) correctly uses accessibilityFrameInContainerSpace (simpler API) and adds Swift Charts as alternative, but is shallower in explanation."
+  },
+  {
+    "eval": "custom-toggle-accessible",
+    "score_a": 8,
+    "score_b": 7,
+    "winner": "A",
+    "a_is": "without_skill",
+    "notes": "A (without_skill) uses .isToggle trait (iOS 17), .accessibilityRepresentation pattern, and covers the 'before iOS 17' fallback. B (with_skill) still uses onTapGesture in the fixed version (incorrect — should use Button), and uses .isButton trait instead of .isToggle. A wins on correctness and modern API coverage."
+  },
+  {
+    "eval": "decorative-image-approaches",
+    "score_a": 9,
+    "score_b": 8,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) adds important 'what NOT to do' section, the grouping context example with stars in ratings, and a clear table of decorative vs informative image examples. B (without_skill) adds a useful comparison table and the conditional hiding use case. A wins on practical guidance and anti-patterns."
+  },
+  {
+    "eval": "disabled-controls-visibility",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) is notably more complete: explains WHY users need to know disabled controls exist, covers the WCAG criterion, uses proper .insert/.remove for UIKit (critical), includes opacity hint pattern, and a comprehensive summary table. A (without_skill) mentions that UIKit auto-adds dimmed trait when isEnabled=false (slightly incorrect — you should still use .notEnabled explicitly), and lacks the guidance depth."
+  },
+  {
+    "eval": "drag-and-drop-accessibility",
+    "score_a": 9,
+    "score_b": 7,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) covers WCAG 2.5.7 (new in 2.2) and 2.5.8, explains touch target requirements with table, adds post-reorder announcement, and provides both SwiftUI and UIKit patterns. B (without_skill) incorrectly cites 2.5.1 (path-based gestures) instead of the more applicable 2.5.7 (dragging movements), and misses the reorder announcement pattern."
+  },
+  {
+    "eval": "form-label-association",
+    "score_a": 7,
+    "score_b": 8,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) explicitly covers accessibilityLabeledPair (the most important API for true label-field separation), explains textContentType/WCAG 1.3.5, and provides a clear recommendation. A (without_skill) mentions LabeledContent but misses accessibilityLabeledPair entirely, which is the key API for the stated problem scenario. B wins on covering the core API."
+  },
+  {
+    "eval": "hardcoded-colors-dark-mode",
+    "score_a": 9,
+    "score_b": 7,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) identifies both issues (hardcoded colors AND deprecated .foregroundColor API), provides a complete semantic color reference table, explains the complete before/after component, and covers .cornerRadius deprecation too. B (without_skill) covers the color issue well but misses the deprecated API issue entirely. A is substantially more complete."
+  },
+  {
+    "eval": "hardcoded-font-fix",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) is more complete: covers 25% user stat, WCAG 1.4.4 reference, .custom(_:size:fixedSize:) anti-pattern, and Xcode testing steps. A (without_skill) mentions a somewhat incorrect 'system font with custom size' approach (the code shown doesn't actually scale system fonts) and adds .minimumScaleFactor which is useful. B is more accurate and complete."
+  },
+  {
+    "eval": "header-trait-rotor",
+    "score_a": 9,
+    "score_b": 7,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) covers custom rotors with accessibilityRotorEntry, UIKit custom rotor implementation, and a summary table. B (without_skill) is concise and correct but misses custom rotor coverage and UIKit rotor implementation. A provides more actionable guidance for complex navigation needs."
+  },
+  {
+    "eval": "hint-vs-label",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) has a comprehensive decision tree, VoiceOver announcement timeline visualization, and a detailed table of common mistakes. A (without_skill) covers the same ground with similar completeness. B edges out on the decision tree and mistake table which are highly practical for developers."
+  },
+  {
+    "eval": "identifier-vs-label",
+    "score_a": 9,
+    "score_b": 8,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) explains this as AI failure pattern F8, notes impact on Voice Control and Switch Control (not just VoiceOver), classifies as CRITICAL, and provides a clear quick reference. B (without_skill) covers the same core content concisely but lacks the severity classification and multi-AT impact discussion."
+  },
+  {
+    "eval": "label-quality-rules",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) identifies both specific problems (appearance description AND redundant type), provides CRITICAL severity, shows the stateful label pattern, and has a clear checklist summary. A (without_skill) adds the useful 'icon is noise' point and localization reminder. Both are good; B wins on severity framing and checklist."
+  },
+  {
+    "eval": "layout-adaptation-accessibility-sizes",
+    "score_a": 9,
+    "score_b": 7,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) is substantially more thorough: covers ViewThatFits with full example, @ScaledMetric with relativeTo, conditional scrolling with ViewThatFits(in:.vertical), AnyLayout for state preservation, and a comprehensive summary table. B (without_skill) covers 4 fixes but is shallower and includes minimumScaleFactor as a valid fix (it's a last resort). A is the clear winner."
+  },
+  {
+    "eval": "list-cell-custom-actions",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) explains WHY actions return Bool, provides UIKit implementation with selector pattern, has a before/after comparison table, and shows the pattern of hiding visual buttons from VoiceOver. A (without_skill) is correct but misses the Bool return value explanation and the visual button hiding pattern. B wins on completeness."
+  },
+  {
+    "eval": "modal-focus-trapping",
+    "score_a": 9,
+    "score_b": 7,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) is far more complete: explains the siblings-only limitation of accessibilityViewIsModal with diagrams, covers window-level modal presentation for correct trapping, includes accessibilityPerformEscape, focus return on dismissal, and a complete checklist. B (without_skill) covers the basics but misses the siblings limitation and escape gesture. A is substantially better."
+  },
+  {
+    "eval": "ontapgesture-invisible",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) explains all 5 ATs affected (VoiceOver, Switch Control, eye tracking, Voice Control, Full Keyboard Access), explains WHY label is required (raw SF Symbol name), adds CRITICAL severity, and covers Voice Control bonus. A (without_skill) adds touch target size consideration and the workaround pattern with .accessibilityAction, which is useful. B wins on completeness and severity framing."
+  },
+  {
+    "eval": "product-card-grouping",
+    "score_a": 9,
+    "score_b": 8,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) explicitly explains why .ignore is chosen over .combine with a comparison table, covers the tappable card variant with Button wrapping, and includes a complete accessibility checklist. B (without_skill) mentions .accessibilityAction for additional buttons which is a nice addition. A wins on the .ignore vs .combine explanation."
+  },
+  {
+    "eval": "reduce-motion-check",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) covers the principle of NOT removing all animation (just replacing with crossfade), explains what counts as motion vs safe animations, provides a reusable helper function, and shows transition pairing. A (without_skill) covers UIKit notification observation which is useful. B wins on the important 'don't use .none' principle and classification of motion types."
+  },
+  {
+    "eval": "reduce-transparency-fix",
+    "score_a": 8,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) explains the AnyShapeStyle type mismatch issue (a common pitfall), provides a material replacement table, and shows both helper extension and ViewModifier approaches. A (without_skill) uses AnyView instead of AnyShapeStyle (technically works but is heavier), and covers UIKit notification observation. B wins on the AnyShapeStyle explanation and material table."
+  },
+  {
+    "eval": "smart-invert-and-large-content",
+    "score_a": 8,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) provides both fixes in a comprehensive combined example, covers .dynamicTypeSize cap, large content viewer with label, and a when-to-use table. A (without_skill) covers .accessibilityIgnoresInvertColors() without the parameter (technically incorrect in SwiftUI — the modifier requires a Bool argument), and adds @ScaledMetric which is useful. B wins on accuracy and completeness of the large content viewer pattern."
+  },
+  {
+    "eval": "spring-animation-reduce-motion",
+    "score_a": 9,
+    "score_b": 8,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) explains the reason (.none feels jarring), provides a computed property pattern for clean code, shows transition pairing with animations, and provides UIKit context for non-SwiftUI. B (without_skill) provides UIKit UIView.animate alternative and lists 4 key principles. A wins on the 'don't use .none' explanation and transition pairing."
+  },
+  {
+    "eval": "table-row-grouping",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) is significantly more thorough: covers shouldGroupAccessibilityChildren, accessibilitySortPriority, UIKit accessibilityElements override, header row with .isHeader, and provides a complete SwiftUI table example with VoiceOver output. A (without_skill) covers similar ground but is shallower and lacks the complete implementation. B is clearly the winner."
+  },
+  {
+    "eval": "teardown-audit-pattern",
+    "score_a": 9,
+    "score_b": 8,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) explains the tearDown placement benefit explicitly, shows filtering with a knownIssues array pattern, provides CI YAML integration, and best practices for managing the known issues list. B (without_skill) adds a Test Plan option (zero-code approach) which is a valuable addition. A wins on CI integration and the structured knownIssues management pattern."
+  },
+  {
+    "eval": "trait-assignment-destruction",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) identifies this as AI failure pattern F10 (critical severity), shows exactly what VoiceOver announces before/after the bug, explains when direct assignment IS acceptable, and has a complete FavoriteToggleButton implementation. A (without_skill) adds the accessibilityValue approach for state which is correct for toggle semantics. B wins on severity framing, complete pattern, and the 'when assignment is OK' guidance."
+  },
+  {
+    "eval": "uifontmetrics-custom-font",
+    "score_a": 9,
+    "score_b": 8,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) is more complete: explains why adjustsFontForContentSizeCategory matters for live updates, covers the font availability fallback pattern, provides a realistic ProfileHeaderView example with multiple labels, and includes testing steps. B (without_skill) adds a maximumPointSize cap option which is useful. A wins on depth and practical implementation."
+  },
+  {
+    "eval": "voiceover-manual-protocol",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) provides a structured 10-step protocol with Screen Curtain test as the gold standard, explains why manual testing catches what automated audits miss (30% stat), includes element-specific verification checklist and common failures list. A (without_skill) has a comprehensive phase-based checklist with more granular checks per phase. A is more structured as a checklist but B's Screen Curtain emphasis and 10-step protocol is more usable. Tie-break to B for the Screen Curtain test explanation."
+  },
+  {
+    "eval": "wcag-auto-vs-manual",
+    "score_a": 9,
+    "score_b": 8,
+    "winner": "A",
+    "a_is": "with_skill",
+    "notes": "A (with_skill) covers WCAG 2.2 new criteria (2.4.11, 2.4.13, 2.5.7, 2.5.8, 3.2.6, 3.3.7, 3.3.8) which B misses entirely, identifies criteria that do NOT apply to native iOS apps, and provides a decision flowchart. B (without_skill) provides a useful 'Top 5 Criteria Developers Miss Most' section. A wins on WCAG 2.2 coverage and native-app-specific guidance."
+  },
+  {
+    "eval": "wcag-contrast-calculation",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) shows the full WCAG luminance formula correctly, provides the exact calculation steps, gives a definitive FAIL verdict, discusses Increase Contrast mode (7:1 target) with code, and provides fix options table. A (without_skill) arrives at 4.67:1 (slightly different rounding) and correctly notes the marginal nature, but B's verdict is more authoritative and the Increase Contrast guidance is unique to B."
+  },
+  {
+    "eval": "wcag-text-resize-criterion",
+    "score_a": 7,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) provides the full criterion text, maps each WCAG requirement to iOS API, provides both SwiftUI and UIKit implementations, shows layout adaptation, and includes a text style scaling table. A (without_skill) covers the criterion but also discusses 1.4.12 (which doesn't apply to native apps) and 1.4.10. B wins on iOS-specific mapping and the scaling table."
+  },
+  {
+    "eval": "xctest-accessibility-audit",
+    "score_a": 8,
+    "score_b": 9,
+    "winner": "B",
+    "a_is": "without_skill",
+    "notes": "B (with_skill) provides a comprehensive audit types table with descriptions, shows filtering with structured logic, per-screen test pattern, targeted category tests, and limitations. A (without_skill) adds iOS 16 fallback with manual XCUIElement assertions and the Test Plan GUI option. B wins on the audit types table and filtering explanation. A's iOS 16 coverage is a practical plus."
+  }
+]

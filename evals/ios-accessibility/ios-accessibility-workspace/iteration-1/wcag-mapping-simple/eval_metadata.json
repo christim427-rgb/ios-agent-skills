@@ -1,0 +1,18 @@
+{
+  "eval_id": 28,
+  "eval_name": "wcag-mapping-simple",
+  "topic": "wcag-mapping",
+  "prompt": "What WCAG criterion covers text resizing on iOS?",
+  "assertions": [
+    {
+      "id": "WC1.1",
+      "text": "References WCAG 1.4.4 (Resize Text)",
+      "rationale": "Skill's WCAG mapping table links 1.4.4 to Dynamic Type"
+    },
+    {
+      "id": "WC1.2",
+      "text": "Maps to iOS API: preferredFont(forTextStyle:) or Dynamic Type styles",
+      "rationale": "Skill provides specific iOS API for each WCAG criterion"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "eval_id": 17,
+  "eval_name": "color-contrast-medium",
+  "topic": "color-contrast",
+  "prompt": "I'm using color to show online/offline status. A colorblind user reported they can't tell the difference:\n\n```swift\nCircle().fill(isOnline ? .green : .red)\n    .frame(width: 12, height: 12)\n```",
+  "assertions": [
+    {
+      "id": "CC2.1",
+      "text": "Identifies color-only indicator as accessibility failure (WCAG 1.4.1)",
+      "rationale": "Skill's color blindness section: never color as sole indicator"
+    },
+    {
+      "id": "CC2.2",
+      "text": "Adds shape and/or text alongside color (checkmark/xmark icons or text labels)",
+      "rationale": "Skill shows color + shape + text pattern"
+    },
+    {
+      "id": "CC2.3",
+      "text": "Mentions accessibilityDifferentiateWithoutColor environment value",
+      "rationale": "Skill documents this preference check; WITHOUT rarely includes it"
+    }
+  ]
+}

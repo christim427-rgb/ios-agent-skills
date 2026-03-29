@@ -1,0 +1,23 @@
+{
+  "eval_id": 8,
+  "eval_name": "voiceover-grouping-medium",
+  "topic": "voiceover-grouping",
+  "prompt": "My comparison table has 3 columns and 5 rows. VoiceOver reads elements in wrong order, jumping between columns:\n\n```swift\nVStack {\n    HStack { Text(\"Feature\"); Text(\"Basic\"); Text(\"Pro\") }\n    HStack { Text(\"Storage\"); Text(\"5GB\"); Text(\"100GB\") }\n    HStack { Text(\"Users\"); Text(\"1\"); Text(\"Unlimited\") }\n}\n```",
+  "assertions": [
+    {
+      "id": "VG2.1",
+      "text": "Groups each row with .accessibilityElement(children: .combine) or .ignore",
+      "rationale": "Skill's grouping example uses this exact table scenario"
+    },
+    {
+      "id": "VG2.2",
+      "text": "Provides a natural label for at least one row (e.g., 'Storage: 5 gigabytes for Basic, 100 gigabytes for Pro')",
+      "rationale": "Skill shows .ignore + custom label pattern for table rows"
+    },
+    {
+      "id": "VG2.3",
+      "text": "Mentions shouldGroupAccessibilityChildren or accessibilitySortPriority for ordering",
+      "rationale": "Skill covers both approaches for navigation order control"
+    }
+  ]
+}

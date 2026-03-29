@@ -1,0 +1,23 @@
+{
+  "eval_id": 13,
+  "eval_name": "hardcoded-font-fix",
+  "topic": "dynamic-type",
+  "prompt": "What's wrong with this font?\n\n```swift\nText(\"Welcome\").font(.system(size: 24))\n```",
+  "assertions": [
+    {
+      "id": "DT1.1",
+      "text": "Identifies hardcoded font size as an accessibility issue",
+      "rationale": "Skill's AI failure F2"
+    },
+    {
+      "id": "DT1.2",
+      "text": "Recommends a specific Dynamic Type text style replacement (e.g., .title)",
+      "rationale": "Skill provides text style mapping table"
+    },
+    {
+      "id": "DT1.3",
+      "text": "Mentions that 25%+ of iOS users change their text size",
+      "rationale": "Skill emphasizes user population impact"
+    }
+  ]
+}

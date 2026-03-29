@@ -1,0 +1,29 @@
+{
+  "eval_id": 3,
+  "eval_name": "voiceover-labels-complex",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Uses accessibilityCustomActions to consolidate multiple buttons into swipe-up/down actions",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    },
+    {
+      "text": "Groups the cell with .accessibilityElement(children:) to create one VoiceOver stop per cell",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Explains that users swipe up/down to cycle through custom actions",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Each custom action closure returns a Bool (true for success)",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    }
+  ],
+  "pass_count": 2,
+  "total": 4
+}

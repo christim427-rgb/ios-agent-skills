@@ -1,0 +1,24 @@
+{
+  "eval_id": 16,
+  "eval_name": "color-contrast-simple",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Identifies hardcoded colors as dark mode failure",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Recommends .foregroundStyle(.primary) and Color(.systemBackground)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions that .foregroundColor is deprecated, use .foregroundStyle",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

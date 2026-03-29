@@ -1,0 +1,29 @@
+{
+  "eval_id": 33,
+  "eval_name": "voiceover-manual-protocol",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Includes linear navigation test (swipe right through entire screen)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Includes rotor heading navigation test",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions Screen Curtain test (triple three-finger tap) as gold standard",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Tests modal focus trapping (escape gesture dismisses)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

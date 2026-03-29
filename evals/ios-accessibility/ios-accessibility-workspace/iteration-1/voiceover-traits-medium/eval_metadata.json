@@ -1,0 +1,23 @@
+{
+  "eval_id": 5,
+  "eval_name": "voiceover-traits-medium",
+  "topic": "voiceover-traits",
+  "prompt": "I have a custom toggle in UIKit. When I set it as selected, VoiceOver stops saying 'button':\n\n```swift\nmyToggle.accessibilityTraits = .selected\n```",
+  "assertions": [
+    {
+      "id": "VT2.1",
+      "text": "Identifies that assignment (=) destroys existing traits like .button",
+      "rationale": "Skill's AI failure F10: assigning traits instead of inserting"
+    },
+    {
+      "id": "VT2.2",
+      "text": "Recommends .insert(.selected) instead of = .selected",
+      "rationale": "Skill's critical rule #7: always use .insert() not assignment"
+    },
+    {
+      "id": "VT2.3",
+      "text": "Shows the correct code with .accessibilityTraits.insert(.selected)",
+      "rationale": "WITHOUT may suggest alternative fix but miss the insert vs assign distinction"
+    }
+  ]
+}

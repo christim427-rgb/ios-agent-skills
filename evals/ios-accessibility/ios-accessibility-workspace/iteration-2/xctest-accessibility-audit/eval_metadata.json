@@ -1,0 +1,18 @@
+{
+  "eval_id": 31,
+  "eval_name": "xctest-accessibility-audit",
+  "topic": "testing",
+  "prompt": "How do I run an automated accessibility audit in my XCTest UI tests?",
+  "assertions": [
+    {
+      "id": "TE1.1",
+      "text": "Uses performAccessibilityAudit() (Xcode 15+)",
+      "rationale": "Skill documents XCTest accessibility audit API"
+    },
+    {
+      "id": "TE1.2",
+      "text": "Shows the audit can be selective with specific types (e.g., .contrast, .dynamicType)",
+      "rationale": "Skill lists all audit types"
+    }
+  ]
+}

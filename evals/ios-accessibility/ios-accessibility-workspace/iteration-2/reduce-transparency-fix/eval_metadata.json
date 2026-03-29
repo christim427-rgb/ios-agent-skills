@@ -1,0 +1,23 @@
+{
+  "eval_id": 35,
+  "eval_name": "reduce-transparency-fix",
+  "topic": "system-preferences",
+  "prompt": "My app uses blur effects (.ultraThinMaterial) extensively. A user with reduce transparency enabled can't read the content. How do I fix this?",
+  "assertions": [
+    {
+      "id": "SP2.1",
+      "text": "Checks @Environment(\\.accessibilityReduceTransparency)",
+      "rationale": "Skill's system preferences section"
+    },
+    {
+      "id": "SP2.2",
+      "text": "Replaces .ultraThinMaterial with solid Color(.systemBackground) when enabled",
+      "rationale": "Skill provides exact replacement pattern"
+    },
+    {
+      "id": "SP2.3",
+      "text": "Uses AnyShapeStyle or conditional for the SwiftUI type mismatch",
+      "rationale": "Skill shows AnyShapeStyle pattern"
+    }
+  ]
+}

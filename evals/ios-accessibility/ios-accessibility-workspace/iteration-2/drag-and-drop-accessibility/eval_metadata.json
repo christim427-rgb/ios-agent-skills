@@ -1,0 +1,23 @@
+{
+  "eval_id": 29,
+  "eval_name": "drag-and-drop-accessibility",
+  "topic": "wcag-mapping",
+  "prompt": "My app has drag-and-drop for reordering items. A user with motor impairment can't use it. What WCAG criteria apply and how do I fix it for iOS?",
+  "assertions": [
+    {
+      "id": "WC2.1",
+      "text": "References WCAG 2.5.7 (Dragging Movements) \u2014 new in WCAG 2.2",
+      "rationale": "Skill rule 16 and WCAG 2.2 new criteria"
+    },
+    {
+      "id": "WC2.2",
+      "text": "Recommends single-tap alternative using accessibilityCustomActions",
+      "rationale": "Skill rule 16: provide single-tap alternatives"
+    },
+    {
+      "id": "WC2.3",
+      "text": "Mentions minimum target size (24x24pt WCAG 2.5.8, or 44x44pt Apple HIG)",
+      "rationale": "Skill rule 16: ensure minimum touch target size"
+    }
+  ]
+}

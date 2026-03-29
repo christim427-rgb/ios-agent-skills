@@ -1,0 +1,24 @@
+{
+  "eval_id": 24,
+  "eval_name": "swiftui-controls-complex",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Uses .accessibilityLabel on each TextField to explicitly associate the label text",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Uses .accessibilityLabeledPair or explicit accessibilityLabel for cross-hierarchy association",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Adds .textContentType (.username, .emailAddress, .password) for autofill",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

@@ -1,0 +1,19 @@
+{
+  "eval_id": 28,
+  "eval_name": "wcag-mapping-simple",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "References WCAG 1.4.4 (Resize Text)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Maps to iOS API: preferredFont(forTextStyle:) or Dynamic Type styles",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 2,
+  "total": 2
+}

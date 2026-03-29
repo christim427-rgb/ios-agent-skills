@@ -1,0 +1,23 @@
+{
+  "eval_id": 1,
+  "eval_name": "voiceover-labels-simple",
+  "topic": "voiceover-labels",
+  "prompt": "What's wrong with this VoiceOver label?\n\n```swift\nButton(action: toggleFavorite) {\n    Image(systemName: \"heart.fill\")\n}\n.accessibilityLabel(\"Heart icon button\")\n```",
+  "assertions": [
+    {
+      "id": "VL1.1",
+      "text": "Identifies that the label should not include the element type ('button')",
+      "rationale": "Skill explicitly states: 'Don't include element type in label \u2014 VoiceOver adds it from traits'"
+    },
+    {
+      "id": "VL1.2",
+      "text": "Identifies that the label should not describe appearance ('heart icon')",
+      "rationale": "Skill rule: labels describe purpose not appearance"
+    },
+    {
+      "id": "VL1.3",
+      "text": "Provides corrected label describing the action (e.g., 'Add to favorites' or 'Favorite')",
+      "rationale": "WITH response gives purpose-based label; WITHOUT often keeps appearance description"
+    }
+  ]
+}

@@ -1,0 +1,883 @@
+{
+  "skill_name": "ios-accessibility",
+  "methodology": "discriminating-only",
+  "topics": [
+    "voiceover-labels",
+    "voiceover-traits",
+    "voiceover-grouping",
+    "voiceover-actions",
+    "dynamic-type",
+    "color-contrast",
+    "motion-preferences",
+    "swiftui-controls",
+    "uikit-controls",
+    "wcag-mapping",
+    "testing",
+    "system-preferences"
+  ],
+  "evals": [
+    {
+      "id": 1,
+      "name": "label-quality-rules",
+      "topic": "voiceover-labels",
+      "prompt": "What's wrong with this VoiceOver label?\n\n```swift\nButton(action: toggleFavorite) {\n    Image(systemName: \"heart.fill\")\n}\n.accessibilityLabel(\"Heart icon button\")\n```",
+      "assertions": [
+        {
+          "id": "VL1.1",
+          "text": "Identifies that the label should not include the element type ('button')",
+          "rationale": "Skill rule 11: VoiceOver adds the role from traits"
+        },
+        {
+          "id": "VL1.2",
+          "text": "Identifies that the label should not describe appearance ('heart icon')",
+          "rationale": "Skill rule: labels describe purpose not appearance"
+        },
+        {
+          "id": "VL1.3",
+          "text": "Provides corrected label describing the action (e.g., 'Add to favorites' or 'Favorite')",
+          "rationale": "WITH gives purpose-based label; WITHOUT often keeps appearance description"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "product-card-grouping",
+      "topic": "voiceover-labels",
+      "prompt": "I have a product card with a name, price, and rating stars. How should I label it for VoiceOver?\n\n```swift\nVStack {\n    Text(product.name)\n    Text(\"$\\(product.price)\")\n    HStack {\n        ForEach(0..<5) { i in\n            Image(systemName: i < product.rating ? \"star.fill\" : \"star\")\n        }\n    }\n}\n```",
+      "assertions": [
+        {
+          "id": "VL2.1",
+          "text": "Uses .accessibilityElement(children: .combine) or .ignore with custom label",
+          "rationale": "Skill's grouping decision tree for product cards"
+        },
+        {
+          "id": "VL2.2",
+          "text": "Hides individual star images from VoiceOver (accessibilityHidden or ignoring children)",
+          "rationale": "Star images should not each be separate VoiceOver stops"
+        },
+        {
+          "id": "VL2.3",
+          "text": "Provides a natural-language rating description (e.g., '4 out of 5 stars')",
+          "rationale": "Skill emphasizes human-readable values"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "list-cell-custom-actions",
+      "topic": "voiceover-labels",
+      "prompt": "This list has multiple cells, each with a title and 3 action buttons. VoiceOver users are complaining it takes too many swipes:\n\n```swift\nForEach(items) { item in\n    HStack {\n        Text(item.title)\n        Spacer()\n        Button(\"Like\") { like(item) }\n        Button(\"Share\") { share(item) }\n        Button(\"Delete\") { delete(item) }\n    }\n}\n```",
+      "assertions": [
+        {
+          "id": "VL3.1",
+          "text": "Uses accessibilityCustomActions to consolidate multiple buttons into swipe-up/down actions",
+          "rationale": "Skill's custom actions section solves repeated button lists"
+        },
+        {
+          "id": "VL3.2",
+          "text": "Groups the cell with .accessibilityElement(children:) to create one VoiceOver stop per cell",
+          "rationale": "WITHOUT keeps buttons as separate stops"
+        },
+        {
+          "id": "VL3.3",
+          "text": "Explains that users swipe up/down to cycle through custom actions",
+          "rationale": "Skill documents the VoiceOver interaction pattern"
+        },
+        {
+          "id": "VL3.4",
+          "text": "Each custom action closure returns a Bool (true for success)",
+          "rationale": "Skill shows correct signature"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "header-trait-rotor",
+      "topic": "voiceover-traits",
+      "prompt": "How do I make VoiceOver announce a section heading?",
+      "assertions": [
+        {
+          "id": "VT1.1",
+          "text": "Uses .accessibilityAddTraits(.isHeader)",
+          "rationale": "Skill's critical rule: always add .isHeader on section headings"
+        },
+        {
+          "id": "VT1.2",
+          "text": "Mentions that .isHeader enables rotor heading navigation",
+          "rationale": "Skill explains WHY headers matter — rotor navigation"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "trait-assignment-destruction",
+      "topic": "voiceover-traits",
+      "prompt": "I have a custom toggle in UIKit. When I set it as selected, VoiceOver stops saying 'button':\n\n```swift\nmyToggle.accessibilityTraits = .selected\n```",
+      "assertions": [
+        {
+          "id": "VT2.1",
+          "text": "Identifies that assignment (=) destroys existing traits like .button",
+          "rationale": "Skill's AI failure F10: assigning traits instead of inserting"
+        },
+        {
+          "id": "VT2.2",
+          "text": "Recommends .insert(.selected) instead of = .selected",
+          "rationale": "Skill's critical rule #7"
+        },
+        {
+          "id": "VT2.3",
+          "text": "Shows the correct code with .accessibilityTraits.insert(.selected)",
+          "rationale": "WITHOUT may suggest fix but miss insert vs assign"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "adjustable-rating-stepper",
+      "topic": "voiceover-traits",
+      "prompt": "I need to build a custom rating stepper in SwiftUI (1-5 stars). VoiceOver should let users adjust the value by swiping up/down:\n\n```swift\nstruct RatingStepper: View {\n    @Binding var rating: Int\n    var body: some View {\n        HStack {\n            ForEach(1...5, id: \\.self) { i in\n                Image(systemName: i <= rating ? \"star.fill\" : \"star\")\n                    .onTapGesture { rating = i }\n            }\n        }\n    }\n}\n```",
+      "assertions": [
+        {
+          "id": "VT3.1",
+          "text": "Replaces onTapGesture with Button or uses accessibilityAdjustableAction",
+          "rationale": "Skill's #1 critical rule: never onTapGesture"
+        },
+        {
+          "id": "VT3.2",
+          "text": "Adds .accessibilityAdjustableAction with increment/decrement cases",
+          "rationale": "Skill's adjustable controls pattern"
+        },
+        {
+          "id": "VT3.3",
+          "text": "Adds .accessibilityValue with current rating as human-readable text",
+          "rationale": "Skill requires value for stateful controls"
+        },
+        {
+          "id": "VT3.4",
+          "text": "Groups stars into a single accessibility element with .accessibilityElement()",
+          "rationale": "Individual stars should not be separate VoiceOver stops"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "combine-vs-ignore",
+      "topic": "voiceover-grouping",
+      "prompt": "What's the difference between .accessibilityElement(children: .combine) and .ignore?",
+      "assertions": [
+        {
+          "id": "VG1.1",
+          "text": "Explains .combine merges children labels with pauses between them",
+          "rationale": "Skill documents comma-separated reading behavior"
+        },
+        {
+          "id": "VG1.2",
+          "text": "Explains .ignore hides children and requires a custom label on parent",
+          "rationale": "Skill emphasizes .ignore needs manual label"
+        },
+        {
+          "id": "VG1.3",
+          "text": "Recommends .ignore + custom label when natural sentence reading is needed",
+          "rationale": "Skill's decision tree for natural sentences"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "table-row-grouping",
+      "topic": "voiceover-grouping",
+      "prompt": "My comparison table has 3 columns and 5 rows. VoiceOver reads elements in wrong order, jumping between columns:\n\n```swift\nVStack {\n    HStack { Text(\"Feature\"); Text(\"Basic\"); Text(\"Pro\") }\n    HStack { Text(\"Storage\"); Text(\"5GB\"); Text(\"100GB\") }\n    HStack { Text(\"Users\"); Text(\"1\"); Text(\"Unlimited\") }\n}\n```",
+      "assertions": [
+        {
+          "id": "VG2.1",
+          "text": "Groups each row with .accessibilityElement(children: .combine) or .ignore",
+          "rationale": "Skill's grouping example uses exact table scenario"
+        },
+        {
+          "id": "VG2.2",
+          "text": "Provides a natural label for at least one row (e.g., 'Storage: 5 gigabytes for Basic, 100 gigabytes for Pro')",
+          "rationale": "Skill shows .ignore + custom label pattern for table rows"
+        },
+        {
+          "id": "VG2.3",
+          "text": "Mentions shouldGroupAccessibilityChildren or accessibilitySortPriority for ordering",
+          "rationale": "Skill covers both approaches for navigation order"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "canvas-accessibility",
+      "topic": "voiceover-grouping",
+      "prompt": "I have a Canvas-based chart that's completely invisible to VoiceOver. How do I make the data points accessible?\n\n```swift\nCanvas { context, size in\n    for point in dataPoints {\n        let rect = CGRect(x: point.x * size.width, y: (1 - point.y) * size.height, width: 10, height: 10)\n        context.fill(Path(ellipseIn: rect), with: .color(.blue))\n    }\n}\n```",
+      "assertions": [
+        {
+          "id": "VG3.1",
+          "text": "Uses .accessibilityChildren to provide virtual accessible elements for data points",
+          "rationale": "Skill's Canvas pattern uses .accessibilityChildren"
+        },
+        {
+          "id": "VG3.2",
+          "text": "Adds an .accessibilityLabel on the Canvas describing the chart type",
+          "rationale": "Skill requires chart-level description"
+        },
+        {
+          "id": "VG3.3",
+          "text": "Each data point child has its own accessibilityLabel with meaningful description",
+          "rationale": "WITHOUT often provides only container label"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "hint-vs-label",
+      "topic": "voiceover-actions",
+      "prompt": "When should I use accessibilityHint vs accessibilityLabel?",
+      "assertions": [
+        {
+          "id": "VA1.1",
+          "text": "States hints describe the RESULT of the action, not the action itself",
+          "rationale": "Skill's hint rules"
+        },
+        {
+          "id": "VA1.2",
+          "text": "States hints begin with a verb (third person)",
+          "rationale": "Skill documents verb-first hint format"
+        },
+        {
+          "id": "VA1.3",
+          "text": "Warns against redundant hints like 'Tap to delete' on a delete button",
+          "rationale": "Skill has explicit anti-pattern for redundant hints"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "announcement-notifications",
+      "topic": "voiceover-actions",
+      "prompt": "I need to post a VoiceOver announcement when an async operation completes. What notification should I use?",
+      "assertions": [
+        {
+          "id": "VA2.1",
+          "text": "Uses AccessibilityNotification.Announcement (iOS 17+) or UIAccessibility.post(notification: .announcement)",
+          "rationale": "Skill documents both SwiftUI and UIKit APIs"
+        },
+        {
+          "id": "VA2.2",
+          "text": "Distinguishes .announcement (no focus change) from .layoutChanged and .screenChanged",
+          "rationale": "Skill's notification table distinguishes all three"
+        },
+        {
+          "id": "VA2.3",
+          "text": "Mentions that announcements can be lost if VoiceOver is already speaking",
+          "rationale": "Skill warns about announcement interruption"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "modal-focus-trapping",
+      "topic": "voiceover-actions",
+      "prompt": "I have a custom modal presented programmatically (not using .sheet). VoiceOver can still read content behind it:\n\n```swift\nfunc showModal() {\n    let modalView = CustomModalView()\n    view.addSubview(modalView)\n    UIAccessibility.post(notification: .screenChanged, argument: modalView)\n}\n```",
+      "assertions": [
+        {
+          "id": "VA3.1",
+          "text": "Sets accessibilityViewIsModal = true on the modal view",
+          "rationale": "Skill's modal pattern requires this"
+        },
+        {
+          "id": "VA3.2",
+          "text": "Warns that accessibilityViewIsModal only hides SIBLINGS, not all other views",
+          "rationale": "Skill's gotcha: sibling-only hiding"
+        },
+        {
+          "id": "VA3.3",
+          "text": "Mentions view hierarchy matters — modal should be direct child of container",
+          "rationale": "WITHOUT rarely explains sibling-only behavior"
+        },
+        {
+          "id": "VA3.4",
+          "text": "Recommends implementing accessibilityPerformEscape for dismiss gesture",
+          "rationale": "Skill's magic tap/escape section"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "hardcoded-font-fix",
+      "topic": "dynamic-type",
+      "prompt": "What's wrong with this font?\n\n```swift\nText(\"Welcome\").font(.system(size: 24))\n```",
+      "assertions": [
+        {
+          "id": "DT1.1",
+          "text": "Identifies hardcoded font size as an accessibility issue",
+          "rationale": "Skill's AI failure F2"
+        },
+        {
+          "id": "DT1.2",
+          "text": "Recommends a specific Dynamic Type text style replacement (e.g., .title)",
+          "rationale": "Skill provides text style mapping table"
+        },
+        {
+          "id": "DT1.3",
+          "text": "Mentions that 25%+ of iOS users change their text size",
+          "rationale": "Skill emphasizes user population impact"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "uifontmetrics-custom-font",
+      "topic": "dynamic-type",
+      "prompt": "I use a custom font (Avenir) in UIKit. How do I make it respect Dynamic Type?\n\n```swift\nlabel.font = UIFont(name: \"Avenir-Medium\", size: 17)\n```",
+      "assertions": [
+        {
+          "id": "DT2.1",
+          "text": "Uses UIFontMetrics(forTextStyle:).scaledFont(for:)",
+          "rationale": "Skill's UIFontMetrics pattern"
+        },
+        {
+          "id": "DT2.2",
+          "text": "Sets adjustsFontForContentSizeCategory = true",
+          "rationale": "Skill marks this as CRITICAL for live updating"
+        },
+        {
+          "id": "DT2.3",
+          "text": "Sets numberOfLines = 0 to allow text wrapping",
+          "rationale": "Skill's UIKit anti-pattern"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "layout-adaptation-accessibility-sizes",
+      "topic": "dynamic-type",
+      "prompt": "My horizontal layout breaks when users set accessibility text sizes. The HStack overflows and clips:\n\n```swift\nHStack {\n    Image(systemName: \"person.fill\")\n    Text(user.name).font(.headline)\n    Spacer()\n    Text(user.role).font(.subheadline)\n}\n```",
+      "assertions": [
+        {
+          "id": "DT3.1",
+          "text": "Checks dynamicTypeSize.isAccessibilitySize to switch layout",
+          "rationale": "Skill's layout adaptation pattern"
+        },
+        {
+          "id": "DT3.2",
+          "text": "Uses ViewThatFits or AnyLayout to switch HStack to VStack",
+          "rationale": "Skill documents ViewThatFits (iOS 16+)"
+        },
+        {
+          "id": "DT3.3",
+          "text": "Uses @ScaledMetric for the image/icon size so it scales with Dynamic Type",
+          "rationale": "Skill rule 14: non-text dimensions must use @ScaledMetric"
+        },
+        {
+          "id": "DT3.4",
+          "text": "Wraps content in ScrollView for overflow at large sizes",
+          "rationale": "Skill rule 14: wrap in ScrollView for overflow"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "hardcoded-colors-dark-mode",
+      "topic": "color-contrast",
+      "prompt": "What's the accessibility problem here?\n\n```swift\nText(\"Hello\").foregroundColor(.black)\n    .background(Color.white)\n```",
+      "assertions": [
+        {
+          "id": "CC1.1",
+          "text": "Identifies hardcoded colors as dark mode failure",
+          "rationale": "Skill's AI failure F3"
+        },
+        {
+          "id": "CC1.2",
+          "text": "Recommends .foregroundStyle(.primary) and Color(.systemBackground)",
+          "rationale": "Skill provides semantic color mapping"
+        },
+        {
+          "id": "CC1.3",
+          "text": "Mentions that .foregroundColor is deprecated, use .foregroundStyle",
+          "rationale": "Skill's AI failure F4: deprecated API"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "color-only-status-indicator",
+      "topic": "color-contrast",
+      "prompt": "I'm using color to show online/offline status. A colorblind user reported they can't tell the difference:\n\n```swift\nCircle().fill(isOnline ? .green : .red)\n    .frame(width: 12, height: 12)\n```",
+      "assertions": [
+        {
+          "id": "CC2.1",
+          "text": "Identifies color-only indicator as accessibility failure (WCAG 1.4.1)",
+          "rationale": "Skill's color blindness section"
+        },
+        {
+          "id": "CC2.2",
+          "text": "Adds shape and/or text alongside color (checkmark/xmark icons or text labels)",
+          "rationale": "Skill shows color + shape + text pattern"
+        },
+        {
+          "id": "CC2.3",
+          "text": "Mentions accessibilityDifferentiateWithoutColor environment value",
+          "rationale": "Skill documents this preference check"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "wcag-contrast-calculation",
+      "topic": "color-contrast",
+      "prompt": "I need to verify my custom color scheme meets WCAG contrast requirements. My text color is #6B7280 on a #F9FAFB background. Does it pass?",
+      "assertions": [
+        {
+          "id": "CC3.1",
+          "text": "States WCAG AA requires 4.5:1 for normal text and 3:1 for large text",
+          "rationale": "Skill documents exact WCAG contrast ratios"
+        },
+        {
+          "id": "CC3.2",
+          "text": "Calculates or estimates the contrast ratio for the given colors",
+          "rationale": "Skill includes programmatic contrast calculation"
+        },
+        {
+          "id": "CC3.3",
+          "text": "Mentions testing contrast independently for both light AND dark modes",
+          "rationale": "Skill requires separate contrast testing per mode"
+        },
+        {
+          "id": "CC3.4",
+          "text": "Mentions Increase Contrast setting (colorSchemeContrast) may need 7:1",
+          "rationale": "Skill rule 15: check all system preferences including contrast"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "reduce-motion-check",
+      "topic": "motion-preferences",
+      "prompt": "How do I check if the user has Reduce Motion enabled?",
+      "assertions": [
+        {
+          "id": "MP1.1",
+          "text": "Shows @Environment(\\.accessibilityReduceMotion) for SwiftUI",
+          "rationale": "Skill documents both SwiftUI and UIKit approaches"
+        },
+        {
+          "id": "MP1.2",
+          "text": "Recommends replacing motion with crossfade/opacity, not removing all animation",
+          "rationale": "Skill: 'Don't remove ALL animation — replace with subtle crossfade'"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "spring-animation-reduce-motion",
+      "topic": "motion-preferences",
+      "prompt": "My app has a spring animation that should respect Reduce Motion:\n\n```swift\nwithAnimation(.spring(response: 0.5, dampingFraction: 0.3)) {\n    showDetail.toggle()\n}\n```",
+      "assertions": [
+        {
+          "id": "MP2.1",
+          "text": "Checks reduceMotion environment value before applying spring animation",
+          "rationale": "Skill's AI failure F9"
+        },
+        {
+          "id": "MP2.2",
+          "text": "Provides alternative animation for reduce motion (e.g., .none or .easeInOut)",
+          "rationale": "Skill shows conditional animation pattern"
+        },
+        {
+          "id": "MP2.3",
+          "text": "Shows the ternary pattern: reduceMotion ? .none : .spring()",
+          "rationale": "Skill's exact code pattern"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "all-system-preferences",
+      "topic": "motion-preferences",
+      "prompt": "What system accessibility preferences should I check beyond Reduce Motion? I want to build a truly adaptive UI.",
+      "assertions": [
+        {
+          "id": "MP3.1",
+          "text": "Lists reduceTransparency with replacement pattern (solid bg vs .ultraThinMaterial)",
+          "rationale": "Skill documents reduce transparency replacement"
+        },
+        {
+          "id": "MP3.2",
+          "text": "Lists differentiateWithoutColor for color-only indicators",
+          "rationale": "Skill's complete environment values list"
+        },
+        {
+          "id": "MP3.3",
+          "text": "Lists legibilityWeight (.bold) for bold text preference",
+          "rationale": "Skill rule 15: check ALL system preferences including legibilityWeight"
+        },
+        {
+          "id": "MP3.4",
+          "text": "Lists colorSchemeContrast for Increase Contrast preference",
+          "rationale": "Skill rule 15: includes increased contrast"
+        },
+        {
+          "id": "MP3.5",
+          "text": "Mentions accessibilityIgnoresInvertColors for photos/videos",
+          "rationale": "Skill's smart invert section"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "ontapgesture-invisible",
+      "topic": "swiftui-controls",
+      "prompt": "What's the accessibility issue with this?\n\n```swift\nImage(systemName: \"plus\")\n    .onTapGesture { addItem() }\n```",
+      "assertions": [
+        {
+          "id": "SC1.1",
+          "text": "Identifies onTapGesture as invisible to VoiceOver and assistive technology",
+          "rationale": "Skill's #1 AI failure"
+        },
+        {
+          "id": "SC1.2",
+          "text": "Replaces with Button and adds accessibilityLabel",
+          "rationale": "Skill's critical rule: always use Button"
+        },
+        {
+          "id": "SC1.3",
+          "text": "Mentions Switch Control and/or eye tracking as also affected",
+          "rationale": "Skill documents that ALL assistive tech is affected"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "custom-toggle-accessible",
+      "topic": "swiftui-controls",
+      "prompt": "Make this custom toggle accessible for VoiceOver:\n\n```swift\nHStack {\n    Text(\"Dark Mode\")\n    Circle()\n        .fill(isDarkMode ? .blue : .gray)\n        .frame(width: 30, height: 30)\n        .onTapGesture { isDarkMode.toggle() }\n}\n```",
+      "assertions": [
+        {
+          "id": "SC2.1",
+          "text": "Replaces onTapGesture with Button or native Toggle",
+          "rationale": "Skill's critical rule #1"
+        },
+        {
+          "id": "SC2.2",
+          "text": "Adds .accessibilityAddTraits(.isToggle) or uses native Toggle for toggle semantics",
+          "rationale": "Skill rule 13: use .isToggle on custom toggle-like controls"
+        },
+        {
+          "id": "SC2.3",
+          "text": "Adds .accessibilityValue with current state ('On'/'Off')",
+          "rationale": "Skill requires value for stateful controls"
+        },
+        {
+          "id": "SC2.4",
+          "text": "Groups the control elements or uses .accessibilityElement(children:)",
+          "rationale": "Skill rule 13: group toggle label and visual indicator"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "form-label-association",
+      "topic": "swiftui-controls",
+      "prompt": "I'm building a form with labeled inputs. The labels and text fields are in separate VStack columns and VoiceOver doesn't associate them:\n\n```swift\nHStack {\n    VStack(alignment: .trailing) {\n        Text(\"Username\")\n        Text(\"Email\")\n        Text(\"Password\")\n    }\n    VStack(alignment: .leading) {\n        TextField(\"\", text: $username)\n        TextField(\"\", text: $email)\n        SecureField(\"\", text: $password)\n    }\n}\n```",
+      "assertions": [
+        {
+          "id": "SC3.1",
+          "text": "Uses .accessibilityLabel on each TextField to explicitly associate the label text",
+          "rationale": "Skill's TextField pattern"
+        },
+        {
+          "id": "SC3.2",
+          "text": "Uses .accessibilityLabeledPair or explicit accessibilityLabel for cross-hierarchy association",
+          "rationale": "Skill documents accessibilityLabeledPair"
+        },
+        {
+          "id": "SC3.3",
+          "text": "Adds .textContentType (.username, .emailAddress, .password) for autofill",
+          "rationale": "Skill's WCAG 1.3.5 mapping"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "identifier-vs-label",
+      "topic": "uikit-controls",
+      "prompt": "My button's accessibilityIdentifier is set but VoiceOver doesn't read anything useful. Why?\n\n```swift\nbutton.accessibilityIdentifier = \"favoriteButton\"\n```",
+      "assertions": [
+        {
+          "id": "UK1.1",
+          "text": "Explains accessibilityIdentifier is for UI testing only, not read by VoiceOver",
+          "rationale": "Skill's AI failure F8"
+        },
+        {
+          "id": "UK1.2",
+          "text": "Recommends setting accessibilityLabel for VoiceOver",
+          "rationale": "Skill's identifier/label table"
+        },
+        {
+          "id": "UK1.3",
+          "text": "Shows both properties set independently (label for users, identifier for tests)",
+          "rationale": "Skill's corrected code sets both"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "disabled-controls-visibility",
+      "topic": "uikit-controls",
+      "prompt": "My disabled submit button disappears from VoiceOver. Users don't know it exists:\n\n```swift\nsubmitButton.isEnabled = false\nsubmitButton.isAccessibilityElement = false\n```",
+      "assertions": [
+        {
+          "id": "UK2.1",
+          "text": "Identifies isAccessibilityElement = false as the problem",
+          "rationale": "Skill's AI failure F11"
+        },
+        {
+          "id": "UK2.2",
+          "text": "Recommends .notEnabled trait: VoiceOver reads 'dimmed'",
+          "rationale": "Skill's rule: disabled = dimmed, not hidden"
+        },
+        {
+          "id": "UK2.3",
+          "text": "Explains WHY 'dimmed' matters — user knows control exists",
+          "rationale": "Skill explains the UX of hearing 'Submit, dimmed'"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "custom-drawn-graph-uikit",
+      "topic": "uikit-controls",
+      "prompt": "I have a custom-drawn graph in UIKit using drawRect. VoiceOver can't access any of the data points:\n\n```swift\nclass GraphView: UIView {\n    var dataPoints: [DataPoint] = []\n    override func draw(_ rect: CGRect) { /* Custom drawing */ }\n}\n```",
+      "assertions": [
+        {
+          "id": "UK3.1",
+          "text": "Sets isAccessibilityElement = false on the container",
+          "rationale": "Skill's UIAccessibilityElement pattern"
+        },
+        {
+          "id": "UK3.2",
+          "text": "Overrides accessibilityElements to return UIAccessibilityElement array",
+          "rationale": "Skill's complete pattern with UIAccessibilityElement"
+        },
+        {
+          "id": "UK3.3",
+          "text": "Sets accessibilityFrame using UIAccessibility.convertToScreenCoordinates",
+          "rationale": "Skill includes coordinate conversion"
+        },
+        {
+          "id": "UK3.4",
+          "text": "Each element has accessibilityLabel and accessibilityValue",
+          "rationale": "WITHOUT often provides only container label"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "wcag-text-resize-criterion",
+      "topic": "wcag-mapping",
+      "prompt": "What WCAG criterion covers text resizing on iOS?",
+      "assertions": [
+        {
+          "id": "WC1.1",
+          "text": "References WCAG 1.4.4 (Resize Text)",
+          "rationale": "Skill's WCAG mapping table"
+        },
+        {
+          "id": "WC1.2",
+          "text": "Maps to iOS API: preferredFont(forTextStyle:) or Dynamic Type styles",
+          "rationale": "Skill provides specific iOS API per criterion"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "drag-and-drop-accessibility",
+      "topic": "wcag-mapping",
+      "prompt": "My app has drag-and-drop for reordering items. A user with motor impairment can't use it. What WCAG criteria apply and how do I fix it for iOS?",
+      "assertions": [
+        {
+          "id": "WC2.1",
+          "text": "References WCAG 2.5.7 (Dragging Movements) — new in WCAG 2.2",
+          "rationale": "Skill rule 16 and WCAG 2.2 new criteria"
+        },
+        {
+          "id": "WC2.2",
+          "text": "Recommends single-tap alternative using accessibilityCustomActions",
+          "rationale": "Skill rule 16: provide single-tap alternatives"
+        },
+        {
+          "id": "WC2.3",
+          "text": "Mentions minimum target size (24x24pt WCAG 2.5.8, or 44x44pt Apple HIG)",
+          "rationale": "Skill rule 16: ensure minimum touch target size"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "wcag-auto-vs-manual",
+      "topic": "wcag-mapping",
+      "prompt": "Which WCAG 2.2 criteria are automatically handled by standard UIKit/SwiftUI controls and which require manual implementation? Give me the top 5 that developers miss most.",
+      "assertions": [
+        {
+          "id": "WC3.1",
+          "text": "Lists at least 3 automatically handled criteria (e.g., 4.1.2, 2.5.2, 2.1.1)",
+          "rationale": "Skill documents 6 auto-handled criteria"
+        },
+        {
+          "id": "WC3.2",
+          "text": "Lists 1.1.1 (Non-text Content) as requiring manual implementation",
+          "rationale": "Skill marks this as high-priority AI failure"
+        },
+        {
+          "id": "WC3.3",
+          "text": "Lists criteria that DON'T apply to native iOS apps (e.g., 4.1.1 Parsing, 2.4.1 Bypass Blocks)",
+          "rationale": "Skill documents non-applicable criteria"
+        },
+        {
+          "id": "WC3.4",
+          "text": "Identifies at least one WCAG 2.2 NEW criterion (2.5.7, 2.5.8, 3.3.7, or 3.3.8)",
+          "rationale": "Skill documents all WCAG 2.2 additions"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "xctest-accessibility-audit",
+      "topic": "testing",
+      "prompt": "How do I run an automated accessibility audit in my XCTest UI tests?",
+      "assertions": [
+        {
+          "id": "TE1.1",
+          "text": "Uses performAccessibilityAudit() (Xcode 15+)",
+          "rationale": "Skill documents XCTest accessibility audit API"
+        },
+        {
+          "id": "TE1.2",
+          "text": "Shows the audit can be selective with specific types (e.g., .contrast, .dynamicType)",
+          "rationale": "Skill lists all audit types"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "teardown-audit-pattern",
+      "topic": "testing",
+      "prompt": "I want to add accessibility auditing to every UI test without writing it in each test method. What's the pattern?",
+      "assertions": [
+        {
+          "id": "TE2.1",
+          "text": "Puts performAccessibilityAudit() in tearDown/tearDownWithError",
+          "rationale": "Skill's regression pattern: audit in tearDown"
+        },
+        {
+          "id": "TE2.2",
+          "text": "Shows how to filter known issues with the closure parameter",
+          "rationale": "Skill documents issue filter closure"
+        },
+        {
+          "id": "TE2.3",
+          "text": "Mentions this catches regressions at zero additional test-writing cost",
+          "rationale": "Skill's CI integration zero-cost statement"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "voiceover-manual-protocol",
+      "topic": "testing",
+      "prompt": "Give me a comprehensive VoiceOver manual testing protocol — what should I check and in what order?",
+      "assertions": [
+        {
+          "id": "TE3.1",
+          "text": "Includes linear navigation test (swipe right through entire screen)",
+          "rationale": "Skill's 10-step protocol"
+        },
+        {
+          "id": "TE3.2",
+          "text": "Includes rotor heading navigation test",
+          "rationale": "Skill verifies section structure via rotor"
+        },
+        {
+          "id": "TE3.3",
+          "text": "Mentions Screen Curtain test (triple three-finger tap) as gold standard",
+          "rationale": "Skill: 'the gold standard VoiceOver test'"
+        },
+        {
+          "id": "TE3.4",
+          "text": "Tests modal focus trapping (escape gesture dismisses)",
+          "rationale": "Skill's protocol step"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "decorative-image-approaches",
+      "topic": "system-preferences",
+      "prompt": "What's the difference between Image(decorative:) and Image(\"name\").accessibilityHidden(true)?",
+      "assertions": [
+        {
+          "id": "SP1.1",
+          "text": "States both hide the image from VoiceOver",
+          "rationale": "Skill documents both approaches"
+        },
+        {
+          "id": "SP1.2",
+          "text": "Recommends Image(decorative:) as the preferred SwiftUI approach",
+          "rationale": "Skill rule 12: Image(decorative:) is the SwiftUI way"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "reduce-transparency-fix",
+      "topic": "system-preferences",
+      "prompt": "My app uses blur effects (.ultraThinMaterial) extensively. A user with reduce transparency enabled can't read the content. How do I fix this?",
+      "assertions": [
+        {
+          "id": "SP2.1",
+          "text": "Checks @Environment(\\.accessibilityReduceTransparency)",
+          "rationale": "Skill's system preferences section"
+        },
+        {
+          "id": "SP2.2",
+          "text": "Replaces .ultraThinMaterial with solid Color(.systemBackground) when enabled",
+          "rationale": "Skill provides exact replacement pattern"
+        },
+        {
+          "id": "SP2.3",
+          "text": "Uses AnyShapeStyle or conditional for the SwiftUI type mismatch",
+          "rationale": "Skill shows AnyShapeStyle pattern"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "smart-invert-and-large-content",
+      "topic": "system-preferences",
+      "prompt": "I have photos in my app. When Smart Invert Colors is enabled, the photos look inverted and wrong. Also, some users report my toolbar buttons are too small to tap at accessibility text sizes.",
+      "assertions": [
+        {
+          "id": "SP3.1",
+          "text": "Uses accessibilityIgnoresInvertColors = true on photos/images",
+          "rationale": "Skill's smart invert section"
+        },
+        {
+          "id": "SP3.2",
+          "text": "Mentions setting on parent cascades to subviews",
+          "rationale": "Skill documents cascade behavior"
+        },
+        {
+          "id": "SP3.3",
+          "text": "Uses accessibilityShowsLargeContentViewer for toolbar buttons that can't scale",
+          "rationale": "Skill's Large Content Viewer for non-scalable controls"
+        },
+        {
+          "id": "SP3.4",
+          "text": "Caps Dynamic Type at xxxLarge for toolbar and shows Large Content Viewer as fallback",
+          "rationale": "Skill combines .dynamicTypeSize cap with Large Content Viewer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "eval_id": 30,
+  "eval_name": "wcag-mapping-complex",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Lists at least 3 automatically handled criteria (e.g., 4.1.2, 2.5.2, 2.1.1)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Lists 1.1.1 (Non-text Content) as requiring manual implementation",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Lists criteria that DON'T apply to native iOS apps (e.g., 4.1.1 Parsing, 2.4.1 Bypass Blocks)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Identifies at least one WCAG 2.2 NEW criterion (2.5.7, 2.5.8, 3.3.7, or 3.3.8)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

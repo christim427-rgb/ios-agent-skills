@@ -1,0 +1,24 @@
+{
+  "eval_id": 35,
+  "eval_name": "system-preferences-medium",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Checks @Environment(\\.accessibilityReduceTransparency)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Replaces .ultraThinMaterial with solid Color(.systemBackground) when enabled",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Uses AnyShapeStyle or conditional for the SwiftUI type mismatch",
+      "passed": false,
+      "evidence": "Keywords not found in response"
+    }
+  ],
+  "pass_count": 2,
+  "total": 3
+}

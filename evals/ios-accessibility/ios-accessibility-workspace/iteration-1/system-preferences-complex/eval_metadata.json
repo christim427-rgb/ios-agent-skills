@@ -1,0 +1,28 @@
+{
+  "eval_id": 36,
+  "eval_name": "system-preferences-complex",
+  "topic": "system-preferences",
+  "prompt": "I have photos in my app. When Smart Invert Colors is enabled, the photos look inverted and wrong. Also, some users report my toolbar buttons are too small to tap at accessibility text sizes.",
+  "assertions": [
+    {
+      "id": "SP3.1",
+      "text": "Uses accessibilityIgnoresInvertColors = true on photos/images",
+      "rationale": "Skill's smart invert section for real-world content"
+    },
+    {
+      "id": "SP3.2",
+      "text": "Mentions setting on parent cascades to subviews",
+      "rationale": "Skill documents cascade behavior; WITHOUT often sets per-image"
+    },
+    {
+      "id": "SP3.3",
+      "text": "Uses accessibilityShowsLargeContentViewer for toolbar buttons that can't scale",
+      "rationale": "Skill's Large Content Viewer for non-scalable controls"
+    },
+    {
+      "id": "SP3.4",
+      "text": "Caps Dynamic Type at xxxLarge for toolbar and shows Large Content Viewer as fallback",
+      "rationale": "Skill combines .dynamicTypeSize(...xxxLarge) with Large Content Viewer"
+    }
+  ]
+}

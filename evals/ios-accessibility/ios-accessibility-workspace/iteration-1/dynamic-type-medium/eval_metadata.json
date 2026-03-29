@@ -1,0 +1,23 @@
+{
+  "eval_id": 14,
+  "eval_name": "dynamic-type-medium",
+  "topic": "dynamic-type",
+  "prompt": "I use a custom font (Avenir) in UIKit. How do I make it respect Dynamic Type?\n\n```swift\nlabel.font = UIFont(name: \"Avenir-Medium\", size: 17)\n```",
+  "assertions": [
+    {
+      "id": "DT2.1",
+      "text": "Uses UIFontMetrics(forTextStyle:).scaledFont(for:)",
+      "rationale": "Skill's UIFontMetrics pattern for custom fonts"
+    },
+    {
+      "id": "DT2.2",
+      "text": "Sets adjustsFontForContentSizeCategory = true",
+      "rationale": "Skill marks this as CRITICAL for live updating; WITHOUT often omits"
+    },
+    {
+      "id": "DT2.3",
+      "text": "Sets numberOfLines = 0 to allow text wrapping",
+      "rationale": "Skill's UIKit anti-pattern: missing numberOfLines = 0"
+    }
+  ]
+}

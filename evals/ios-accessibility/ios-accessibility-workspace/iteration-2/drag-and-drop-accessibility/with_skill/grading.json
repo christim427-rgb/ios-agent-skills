@@ -1,0 +1,24 @@
+{
+  "eval_id": 29,
+  "eval_name": "drag-and-drop-accessibility",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "References WCAG 2.5.7 (Dragging Movements) \u2014 new in WCAG 2.2",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Recommends single-tap alternative using accessibilityCustomActions",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions minimum target size (24x24pt WCAG 2.5.8, or 44x44pt Apple HIG)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

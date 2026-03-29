@@ -1,0 +1,28 @@
+{
+  "eval_id": 23,
+  "eval_name": "custom-toggle-accessible",
+  "topic": "swiftui-controls",
+  "prompt": "Make this custom toggle accessible for VoiceOver:\n\n```swift\nHStack {\n    Text(\"Dark Mode\")\n    Circle()\n        .fill(isDarkMode ? .blue : .gray)\n        .frame(width: 30, height: 30)\n        .onTapGesture { isDarkMode.toggle() }\n}\n```",
+  "assertions": [
+    {
+      "id": "SC2.1",
+      "text": "Replaces onTapGesture with Button or native Toggle",
+      "rationale": "Skill's critical rule #1"
+    },
+    {
+      "id": "SC2.2",
+      "text": "Adds .accessibilityAddTraits(.isToggle) or uses native Toggle for toggle semantics",
+      "rationale": "Skill rule 13: use .isToggle on custom toggle-like controls"
+    },
+    {
+      "id": "SC2.3",
+      "text": "Adds .accessibilityValue with current state ('On'/'Off')",
+      "rationale": "Skill requires value for stateful controls"
+    },
+    {
+      "id": "SC2.4",
+      "text": "Groups the control elements or uses .accessibilityElement(children:)",
+      "rationale": "Skill rule 13: group toggle label and visual indicator"
+    }
+  ]
+}

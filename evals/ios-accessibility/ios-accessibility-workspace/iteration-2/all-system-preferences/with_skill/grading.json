@@ -1,0 +1,34 @@
+{
+  "eval_id": 21,
+  "eval_name": "all-system-preferences",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Lists reduceTransparency with replacement pattern (solid bg vs .ultraThinMaterial)",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Lists differentiateWithoutColor for color-only indicators",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Lists legibilityWeight (.bold) for bold text preference",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Lists colorSchemeContrast for Increase Contrast preference",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions accessibilityIgnoresInvertColors for photos/videos",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 5,
+  "total": 5
+}

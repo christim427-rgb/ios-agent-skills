@@ -1,0 +1,24 @@
+{
+  "eval_id": 32,
+  "eval_name": "teardown-audit-pattern",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Puts performAccessibilityAudit() in tearDown/tearDownWithError",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Shows how to filter known issues with the closure parameter",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Mentions this catches regressions at zero additional test-writing cost",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

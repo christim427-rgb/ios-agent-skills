@@ -1,0 +1,28 @@
+{
+  "eval_id": 18,
+  "eval_name": "wcag-contrast-calculation",
+  "topic": "color-contrast",
+  "prompt": "I need to verify my custom color scheme meets WCAG contrast requirements. My text color is #6B7280 on a #F9FAFB background. Does it pass?",
+  "assertions": [
+    {
+      "id": "CC3.1",
+      "text": "States WCAG AA requires 4.5:1 for normal text and 3:1 for large text",
+      "rationale": "Skill documents exact WCAG contrast ratios"
+    },
+    {
+      "id": "CC3.2",
+      "text": "Calculates or estimates the contrast ratio for the given colors",
+      "rationale": "Skill includes programmatic contrast calculation"
+    },
+    {
+      "id": "CC3.3",
+      "text": "Mentions testing contrast independently for both light AND dark modes",
+      "rationale": "Skill requires separate contrast testing per mode"
+    },
+    {
+      "id": "CC3.4",
+      "text": "Mentions Increase Contrast setting (colorSchemeContrast) may need 7:1",
+      "rationale": "Skill rule 15: check all system preferences including contrast"
+    }
+  ]
+}

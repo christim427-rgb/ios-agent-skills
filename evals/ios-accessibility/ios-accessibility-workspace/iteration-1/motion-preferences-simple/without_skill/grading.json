@@ -1,0 +1,19 @@
+{
+  "eval_id": 19,
+  "eval_name": "motion-preferences-simple",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Shows @Environment(\\.accessibilityReduceMotion) for SwiftUI",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    },
+    {
+      "text": "Recommends replacing motion with crossfade/opacity, not removing all animation",
+      "passed": true,
+      "evidence": "Checked assertion keywords"
+    }
+  ],
+  "pass_count": 2,
+  "total": 2
+}

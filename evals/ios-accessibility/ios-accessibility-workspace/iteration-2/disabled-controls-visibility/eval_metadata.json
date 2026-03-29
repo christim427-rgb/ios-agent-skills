@@ -1,0 +1,23 @@
+{
+  "eval_id": 26,
+  "eval_name": "disabled-controls-visibility",
+  "topic": "uikit-controls",
+  "prompt": "My disabled submit button disappears from VoiceOver. Users don't know it exists:\n\n```swift\nsubmitButton.isEnabled = false\nsubmitButton.isAccessibilityElement = false\n```",
+  "assertions": [
+    {
+      "id": "UK2.1",
+      "text": "Identifies isAccessibilityElement = false as the problem",
+      "rationale": "Skill's AI failure F11"
+    },
+    {
+      "id": "UK2.2",
+      "text": "Recommends .notEnabled trait: VoiceOver reads 'dimmed'",
+      "rationale": "Skill's rule: disabled = dimmed, not hidden"
+    },
+    {
+      "id": "UK2.3",
+      "text": "Explains WHY 'dimmed' matters \u2014 user knows control exists",
+      "rationale": "Skill explains the UX of hearing 'Submit, dimmed'"
+    }
+  ]
+}

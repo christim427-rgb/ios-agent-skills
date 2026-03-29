@@ -6,10 +6,10 @@
   <a href="https://github.com/rusel95/ios-agent-skills"><img src="https://visitor-badge.laobi.icu/badge?page_id=rusel95.ios-agent-skills&left_color=gray&right_color=blue&left_text=visitors" alt="visitors"/></a>
   <a href="https://github.com/rusel95/ios-agent-skills"><img src="https://img.shields.io/github/stars/rusel95/ios-agent-skills?style=flat-square&color=yellow" alt="stars"/></a>
   <a href="https://github.com/rusel95/ios-agent-skills"><img src="https://img.shields.io/github/forks/rusel95/ios-agent-skills?style=flat-square&color=blue" alt="forks"/></a>
-  <img src="https://img.shields.io/badge/skills-8-purple?style=flat-square" alt="skills"/>
+  <img src="https://img.shields.io/badge/skills-9-purple?style=flat-square" alt="skills"/>
   <img src="https://img.shields.io/badge/models_tested-3-teal?style=flat-square" alt="models"/>
-  <img src="https://img.shields.io/badge/assertions-549-orange?style=flat-square" alt="assertions"/>
-  <img src="https://img.shields.io/badge/scenarios-161-green?style=flat-square" alt="scenarios"/>
+  <img src="https://img.shields.io/badge/assertions-664-orange?style=flat-square" alt="assertions"/>
+  <img src="https://img.shields.io/badge/scenarios-197-green?style=flat-square" alt="scenarios"/>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="license"/></a>
 </p>
 
@@ -25,13 +25,14 @@
   <img src="https://img.shields.io/badge/Security-+30%25_Sonnet-FF3B30?style=for-the-badge&logo=swift&logoColor=white" alt="security"/>
   <img src="https://img.shields.io/badge/TCA-+26%25_Sonnet-AF52DE?style=for-the-badge&logo=swift&logoColor=white" alt="tca"/>
   <img src="https://img.shields.io/badge/VIPER-+13%25_Sonnet-FF9500?style=for-the-badge&logo=swift&logoColor=white" alt="viper"/>
+  <img src="https://img.shields.io/badge/Accessibility-+18%25_Sonnet-00C7BE?style=for-the-badge&logo=swift&logoColor=white" alt="accessibility"/>
 </p>
 
 # iOS Agent Skills
 
 Production-tested iOS Agent Skills for Claude Code, Codex, and 40+ AI coding tools.
 
-8 enterprise-grade skills covering architecture, concurrency, testing, and security — built by a Lead iOS Engineer with real production experience.
+9 enterprise-grade skills covering architecture, concurrency, testing, security, and accessibility — built by a Lead iOS Engineer with real production experience.
 
 ## Benchmark Results
 
@@ -47,6 +48,7 @@ Every skill is benchmarked against multiple LLMs with discriminating assertions 
 | **gcd-operations** | +47.4% | +4.8% | +16.1% | 13 | 19 |
 | **ios-testing** | +44.2% | +30.0% | +33.6% | 27 | 77 |
 | **ios-security** | +29.7% | +26.4% | — | 17 | 37 |
+| **ios-accessibility** | +18.3% | — | — | 36 | 115 |
 
 > Delta = percentage point improvement in discriminating assertion pass rate (with skill vs without skill). Higher = more value added. "—" = not yet benchmarked for that model.
 
@@ -69,6 +71,7 @@ Every skill is benchmarked against multiple LLMs with discriminating assertions 
 | **gcd-operations** | GCD & OperationQueue | iOS 13+ |
 | **ios-testing** | Testing across all architectures | iOS 13+ |
 | **ios-security** | OWASP MASVS Security Audit | iOS 13+ |
+| **ios-accessibility** | VoiceOver, Dynamic Type, WCAG 2.2 | iOS 13+ |
 
 ## Install
 
@@ -101,7 +104,7 @@ Clone and copy the `skills/` directory into your project.
 - **Iterative refactoring** — small, reviewable PRs (≤200 lines) instead of "rewrite everything" approaches
 - **Anti-pattern prevention** — AI tools consistently generate broken patterns (retain cycles in VIPER, outdated TCA APIs, unsafe GCD). These skills prevent that
 - **Architecture coverage** — the only collection covering VIPER, TCA, GCD, and Security Audit. No major iOS skill author has claimed these domains
-- **Benchmarked** — tested against 3 LLMs with 549 discriminating assertions across 161 scenarios
+- **Benchmarked** — tested against 3 LLMs with 664 discriminating assertions across 197 scenarios
 
 ## Skill Details
 
@@ -128,6 +131,9 @@ Swift Testing (@Test/@Suite/#expect), XCTest, async testing, architecture-specif
 
 ### ios-security
 OWASP MASVS v2.1.0 audit (24 controls, 8 categories). Keychain, ATS, certificate pinning, WebView, biometric auth, compliance mapping (HIPAA, PCI DSS, GDPR). **+29.7% on Sonnet, +26.4% on GPT-5.4.**
+
+### ios-accessibility
+VoiceOver, Dynamic Type, color contrast, motion preferences, Switch Control, Voice Control, WCAG 2.2 AA mapping. Corrects 11 documented AI failure patterns (onTapGesture, hardcoded fonts, missing labels, trait assignment). **+18.3% on Sonnet 4.6** (115 assertions, 100% with-skill, 21 discriminating wins).
 
 ## Author
 
