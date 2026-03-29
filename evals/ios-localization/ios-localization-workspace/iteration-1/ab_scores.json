@@ -1,0 +1,335 @@
+{
+  "scores": [
+    {
+      "eval_id": 1,
+      "eval_name": "hardcoded-strings",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "Both identify all 3 hardcoded strings and recommend String(localized:)/NSLocalizedString with meaningful comments. B (with_skill) adds bidi isolation/digit rendering rationale for preferring String(localized:), uses defaultValue parameter, and explains semantic keys more thoroughly."
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "string-concatenation",
+      "score_a": 9,
+      "score_b": 7,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) provides concrete Japanese/Korean/Arabic reordering examples, uses positional %1$@ specifiers, notes empty comment issue, and shows String(localized:) iOS 15+ alternative. B (without_skill) covers positional specifiers but with fewer language examples and less depth."
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "ambiguous-english-keys",
+      "score_a": 8,
+      "score_b": 8,
+      "a_is": "without_skill",
+      "winner": "tie",
+      "reason": "Both recommend separate semantic dot-notation keys (menu.drink.water, garden.action.water), provide translator comments, and explain why English words need separate keys with multi-language examples. Nearly identical quality."
+    },
+    {
+      "eval_id": 4,
+      "eval_name": "non-positional-specifiers",
+      "score_a": 9,
+      "score_b": 8,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) gives a more detailed Korean reordering example showing how %2$@ and %1$@ swap, explains why forced English argument order is wrong for Korean grammar, and notes the vague comment issue. B (without_skill) covers positional specifiers and Korean but with slightly less depth."
+    },
+    {
+      "eval_id": 5,
+      "eval_name": "russian-plural-categories",
+      "score_a": 9,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "tie",
+      "reason": "Both correctly identify 4 categories, provide correct Russian forms, explain rules with 2-4 vs 12-14 exceptions, provide .stringsdict XML, and include verification test numbers. Remarkably similar quality."
+    },
+    {
+      "eval_id": 6,
+      "eval_name": "polish-vs-russian-plurals",
+      "score_a": 9,
+      "score_b": 7,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) cleanly states Polish one=only 1 vs Russian one=1/21/31/101, gives the 21 example, and warns against copying. B (without_skill) initially gets confused and self-corrects about Polish 21 mapping, reducing confidence. A is more precise and authoritative."
+    },
+    {
+      "eval_id": 7,
+      "eval_name": "count-ternary-plural",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) names more affected languages with specific category counts (Russian/Ukrainian 4, Arabic 6, Czech/Slovak 4), covers both String Catalog and .stringsdict. A (without_skill) also names specific languages and provides good solutions but slightly less comprehensive."
+    },
+    {
+      "eval_id": 8,
+      "eval_name": "arabic-plural-categories",
+      "score_a": 9,
+      "score_b": 8,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) provides more detailed number ranges per category, includes verification test set, and mentions Eastern Arabic numeral rendering. B (without_skill) covers all 6 categories and the dual form but with less specificity on number ranges."
+    },
+    {
+      "eval_id": 9,
+      "eval_name": "text-string-variable",
+      "score_a": 7,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) provides thorough explanation of both Text initializers, when each pattern is appropriate (static/dynamic/verbatim), why the bug is insidious (no warning, plausible display). A (without_skill) correctly explains the issue and fix but is less comprehensive on patterns and implications."
+    },
+    {
+      "eval_id": 10,
+      "eval_name": "verbatim-missing",
+      "score_a": 9,
+      "score_b": 8,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) covers verbatim:, explains auto-extraction, includes #if DEBUG technique, lists multiple non-localizable content categories, and provides a clear summary of Text behavior. B (without_skill) covers verbatim: and #if DEBUG but with slightly less depth on categories and the extraction mechanism."
+    },
+    {
+      "eval_id": 11,
+      "eval_name": "package-bundle-missing",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) identifies bundle: .module, shows both Text and String(localized:) fixes, mentions defaultLocalization, explains why the bug is silent in English testing, and adds 'exposing bundle for consumers' pattern. A (without_skill) has a clean checklist but lacks the silent-bug explanation."
+    },
+    {
+      "eval_id": 12,
+      "eval_name": "interpolation-type-trap",
+      "score_a": 8,
+      "score_b": 8,
+      "a_is": "with_skill",
+      "winner": "tie",
+      "reason": "Both correctly identify String type inference, explain DefaultStringInterpolation vs LocalizedStringKey.StringInterpolation, show the explicit type fix, and cover Image/Date/Text interpolation. Nearly identical coverage and depth."
+    },
+    {
+      "eval_id": 13,
+      "eval_name": "nslocalized-interpolation",
+      "score_a": 8,
+      "score_b": 8,
+      "a_is": "without_skill",
+      "winner": "tie",
+      "reason": "Both identify interpolation creating unique keys, recommend String(format:) with static key, and show String(localized:) as the modern alternative with clear explanation of the distinction."
+    },
+    {
+      "eval_id": 14,
+      "eval_name": "en-us-posix-missing",
+      "score_a": 9,
+      "score_b": 9,
+      "a_is": "with_skill",
+      "winner": "tie",
+      "reason": "Both identify missing en_US_POSIX, explain both failure modes (Buddhist calendar 2568 and 12-hour time), distinguish parsing vs display, and provide comprehensive fixes including ISO8601DateFormatter."
+    },
+    {
+      "eval_id": 15,
+      "eval_name": "custom-dateformat-display",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) provides all three fix options with locale-specific examples for each, including setLocalizedDateFormatFromTemplate with a clear template example. Strongly states the principle about custom dateFormat. A (without_skill) also covers all three but with less emphasis on the template approach."
+    },
+    {
+      "eval_id": 16,
+      "eval_name": "yyyy-vs-YYYY",
+      "score_a": 9,
+      "score_b": 9,
+      "a_is": "with_skill",
+      "winner": "tie",
+      "reason": "Both correctly identify YYYY as ISO week-numbering year, provide the Dec 30 2024 example, warn about DD vs dd, and include a quick reference table. Very similar depth and accuracy."
+    },
+    {
+      "eval_id": 17,
+      "eval_name": "currency-interpolation",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) provides a more comprehensive locale table (US, Germany, France, Japan, Saudi Arabia with Eastern Arabic numerals), clearly lists 4 key points about currency formatting. A (without_skill) covers essentials well but slightly less breadth on locale examples."
+    },
+    {
+      "eval_id": 18,
+      "eval_name": "number-digits-locale",
+      "score_a": 8,
+      "score_b": 8,
+      "a_is": "with_skill",
+      "winner": "tie",
+      "reason": "Both identify String(format:) as culprit, recommend localizedStringWithFormat/.formatted()/NumberFormatter. A (with_skill) provides clearer 'when to use each' comparison. B (without_skill) adds Maghreb Western-digit nuance. Balanced overall."
+    },
+    {
+      "eval_id": 19,
+      "eval_name": "left-right-constraints",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) mentions 400M+ RTL users, provides additional considerations (NSDirectionalEdgeInsets, SwiftUI HStack, RTL pseudolanguage testing). A (without_skill) covers the core fix and mentions 400M users but with fewer additional tips."
+    },
+    {
+      "eval_id": 20,
+      "eval_name": "text-alignment-left",
+      "score_a": 8,
+      "score_b": 7,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) recommends .natural, explains .left stays fixed, and adds when .left is intentionally appropriate. B (without_skill) covers the same ground but with slightly less nuance."
+    },
+    {
+      "eval_id": 21,
+      "eval_name": "force-ltr-exceptions",
+      "score_a": 8,
+      "score_b": 8,
+      "a_is": "without_skill",
+      "winner": "tie",
+      "reason": "Both list phone numbers/playback/progress bars as exceptions, show UIKit semanticContentAttribute and SwiftUI .environment force-LTR, and discuss directional image flipping vs non-directional logos."
+    },
+    {
+      "eval_id": 22,
+      "eval_name": "fixed-width-localized-text",
+      "score_a": 9,
+      "score_b": 8,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) mentions German 30% expansion, OK/Einverstanden 3x example, and both Double Length AND Bounded pseudolanguage testing. B (without_skill) covers expansion and Double Length but misses Bounded pseudolanguage."
+    },
+    {
+      "eval_id": 23,
+      "eval_name": "hardcoded-accessibility-labels",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "Both identify all three as hardcoded, show localized fixes, and distinguish label from identifier. B (with_skill) adds Apple documentation reference about localized strings requirement and mentions SwiftUI auto-localization. Slight edge."
+    },
+    {
+      "eval_id": 24,
+      "eval_name": "swiftui-accessibility-localization",
+      "score_a": 9,
+      "score_b": 8,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) explains LocalizedStringKey auto-localization, warns key must exist, recommends semantic keys, mentions Swift Package bundle: .module, and covers accessibilityIdentifier. B (without_skill) covers similar ground but omits bundle: .module for packages."
+    },
+    {
+      "eval_id": 25,
+      "eval_name": "xcstrings-validation",
+      "score_a": 7,
+      "score_b": 8,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) recommends xcstrings_tool.py with validate and audit-plurals commands, covering missing/stale/empty translations and per-language plural completeness. A (without_skill) provides a custom Python script and mentions Xcode warnings but lacks dedicated plural auditing."
+    },
+    {
+      "eval_id": 26,
+      "eval_name": "xcstrings-merge-conflicts",
+      "score_a": 9,
+      "score_b": 7,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) explains JSON merge problem, recommends splitting and packages, and uniquely mentions the Xcode comment order randomization bug. B (without_skill) covers splitting but misses the comment randomization bug and suggests less practical solutions."
+    },
+    {
+      "eval_id": 27,
+      "eval_name": "xcstrings-plural-without-number",
+      "score_a": 7,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) clearly states String Catalogs cannot handle this, recommends .stringsdict, provides XML example, and warns about coexistence constraint. A (without_skill) includes a flawed ternary alternative and is less definitive about the limitation."
+    },
+    {
+      "eval_id": 28,
+      "eval_name": "xcstrings-migration",
+      "score_a": 9,
+      "score_b": 8,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) covers migration tool, coexistence constraint, complete-per-table requirement, and mentions .stringsdict still needed for plural-without-number. B (without_skill) covers migration and coexistence but misses the .stringsdict edge case."
+    },
+    {
+      "eval_id": 29,
+      "eval_name": "package-default-localization",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) checks all three items, explains silent bug behavior when package works in host but not as dependency, and provides bundle exposure pattern. A (without_skill) covers same checks with clean checklist but lacks the dependency-specific nuance."
+    },
+    {
+      "eval_id": 30,
+      "eval_name": "white-label-localization",
+      "score_a": 9,
+      "score_b": 7,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) describes all 3 architectures (targets, BrandManager, OTA), recommends shared + per-brand catalog split, shows BrandManager code, and gives clear recommendation. B (without_skill) covers similar approaches but the recommendation section appears truncated and BrandManager code is less complete."
+    },
+    {
+      "eval_id": 31,
+      "eval_name": "pseudolanguage-testing",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) lists all 4 pseudolanguages with purposes, mentions -NSShowNonLocalizedStrings YES, and provides comprehensive 8-step testing workflow including Buddhist calendar and plural verification. A (without_skill) covers all 4 pseudolanguages and the flag but lacks the extended workflow."
+    },
+    {
+      "eval_id": 32,
+      "eval_name": "locale-test-automation",
+      "score_a": 9,
+      "score_b": 8,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) shows launch arguments, clearly uses accessibilityIdentifier with contrast to label failure, and provides full verification test set exercising all 4 Russian plural categories. B (without_skill) also covers this well but is slightly less focused on boundary numbers."
+    },
+    {
+      "eval_id": 33,
+      "eval_name": "locale-change-notification",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) recommends NSLocale.currentLocaleDidChangeNotification, shows a full FormatterCache with invalidation, and explicitly explains the backgrounded app scenario. A (without_skill) covers the notification and shows UIKit+SwiftUI examples but is slightly less focused on the background scenario."
+    },
+    {
+      "eval_id": 34,
+      "eval_name": "enum-rawvalue-localization",
+      "score_a": 9,
+      "score_b": 8,
+      "a_is": "with_skill",
+      "winner": "a",
+      "reason": "A (with_skill) identifies rawValue as String variable, recommends displayName with LocalizedStringKey, includes a translation table, and provides LocalizedStringResource alternative (iOS 16+). B (without_skill) covers the fix well but the alternative returns String which is less optimal for SwiftUI Text."
+    },
+    {
+      "eval_id": 35,
+      "eval_name": "custom-view-string-parameter",
+      "score_a": 8,
+      "score_b": 9,
+      "a_is": "without_skill",
+      "winner": "b",
+      "reason": "B (with_skill) identifies String preventing localization, shows the fix, discusses when to use LocalizedStringKey vs String vs verbatim, and explains the generic approach limitation. A (without_skill) covers the fix and Apple's pattern but has a slightly flawed verbatim extension."
+    },
+    {
+      "eval_id": 36,
+      "eval_name": "date-parsing-buddhist-calendar",
+      "score_a": 9,
+      "score_b": 9,
+      "a_is": "with_skill",
+      "winner": "tie",
+      "reason": "Both correctly identify Buddhist calendar (+543), distinguish API (en_US_POSIX) from display (.dateStyle), and make the critical point that Buddhist year IS correct for Thai users. Both hit all assertions perfectly."
+    }
+  ],
+  "summary": {
+    "with_skill_wins": 27,
+    "without_skill_wins": 0,
+    "ties": 9,
+    "avg_with_skill": 8.81,
+    "avg_without_skill": 7.89
+  }
+}

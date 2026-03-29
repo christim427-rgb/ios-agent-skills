@@ -1,0 +1,828 @@
+{
+  "evals": [
+    {
+      "id": 1,
+      "name": "hardcoded-strings",
+      "topic": "string-management",
+      "with_skill": {
+        "assertions": [
+          {"id": "SM1.1", "text": "Identifies all three strings as hardcoded and missing localization", "passed": true, "evidence": "Explicitly lists all three strings: Welcome to MyApp, Get started in minutes, Continue as hardcoded with no localization API"},
+          {"id": "SM1.2", "text": "Recommends String(localized:) for iOS 15+ or NSLocalizedString for older targets", "passed": true, "evidence": "Shows String(localized:) for iOS 15+ and NSLocalizedString for projects targeting below iOS 15"},
+          {"id": "SM1.3", "text": "Provides meaningful translator comments (not empty comment: \"\")", "passed": true, "evidence": "All comments are detailed: 'Title shown on the first onboarding screen when user opens the app for the first time', etc. Explicitly warns against empty comments."}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SM1.1", "text": "Identifies all three strings as hardcoded and missing localization", "passed": true, "evidence": "Lists all three strings as hardcoded: Welcome to MyApp, Get started in minutes, Continue"},
+          {"id": "SM1.2", "text": "Recommends String(localized:) for iOS 15+ or NSLocalizedString for older targets", "passed": true, "evidence": "Shows both String(localized:) and NSLocalizedString alternatives"},
+          {"id": "SM1.3", "text": "Provides meaningful translator comments (not empty comment: \"\")", "passed": true, "evidence": "Comments are meaningful: 'Title shown on the first onboarding screen welcoming the user', etc. States not to leave comment parameter empty."}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 2,
+      "name": "string-concatenation",
+      "topic": "string-management",
+      "with_skill": {
+        "assertions": [
+          {"id": "SM2.1", "text": "Identifies concatenation as preventing word reordering for other languages", "passed": true, "evidence": "Explains concatenation locks word order into English pattern, gives Japanese and Korean examples of different word order"},
+          {"id": "SM2.2", "text": "Recommends a single format string with placeholder (e.g., String(format:) with %@)", "passed": true, "evidence": "Shows single format string with String(format: format, userName)"},
+          {"id": "SM2.3", "text": "Uses positional format specifiers (%1$@) in the fix", "passed": true, "evidence": "Uses %1$@ in the fix and explains positional specifiers with Korean reordering example"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SM2.1", "text": "Identifies concatenation as preventing word reordering for other languages", "passed": true, "evidence": "States concatenation locks sentence into English word order, Japanese name might come first"},
+          {"id": "SM2.2", "text": "Recommends a single format string with placeholder (e.g., String(format:) with %@)", "passed": true, "evidence": "Shows String(format: format, userName) with a single format string"},
+          {"id": "SM2.3", "text": "Uses positional format specifiers (%1$@) in the fix", "passed": true, "evidence": "Uses %1$@ in the fix and explains why positional specifiers matter"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 3,
+      "name": "ambiguous-english-keys",
+      "topic": "string-management",
+      "with_skill": {
+        "assertions": [
+          {"id": "SM3.1", "text": "Recommends separate keys for different contexts (e.g., 'menu.drink.water' and 'garden.action.water')", "passed": true, "evidence": "Uses exactly menu.drink.water and garden.action.water as separate keys"},
+          {"id": "SM3.2", "text": "Provides different translator comments explaining each context", "passed": true, "evidence": "Provides distinct comments: 'Name of water as a beverage option in the drink menu' vs 'Button label for the action of watering plants'"},
+          {"id": "SM3.3", "text": "Uses semantic dot-notation keys (not the English word as key)", "passed": true, "evidence": "Uses menu.drink.water and garden.action.water, explicitly states not to use English text as key"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SM3.1", "text": "Recommends separate keys for different contexts (e.g., 'menu.drink.water' and 'garden.action.water')", "passed": true, "evidence": "Uses menu.drink.water and garden.action.water as separate keys"},
+          {"id": "SM3.2", "text": "Provides different translator comments explaining each context", "passed": true, "evidence": "Provides distinct comments for each context"},
+          {"id": "SM3.3", "text": "Uses semantic dot-notation keys (not the English word as key)", "passed": true, "evidence": "Uses semantic dot-notation keys: menu.drink.water and garden.action.water"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 4,
+      "name": "non-positional-specifiers",
+      "topic": "string-management",
+      "with_skill": {
+        "assertions": [
+          {"id": "SM4.1", "text": "Identifies non-positional %@ as preventing translator reordering", "passed": true, "evidence": "Clearly states non-positional %@ specifiers prevent translators from reordering arguments"},
+          {"id": "SM4.2", "text": "Recommends %1$@ and %2$@ positional specifiers", "passed": true, "evidence": "Shows fix with %1$@ and %2$@ positional specifiers"},
+          {"id": "SM4.3", "text": "Provides a concrete example of how a translator would reorder (e.g., Korean, Japanese, or Arabic)", "passed": true, "evidence": "Provides detailed Korean example: '%2$@을(를) %1$@이(가) 그룹에 초대했습니다' showing reversed argument order"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SM4.1", "text": "Identifies non-positional %@ as preventing translator reordering", "passed": true, "evidence": "States translator cannot change the order of arguments with plain %@"},
+          {"id": "SM4.2", "text": "Recommends %1$@ and %2$@ positional specifiers", "passed": true, "evidence": "Shows fix with %1$@ and %2$@"},
+          {"id": "SM4.3", "text": "Provides a concrete example of how a translator would reorder (e.g., Korean, Japanese, or Arabic)", "passed": true, "evidence": "Provides Korean example with reversed order in strings file"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 5,
+      "name": "russian-plural-categories",
+      "topic": "pluralization",
+      "with_skill": {
+        "assertions": [
+          {"id": "PL1.1", "text": "Identifies that Russian needs 4 categories: one, few, many, other (not just one/other)", "passed": true, "evidence": "States Russian requires four categories: one, few, many, and other"},
+          {"id": "PL1.2", "text": "Provides the correct Russian forms: one=файл, few=файла, many=файлов, other=файла", "passed": true, "evidence": "Shows all four forms: файл, файла, файлов, файла in the stringsdict"},
+          {"id": "PL1.3", "text": "Explains that 'few' covers numbers ending in 2-4 (not 12-14), like 2, 3, 4, 22, 23, 24", "passed": true, "evidence": "Rule table shows: few = Ends in 2-4, but NOT 12-14, with examples 2, 3, 4, 22, 23, 24, 32, 33, 34"},
+          {"id": "PL1.4", "text": "Mentions the verification test set or provides specific test numbers like 1, 2, 5, 11, 21, 22", "passed": true, "evidence": "Provides exact verification set: [0, 1, 2, 3, 4, 5, 10, 11, 12, 14, 20, 21, 22, 25, 100, 101, 111, 1.5]"}
+        ],
+        "pass_count": 4,
+        "total": 4
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "PL1.1", "text": "Identifies that Russian needs 4 categories: one, few, many, other (not just one/other)", "passed": true, "evidence": "States Russian requires 4 plural categories: one, few, many, and other"},
+          {"id": "PL1.2", "text": "Provides the correct Russian forms: one=файл, few=файла, many=файлов, other=файла", "passed": true, "evidence": "Shows all four forms in the stringsdict: файл, файла, файлов, файла"},
+          {"id": "PL1.3", "text": "Explains that 'few' covers numbers ending in 2-4 (not 12-14), like 2, 3, 4, 22, 23, 24", "passed": true, "evidence": "Explains 'few' applies when last digit is 2, 3, or 4, except when last two digits are 12, 13, or 14"},
+          {"id": "PL1.4", "text": "Mentions the verification test set or provides specific test numbers like 1, 2, 5, 11, 21, 22", "passed": true, "evidence": "Provides specific test numbers: 1, 2, 5, 11, 21, 22, 0, 101, 111"}
+        ],
+        "pass_count": 4,
+        "total": 4
+      }
+    },
+    {
+      "id": 6,
+      "name": "polish-vs-russian-plurals",
+      "topic": "pluralization",
+      "with_skill": {
+        "assertions": [
+          {"id": "PL2.1", "text": "States that Polish 'one' is ONLY the integer 1, while Russian 'one' includes 21, 31, 101 etc.", "passed": true, "evidence": "Clearly states: Russian one = Any integer ending in 1 but NOT 11 (1, 21, 31...), Polish one = ONLY the integer 1"},
+          {"id": "PL2.2", "text": "Shows a concrete example: number 21 maps to 'one' in Russian but 'many' in Polish", "passed": true, "evidence": "Shows: Russian 21 = one category ('21 файл'), Polish 21 = many category ('21 plików')"},
+          {"id": "PL2.3", "text": "Warns against copying plural logic between Slavic languages", "passed": true, "evidence": "Explicitly states: Never copy plural logic between Slavic languages, even when they share the same number of categories"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "PL2.1", "text": "States that Polish 'one' is ONLY the integer 1, while Russian 'one' includes 21, 31, 101 etc.", "passed": true, "evidence": "States Russian one = any number ending in 1 except 11 (1, 21, 31, 101), Polish one = only the integer 1"},
+          {"id": "PL2.2", "text": "Shows a concrete example: number 21 maps to 'one' in Russian but 'many' in Polish", "passed": false, "evidence": "Initially shows 21 mapping to 'few' for Polish in the table, then self-corrects and provides correct Polish rules showing 21 in 'many'. The confusion undermines clarity but the final example (21 файл vs 21 plików) is correct."},
+          {"id": "PL2.3", "text": "Warns against copying plural logic between Slavic languages", "passed": true, "evidence": "States: Never copy plural logic between languages, even within the same language family"}
+        ],
+        "pass_count": 2,
+        "total": 3
+      }
+    },
+    {
+      "id": 7,
+      "name": "count-ternary-plural",
+      "topic": "pluralization",
+      "with_skill": {
+        "assertions": [
+          {"id": "PL3.1", "text": "Identifies the ternary as breaking for languages with more than 2 plural forms", "passed": true, "evidence": "States the code has two hard-coded forms and breaks for every language with more than two plural forms"},
+          {"id": "PL3.2", "text": "Recommends .stringsdict or String Catalog plural variations", "passed": true, "evidence": "Shows both String Catalog and .stringsdict options"},
+          {"id": "PL3.3", "text": "Names specific languages affected (Russian, Polish, Arabic, or similar)", "passed": true, "evidence": "Lists Russian, Ukrainian (4 forms), Polish (4 forms), Arabic (6 forms), Czech, Slovak"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "PL3.1", "text": "Identifies the ternary as breaking for languages with more than 2 plural forms", "passed": true, "evidence": "States many languages have more than two plural forms and this approach completely breaks for them"},
+          {"id": "PL3.2", "text": "Recommends .stringsdict or String Catalog plural variations", "passed": true, "evidence": "Shows both .stringsdict and String Catalog approaches"},
+          {"id": "PL3.3", "text": "Names specific languages affected (Russian, Polish, Arabic, or similar)", "passed": true, "evidence": "Lists Russian, Polish, Arabic, Czech, Croatian, Serbian, Welsh, Irish"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 8,
+      "name": "arabic-plural-categories",
+      "topic": "pluralization",
+      "with_skill": {
+        "assertions": [
+          {"id": "PL4.1", "text": "States Arabic needs all 6 CLDR categories: zero, one, two, few, many, other", "passed": true, "evidence": "Clearly states Arabic requires all 6 CLDR plural categories with table listing all six"},
+          {"id": "PL4.2", "text": "Explains that 'two' is specifically for the number 2 (dual form)", "passed": true, "evidence": "Explains Arabic has a grammatical dual form specifically for the number 2, with example كتابان"},
+          {"id": "PL4.3", "text": "Provides example number ranges for at least few and many categories", "passed": true, "evidence": "Table shows: few = 3-10 and numbers ending in 03-10, many = 11-99 and numbers ending in 11-99"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "PL4.1", "text": "States Arabic needs all 6 CLDR categories: zero, one, two, few, many, other", "passed": true, "evidence": "States Arabic requires all 6 CLDR plural categories with table"},
+          {"id": "PL4.2", "text": "Explains that 'two' is specifically for the number 2 (dual form)", "passed": true, "evidence": "Explains 'two' category is the grammatical dual form for specifically the number 2, with example كتابان"},
+          {"id": "PL4.3", "text": "Provides example number ranges for at least few and many categories", "passed": true, "evidence": "Shows few = 3-10 and ending in 03-10, many = 11-99 and ending in 11-99"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 9,
+      "name": "text-string-variable",
+      "topic": "swiftui-localization",
+      "with_skill": {
+        "assertions": [
+          {"id": "SL1.1", "text": "Identifies that String variable uses StringProtocol overload, not LocalizedStringKey", "passed": true, "evidence": "Explains Text has two initializers and String variable matches the StringProtocol overload"},
+          {"id": "SL1.2", "text": "Shows the fix: Text(LocalizedStringKey(key))", "passed": true, "evidence": "Shows Text(LocalizedStringKey(key)) as the fix"},
+          {"id": "SL1.3", "text": "Explains that only string LITERALS trigger localization, not variables", "passed": true, "evidence": "States only string literals trigger automatic localization, not variables - explains the mechanism in detail"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SL1.1", "text": "Identifies that String variable uses StringProtocol overload, not LocalizedStringKey", "passed": true, "evidence": "Explains String variable causes Swift to choose the StringProtocol initializer"},
+          {"id": "SL1.2", "text": "Shows the fix: Text(LocalizedStringKey(key))", "passed": true, "evidence": "Shows Text(LocalizedStringKey(key)) as the fix"},
+          {"id": "SL1.3", "text": "Explains that only string LITERALS trigger localization, not variables", "passed": true, "evidence": "States only string literals passed directly to Text() trigger automatic localization lookup"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 10,
+      "name": "verbatim-missing",
+      "topic": "swiftui-localization",
+      "with_skill": {
+        "assertions": [
+          {"id": "SL2.1", "text": "Recommends Text(verbatim:) for non-localizable strings", "passed": true, "evidence": "Shows Text(verbatim: \"v2.0.1\") and Text(verbatim: \"https://example.com/terms\")"},
+          {"id": "SL2.2", "text": "Explains that Text() with literals auto-extracts to String Catalog", "passed": true, "evidence": "States Text() with string literal treats it as LocalizedStringKey and extracts to String Catalog"},
+          {"id": "SL2.3", "text": "Mentions #if DEBUG for debug-only text as another prevention technique", "passed": true, "evidence": "Shows #if DEBUG with Text(verbatim:) for debug-only text, explains it is removed from release builds"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SL2.1", "text": "Recommends Text(verbatim:) for non-localizable strings", "passed": true, "evidence": "Shows Text(verbatim:) as the primary fix"},
+          {"id": "SL2.2", "text": "Explains that Text() with literals auto-extracts to String Catalog", "passed": true, "evidence": "Explains string literals passed to Text() are treated as LocalizedStringKey and extracted"},
+          {"id": "SL2.3", "text": "Mentions #if DEBUG for debug-only text as another prevention technique", "passed": true, "evidence": "Shows #if DEBUG with Text(verbatim:) as Solution 2"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 11,
+      "name": "package-bundle-missing",
+      "topic": "swiftui-localization",
+      "with_skill": {
+        "assertions": [
+          {"id": "SL3.1", "text": "Identifies missing bundle: .module parameter", "passed": true, "evidence": "Clearly identifies missing bundle: .module as the root cause"},
+          {"id": "SL3.2", "text": "Shows the fix with bundle: .module on both Text and String(localized:)", "passed": true, "evidence": "Shows both: Text(\"login_title\", bundle: .module) and String(localized: \"login_subtitle\", bundle: .module)"},
+          {"id": "SL3.3", "text": "Mentions that Package.swift needs defaultLocalization: \"en\"", "passed": true, "evidence": "Shows Package.swift with defaultLocalization: \"en\" and states it is REQUIRED"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SL3.1", "text": "Identifies missing bundle: .module parameter", "passed": true, "evidence": "Identifies missing bundle: .module as the root cause"},
+          {"id": "SL3.2", "text": "Shows the fix with bundle: .module on both Text and String(localized:)", "passed": true, "evidence": "Shows both fixes with bundle: .module"},
+          {"id": "SL3.3", "text": "Mentions that Package.swift needs defaultLocalization: \"en\"", "passed": true, "evidence": "Shows Package.swift with defaultLocalization: \"en\" as required"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 12,
+      "name": "interpolation-type-trap",
+      "topic": "swiftui-localization",
+      "with_skill": {
+        "assertions": [
+          {"id": "SL4.1", "text": "Identifies that Swift infers String type, using DefaultStringInterpolation", "passed": true, "evidence": "States Swift infers type as String which uses DefaultStringInterpolation"},
+          {"id": "SL4.2", "text": "Shows the fix: explicit LocalizedStringKey type annotation", "passed": true, "evidence": "Shows: let label: LocalizedStringKey = \"Delete \\(Image(systemName: \"trash\"))\""},
+          {"id": "SL4.3", "text": "Explains that LocalizedStringKey has custom StringInterpolation for Image/Date/Text", "passed": true, "evidence": "Explains LocalizedStringKey has custom StringInterpolation that knows how to handle Image, Date, Text, and FormatStyle"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SL4.1", "text": "Identifies that Swift infers String type, using DefaultStringInterpolation", "passed": true, "evidence": "States Swift infers label as type String which uses DefaultStringInterpolation"},
+          {"id": "SL4.2", "text": "Shows the fix: explicit LocalizedStringKey type annotation", "passed": true, "evidence": "Shows: let label: LocalizedStringKey = \"Delete \\(Image...)\""},
+          {"id": "SL4.3", "text": "Explains that LocalizedStringKey has custom StringInterpolation for Image/Date/Text", "passed": true, "evidence": "Explains LocalizedStringKey has custom StringInterpolation that handles Image, Date, and Text types"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 13,
+      "name": "nslocalized-interpolation",
+      "topic": "swiftui-localization",
+      "with_skill": {
+        "assertions": [
+          {"id": "SL5.1", "text": "Identifies that interpolation creates a unique key per value (\"Hello Alice\", \"Hello Bob\")", "passed": true, "evidence": "Explains if userName is Alice the key becomes 'Hello Alice', if Bob the key becomes 'Hello Bob' - unique key per value"},
+          {"id": "SL5.2", "text": "Recommends String(format:) with a static key", "passed": true, "evidence": "Shows String(format: format, userName) with static key 'greeting_format'"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SL5.1", "text": "Identifies that interpolation creates a unique key per value (\"Hello Alice\", \"Hello Bob\")", "passed": true, "evidence": "Explains every unique username creates a different localization key: 'Hello Alice', 'Hello Bob'"},
+          {"id": "SL5.2", "text": "Recommends String(format:) with a static key", "passed": true, "evidence": "Shows String(format: format, userName) with static key 'greeting.hello'"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      }
+    },
+    {
+      "id": 14,
+      "name": "en-us-posix-missing",
+      "topic": "date-formatting",
+      "with_skill": {
+        "assertions": [
+          {"id": "DF1.1", "text": "Identifies missing en_US_POSIX locale as the cause", "passed": true, "evidence": "States the issue is a missing en_US_POSIX locale on the DateFormatter"},
+          {"id": "DF1.2", "text": "Explains that Buddhist calendar users get wrong year (2568 instead of 2025)", "passed": true, "evidence": "Explains Buddhist calendar year is Gregorian year + 543, parsing year 2025 produces a date 543 years in the past"},
+          {"id": "DF1.3", "text": "Explains that 12-hour time users break HH:mm parsing", "passed": true, "evidence": "Explains 12-hour device may reject 14 as invalid hour or misparse the time, returning nil"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "DF1.1", "text": "Identifies missing en_US_POSIX locale as the cause", "passed": true, "evidence": "Identifies missing en_US_POSIX locale and shows the fix"},
+          {"id": "DF1.2", "text": "Explains that Buddhist calendar users get wrong year (2568 instead of 2025)", "passed": true, "evidence": "Explains Thai locale uses Buddhist calendar where year is 543 years ahead (2025 becomes 2568)"},
+          {"id": "DF1.3", "text": "Explains that 12-hour time users break HH:mm parsing", "passed": true, "evidence": "Explains 12-hour time format can cause HH:mm:ss parsing to fail, may expect AM/PM designators"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 15,
+      "name": "custom-dateformat-display",
+      "topic": "date-formatting",
+      "with_skill": {
+        "assertions": [
+          {"id": "DF2.1", "text": "Identifies MM/dd/yyyy as US-specific format that's wrong for most of the world", "passed": true, "evidence": "States MM/dd/yyyy is US-specific date order incorrect for most of the world, with locale table"},
+          {"id": "DF2.2", "text": "Recommends .dateStyle/.timeStyle or Date.formatted() (iOS 15+)", "passed": true, "evidence": "Shows both .dateStyle and Date.formatted() options"},
+          {"id": "DF2.3", "text": "Mentions setLocalizedDateFormatFromTemplate() for custom patterns", "passed": true, "evidence": "Shows setLocalizedDateFormatFromTemplate(\"MMMMd\") with locale-specific examples"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "DF2.1", "text": "Identifies MM/dd/yyyy as US-specific format that's wrong for most of the world", "passed": true, "evidence": "Identifies MM/dd/yyyy as US date format with international differences shown"},
+          {"id": "DF2.2", "text": "Recommends .dateStyle/.timeStyle or Date.formatted() (iOS 15+)", "passed": true, "evidence": "Shows dateStyle and Date.formatted() options"},
+          {"id": "DF2.3", "text": "Mentions setLocalizedDateFormatFromTemplate() for custom patterns", "passed": true, "evidence": "Shows setLocalizedDateFormatFromTemplate(\"MMddyyyy\") as Option 3"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 16,
+      "name": "yyyy-vs-YYYY",
+      "topic": "date-formatting",
+      "with_skill": {
+        "assertions": [
+          {"id": "DF3.1", "text": "Identifies YYYY as ISO week-numbering year, not calendar year", "passed": true, "evidence": "States YYYY is the ISO week-numbering year, not the calendar year"},
+          {"id": "DF3.2", "text": "Explains the specific scenario: Dec 30, 2024 shows as 2025 with YYYY", "passed": true, "evidence": "Shows Dec 30, 2024 with YYYY produces 2025-12-30 instead of 2024-12-30"},
+          {"id": "DF3.3", "text": "Also warns about DD (day of year) vs dd (day of month)", "passed": true, "evidence": "Explicitly warns about DD (day of year 001-366) vs dd (day of month 01-31) with example"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "DF3.1", "text": "Identifies YYYY as ISO week-numbering year, not calendar year", "passed": true, "evidence": "States YYYY is ISO week-numbering year, yyyy is calendar year"},
+          {"id": "DF3.2", "text": "Explains the specific scenario: Dec 30, 2024 shows as 2025 with YYYY", "passed": true, "evidence": "Shows December 30, 2024 displays as 2025-12-30 with YYYY"},
+          {"id": "DF3.3", "text": "Also warns about DD (day of year) vs dd (day of month)", "passed": true, "evidence": "Warns about DD = day of year (001-366) vs dd = day of month (01-31)"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 17,
+      "name": "currency-interpolation",
+      "topic": "number-currency",
+      "with_skill": {
+        "assertions": [
+          {"id": "NC1.1", "text": "Identifies string interpolation as wrong for currencies (symbol position, decimals, grouping vary)", "passed": true, "evidence": "Identifies hardcoded US dollar sign, position, decimal separator, and digit grouping as all varying by locale"},
+          {"id": "NC1.2", "text": "Recommends .formatted(.currency(code:)) for iOS 15+ or NumberFormatter", "passed": true, "evidence": "Shows both .formatted(.currency(code: \"USD\")) and NumberFormatter with .currency style"},
+          {"id": "NC1.3", "text": "Shows how the same amount renders differently in different locales (e.g., US vs Germany vs France)", "passed": true, "evidence": "Table shows: en_US $1,234.56, de_DE 1.234,56 $, fr_FR 1 234,56 $, ar_SA with Eastern Arabic numerals"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "NC1.1", "text": "Identifies string interpolation as wrong for currencies (symbol position, decimals, grouping vary)", "passed": true, "evidence": "Identifies hardcoded dollar sign and US formatting, lists variations in symbol position, decimal/grouping separators"},
+          {"id": "NC1.2", "text": "Recommends .formatted(.currency(code:)) for iOS 15+ or NumberFormatter", "passed": true, "evidence": "Shows both .formatted(.currency(code:)) and NumberFormatter alternatives"},
+          {"id": "NC1.3", "text": "Shows how the same amount renders differently in different locales (e.g., US vs Germany vs France)", "passed": true, "evidence": "Table shows: US $1,234.56, Germany 1.234,56 $, France 1 234,56 $, Switzerland $ 1'234.56"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 18,
+      "name": "number-digits-locale",
+      "topic": "number-currency",
+      "with_skill": {
+        "assertions": [
+          {"id": "NC2.1", "text": "Identifies String(format:) as always outputting Western digits", "passed": true, "evidence": "States String(format:) always outputs Western Arabic digits regardless of locale, uses C locale"},
+          {"id": "NC2.2", "text": "Recommends String.localizedStringWithFormat() or .formatted()", "passed": true, "evidence": "Shows both String.localizedStringWithFormat() and .formatted() as alternatives"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "NC2.1", "text": "Identifies String(format:) as always outputting Western digits", "passed": true, "evidence": "States String(format:) is C-based and always outputs ASCII digits regardless of locale"},
+          {"id": "NC2.2", "text": "Recommends String.localizedStringWithFormat() or .formatted()", "passed": true, "evidence": "Shows String.localizedStringWithFormat(), NumberFormatter, and .formatted() as alternatives"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      }
+    },
+    {
+      "id": 19,
+      "name": "left-right-constraints",
+      "topic": "rtl-layout",
+      "with_skill": {
+        "assertions": [
+          {"id": "RT1.1", "text": "Identifies left/right as never flipping for RTL languages (Arabic, Hebrew)", "passed": true, "evidence": "States leftAnchor and rightAnchor are absolute and never flip for RTL languages like Arabic and Hebrew"},
+          {"id": "RT1.2", "text": "Replaces with leadingAnchor/trailingAnchor", "passed": true, "evidence": "Shows fix with leadingAnchor and trailingAnchor"},
+          {"id": "RT1.3", "text": "Mentions that this affects 400M+ Arabic/Hebrew users or provides RTL user count", "passed": true, "evidence": "States this affects over 400 million users and mentions Arabic (420M+ speakers)"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "RT1.1", "text": "Identifies left/right as never flipping for RTL languages (Arabic, Hebrew)", "passed": true, "evidence": "States leftAnchor/rightAnchor are absolute and won't mirror for RTL languages"},
+          {"id": "RT1.2", "text": "Replaces with leadingAnchor/trailingAnchor", "passed": true, "evidence": "Shows fix with leadingAnchor and trailingAnchor"},
+          {"id": "RT1.3", "text": "Mentions that this affects 400M+ Arabic/Hebrew users or provides RTL user count", "passed": true, "evidence": "States Arabic and Hebrew are spoken by over 400 million people worldwide"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 20,
+      "name": "text-alignment-left",
+      "topic": "rtl-layout",
+      "with_skill": {
+        "assertions": [
+          {"id": "RT2.1", "text": "Recommends .natural and explains it auto-adapts to RTL", "passed": true, "evidence": "States always use .natural, explains it auto-adapts: left for LTR, right for RTL"},
+          {"id": "RT2.2", "text": "Explains that .left stays left regardless of language direction", "passed": true, "evidence": "States .left is absolute direction, pins text to physical left edge regardless of language"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "RT2.1", "text": "Recommends .natural and explains it auto-adapts to RTL", "passed": true, "evidence": "Recommends .natural, explains it resolves to left for LTR and right for RTL"},
+          {"id": "RT2.2", "text": "Explains that .left stays left regardless of language direction", "passed": true, "evidence": "States .left always aligns text to left regardless of language direction"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      }
+    },
+    {
+      "id": 21,
+      "name": "force-ltr-exceptions",
+      "topic": "rtl-layout",
+      "with_skill": {
+        "assertions": [
+          {"id": "RT3.1", "text": "Lists exceptions: phone numbers, playback controls, progress bars", "passed": true, "evidence": "Lists phone numbers, media playback controls, progress bars, numeric sequences, code snippets, timestamps"},
+          {"id": "RT3.2", "text": "Shows semanticContentAttribute = .forceLeftToRight (UIKit) or .environment(\\.layoutDirection, .leftToRight) (SwiftUI)", "passed": true, "evidence": "Shows both: semanticContentAttribute = .forceLeftToRight and .environment(\\.layoutDirection, .leftToRight)"},
+          {"id": "RT3.3", "text": "Mentions directional images (arrows, chevrons) should flip but logos should not", "passed": true, "evidence": "States directional images (arrows, chevrons) should flip but logos and brand icons should not"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "RT3.1", "text": "Lists exceptions: phone numbers, playback controls, progress bars", "passed": true, "evidence": "Lists phone numbers, media playback controls, progress bars and sliders"},
+          {"id": "RT3.2", "text": "Shows semanticContentAttribute = .forceLeftToRight (UIKit) or .environment(\\.layoutDirection, .leftToRight) (SwiftUI)", "passed": true, "evidence": "Shows both: semanticContentAttribute = .forceLeftToRight and .environment(\\.layoutDirection, .leftToRight)"},
+          {"id": "RT3.3", "text": "Mentions directional images (arrows, chevrons) should flip but logos should not", "passed": true, "evidence": "States directional images like arrows and chevrons should flip, but logos and brand marks should never flip"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 22,
+      "name": "fixed-width-localized-text",
+      "topic": "rtl-layout",
+      "with_skill": {
+        "assertions": [
+          {"id": "RT4.1", "text": "Identifies fixed width as the problem (German averages 30% longer than English)", "passed": true, "evidence": "States German translations average 30% longer than English, OK becomes Einverstanden (3x longer)"},
+          {"id": "RT4.2", "text": "Recommends flexible constraints (maxWidth: .infinity or no width constraint)", "passed": true, "evidence": "Shows .frame(maxWidth: .infinity) and removing width constraint entirely"},
+          {"id": "RT4.3", "text": "Mentions Double Length pseudolanguage for testing text expansion", "passed": true, "evidence": "Mentions Double Length Pseudolanguage and how to enable it in Edit Scheme -> Options"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "RT4.1", "text": "Identifies fixed width as the problem (German averages 30% longer than English)", "passed": true, "evidence": "States German text is 30% or more longer than English with specific example"},
+          {"id": "RT4.2", "text": "Recommends flexible constraints (maxWidth: .infinity or no width constraint)", "passed": true, "evidence": "Shows maxWidth: .infinity and removing width constraint"},
+          {"id": "RT4.3", "text": "Mentions Double Length pseudolanguage for testing text expansion", "passed": true, "evidence": "Mentions Double Length Pseudolanguage via Edit scheme in Xcode"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 23,
+      "name": "hardcoded-accessibility-labels",
+      "topic": "accessibility-localization",
+      "with_skill": {
+        "assertions": [
+          {"id": "AL1.1", "text": "Identifies all three as hardcoded English — broken for non-English VoiceOver users", "passed": true, "evidence": "States all three are hardcoded in English, completely broken for non-English VoiceOver users"},
+          {"id": "AL1.2", "text": "Shows the fix using String(localized:) with accessibility-specific comments", "passed": true, "evidence": "Shows String(localized:) with comments like 'Accessibility: Label for the close button'"},
+          {"id": "AL1.3", "text": "Confirms accessibilityIdentifier should NOT be localized", "passed": true, "evidence": "Explicitly distinguishes: accessibilityLabel must be localized, accessibilityIdentifier must NOT be localized"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "AL1.1", "text": "Identifies all three as hardcoded English — broken for non-English VoiceOver users", "passed": true, "evidence": "States all three are hardcoded in English, breaks accessibility for non-English users"},
+          {"id": "AL1.2", "text": "Shows the fix using String(localized:) with accessibility-specific comments", "passed": true, "evidence": "Shows String(localized:) with accessibility-specific comments"},
+          {"id": "AL1.3", "text": "Confirms accessibilityIdentifier should NOT be localized", "passed": true, "evidence": "Distinguishes accessibilityLabel (must be localized) from accessibilityIdentifier (should NOT be localized)"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 24,
+      "name": "swiftui-accessibility-localization",
+      "topic": "accessibility-localization",
+      "with_skill": {
+        "assertions": [
+          {"id": "AL2.1", "text": "Explains that SwiftUI .accessibilityLabel with a string literal auto-localizes (it's a LocalizedStringKey)", "passed": true, "evidence": "States .accessibilityLabel(\"Share\") takes a LocalizedStringKey when you pass a string literal, automatically looks up the key"},
+          {"id": "AL2.2", "text": "But warns that the key must exist in the String Catalog / .strings file", "passed": true, "evidence": "States this only works if the key actually exists in your String Catalog with translations"},
+          {"id": "AL2.3", "text": "Recommends using a semantic key with comment for translation context", "passed": true, "evidence": "Recommends semantic key 'share_button.a11y.label' with comment about context to avoid ambiguity"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "AL2.1", "text": "Explains that SwiftUI .accessibilityLabel with a string literal auto-localizes (it's a LocalizedStringKey)", "passed": true, "evidence": "Explains .accessibilityLabel(\"Share\") accepts LocalizedStringKey when string literal, auto-localizes"},
+          {"id": "AL2.2", "text": "But warns that the key must exist in the String Catalog / .strings file", "passed": true, "evidence": "States the key must exist in your String Catalog / .strings file, otherwise displays 'Share' in English"},
+          {"id": "AL2.3", "text": "Recommends using a semantic key with comment for translation context", "passed": true, "evidence": "Recommends semantic key 'share_button.accessibility' with translator comment to avoid ambiguity"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 25,
+      "name": "xcstrings-validation",
+      "topic": "string-catalogs",
+      "with_skill": {
+        "assertions": [
+          {"id": "SC1.1", "text": "Recommends using the xcstrings_tool.py validate command (or similar programmatic approach)", "passed": true, "evidence": "Shows: python3 scripts/xcstrings_tool.py validate path/to/Localizable.xcstrings"},
+          {"id": "SC1.2", "text": "Mentions checking for missing translations (state = 'new'), stale entries, and empty values", "passed": true, "evidence": "Lists all three: missing translations (state 'new'), stale entries (state 'stale'), empty translation values"},
+          {"id": "SC1.3", "text": "Mentions auditing plural completeness per language", "passed": true, "evidence": "Shows audit-plurals command for Russian, Arabic, Polish with explanation of CLDR requirements"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SC1.1", "text": "Recommends using the xcstrings_tool.py validate command (or similar programmatic approach)", "passed": true, "evidence": "Provides a custom Python script to parse and validate .xcstrings JSON, a programmatic approach"},
+          {"id": "SC1.2", "text": "Mentions checking for missing translations (state = 'new'), stale entries, and empty values", "passed": true, "evidence": "Script checks for missing translations, empty values, and stale entries (state='new')"},
+          {"id": "SC1.3", "text": "Mentions auditing plural completeness per language", "passed": true, "evidence": "Mentions checking plural completeness with correct categories per language (Russian, Arabic, English)"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 26,
+      "name": "xcstrings-merge-conflicts",
+      "topic": "string-catalogs",
+      "with_skill": {
+        "assertions": [
+          {"id": "SC2.1", "text": "Explains that .xcstrings is a single large JSON file where Git text merge fails", "passed": true, "evidence": "States .xcstrings is a single large JSON file and Git's text-based merge cannot understand JSON tree structure"},
+          {"id": "SC2.2", "text": "Recommends splitting strings across multiple catalogs or Swift Packages", "passed": true, "evidence": "Shows splitting by feature with example directory structure and mentions Swift Packages as another approach"},
+          {"id": "SC2.3", "text": "Mentions the comment order randomization Xcode bug as another source of false diffs", "passed": true, "evidence": "Describes Xcode bug where comment order randomizes between builds causing spurious diffs"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SC2.1", "text": "Explains that .xcstrings is a single large JSON file where Git text merge fails", "passed": true, "evidence": "States .xcstrings is a single large JSON file, Git's text-based merge strategy produces conflicts"},
+          {"id": "SC2.2", "text": "Recommends splitting strings across multiple catalogs or Swift Packages", "passed": true, "evidence": "Shows splitting by feature/module and mentions Swift Packages for modularization"},
+          {"id": "SC2.3", "text": "Mentions the comment order randomization Xcode bug as another source of false diffs", "passed": false, "evidence": "Does not mention the Xcode comment order randomization bug"}
+        ],
+        "pass_count": 2,
+        "total": 3
+      }
+    },
+    {
+      "id": 27,
+      "name": "xcstrings-plural-without-number",
+      "topic": "string-catalogs",
+      "with_skill": {
+        "assertions": [
+          {"id": "SC3.1", "text": "States that String Catalogs CANNOT handle pluralization without a visible number", "passed": true, "evidence": "States: String Catalogs cannot handle this case. Pluralization in .xcstrings requires a visible numeric value."},
+          {"id": "SC3.2", "text": "Recommends .stringsdict as the fallback for this specific case", "passed": true, "evidence": "Shows .stringsdict as the solution, with example where one/other values omit %lld"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SC3.1", "text": "States that String Catalogs CANNOT handle pluralization without a visible number", "passed": true, "evidence": "States String Catalogs cannot natively handle pluralization without displaying the number"},
+          {"id": "SC3.2", "text": "Recommends .stringsdict as the fallback for this specific case", "passed": true, "evidence": "Recommends .stringsdict as workaround with example showing plural forms without %lld"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      }
+    },
+    {
+      "id": 28,
+      "name": "xcstrings-migration",
+      "topic": "string-catalogs",
+      "with_skill": {
+        "assertions": [
+          {"id": "SC4.1", "text": "Mentions Xcode's built-in migration: right-click .strings -> Migrate to String Catalog", "passed": true, "evidence": "States: right-click your .strings file and select Migrate to String Catalog"},
+          {"id": "SC4.2", "text": "Warns that .strings and .xcstrings CANNOT coexist with the same table name", "passed": true, "evidence": "States: you cannot have both Localizable.strings and Localizable.xcstrings in the same target"},
+          {"id": "SC4.3", "text": "Migration must be complete per table", "passed": true, "evidence": "States: Migration must be complete per table. Cannot partially migrate."}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SC4.1", "text": "Mentions Xcode's built-in migration: right-click .strings -> Migrate to String Catalog", "passed": true, "evidence": "States: right-click on your .strings file, select Migrate to String Catalog"},
+          {"id": "SC4.2", "text": "Warns that .strings and .xcstrings CANNOT coexist with the same table name", "passed": true, "evidence": "States: cannot have both Localizable.strings and Localizable.xcstrings, they use the same table name and will conflict"},
+          {"id": "SC4.3", "text": "Migration must be complete per table", "passed": true, "evidence": "States: migration must be complete for each table, either old or new format not both"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 29,
+      "name": "package-default-localization",
+      "topic": "enterprise-patterns",
+      "with_skill": {
+        "assertions": [
+          {"id": "EP1.1", "text": "Checks for defaultLocalization in Package.swift", "passed": true, "evidence": "Shows Package.swift with defaultLocalization: \"en\" as first check, states it is REQUIRED"},
+          {"id": "EP1.2", "text": "Checks for bundle: .module in localization calls", "passed": true, "evidence": "Shows bundle: .module fix for both Text and String(localized:), calls it most common enterprise bug"},
+          {"id": "EP1.3", "text": "Mentions that .lproj directories must be in the package's Resources folder", "passed": true, "evidence": "Shows directory structure with .lproj dirs in Resources/ folder and resources: [.process(\"Resources\")] in Package.swift"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "EP1.1", "text": "Checks for defaultLocalization in Package.swift", "passed": true, "evidence": "Shows Package.swift with defaultLocalization: \"en\" as first check"},
+          {"id": "EP1.2", "text": "Checks for bundle: .module in localization calls", "passed": true, "evidence": "Shows bundle: .module for both Text and String(localized:)"},
+          {"id": "EP1.3", "text": "Mentions that .lproj directories must be in the package's Resources folder", "passed": true, "evidence": "Shows .lproj directories in Resources folder and resources declaration in Package.swift"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 30,
+      "name": "white-label-localization",
+      "topic": "enterprise-patterns",
+      "with_skill": {
+        "assertions": [
+          {"id": "EP2.1", "text": "Describes at least 2 of: multiple Xcode targets, runtime bundle loading, or OTA localization", "passed": true, "evidence": "Describes all three: Multiple Xcode Targets, Runtime Bundle Loading (BrandManager), and OTA Localization"},
+          {"id": "EP2.2", "text": "Recommends a shared catalog for common UI strings and per-brand catalogs for marketing text", "passed": true, "evidence": "Shows shared catalog for common UI and per-brand catalogs for marketing/branded text"},
+          {"id": "EP2.3", "text": "Mentions BrandManager or similar runtime bundle resolution pattern", "passed": true, "evidence": "Shows BrandManager class with configure(brand:) method and bundle-based string resolution"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "EP2.1", "text": "Describes at least 2 of: multiple Xcode targets, runtime bundle loading, or OTA localization", "passed": true, "evidence": "Describes all three: Multiple Xcode Targets, Runtime Bundle Loading, and OTA Localization"},
+          {"id": "EP2.2", "text": "Recommends a shared catalog for common UI strings and per-brand catalogs for marketing text", "passed": true, "evidence": "Shows SharedUI.xcstrings for common strings and BrandMarketing.xcstrings for per-brand text"},
+          {"id": "EP2.3", "text": "Mentions BrandManager or similar runtime bundle resolution pattern", "passed": true, "evidence": "Shows BrandManager class with runtime bundle loading and fallback to main bundle"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 31,
+      "name": "pseudolanguage-testing",
+      "topic": "testing",
+      "with_skill": {
+        "assertions": [
+          {"id": "TS1.1", "text": "Lists Xcode pseudolanguages: Double Length, Right to Left, Accented, Bounded", "passed": true, "evidence": "Lists all four: Double Length, Right to Left, Accented, and Bounded pseudolanguages"},
+          {"id": "TS1.2", "text": "Explains what each pseudolanguage tests (expansion, RTL, hardcoded strings, truncation)", "passed": true, "evidence": "Maps each: Double Length = text expansion, RTL = layout correctness, Accented = hardcoded strings, Bounded = exact boundaries/truncation"},
+          {"id": "TS1.3", "text": "Mentions -NSShowNonLocalizedStrings YES launch argument", "passed": true, "evidence": "Shows -NSShowNonLocalizedStrings YES and explains it uppercases unlocalized strings"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "TS1.1", "text": "Lists Xcode pseudolanguages: Double Length, Right to Left, Accented, Bounded", "passed": true, "evidence": "Lists all four: Double Length, Right to Left, Accented, Bounded String Pseudolanguage"},
+          {"id": "TS1.2", "text": "Explains what each pseudolanguage tests (expansion, RTL, hardcoded strings, truncation)", "passed": true, "evidence": "Explains each: Double Length = text truncation/overflow, RTL = layout mirroring, Accented = hardcoded strings, Bounded = localized string boundaries"},
+          {"id": "TS1.3", "text": "Mentions -NSShowNonLocalizedStrings YES launch argument", "passed": true, "evidence": "Shows -NSShowNonLocalizedStrings YES and explains unlocalized strings appear in UPPERCASE"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 32,
+      "name": "locale-test-automation",
+      "topic": "testing",
+      "with_skill": {
+        "assertions": [
+          {"id": "TS2.1", "text": "Shows launch arguments for forcing locale: -AppleLocale ru_RU and -AppleLanguages (ru)", "passed": true, "evidence": "Shows -AppleLocale ru_RU and -AppleLanguages (ru) in launch arguments"},
+          {"id": "TS2.2", "text": "Uses accessibilityIdentifier (not accessibilityLabel) for element lookup", "passed": true, "evidence": "Shows using accessibilityIdentifier for element lookup, warns against using accessibilityLabel which changes per language"},
+          {"id": "TS2.3", "text": "Mentions testing plural forms with the verification number set", "passed": true, "evidence": "Shows verification test set [0, 1, 2, 3, 4, 5, 10, 11, 12, 14, 20, 21, 22, 25, 100, 101, 111, 1.5] and tests for all Russian categories"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "TS2.1", "text": "Shows launch arguments for forcing locale: -AppleLocale ru_RU and -AppleLanguages (ru)", "passed": true, "evidence": "Shows -AppleLanguages (ru) and -AppleLocale ru_RU in launch arguments"},
+          {"id": "TS2.2", "text": "Uses accessibilityIdentifier (not accessibilityLabel) for element lookup", "passed": true, "evidence": "Uses accessibilityIdentifier for element lookup, warns not to use accessibilityLabel"},
+          {"id": "TS2.3", "text": "Mentions testing plural forms with the verification number set", "passed": true, "evidence": "Tests with specific numbers: 1, 2, 5, 11, 21, 22 covering all Russian categories"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 33,
+      "name": "locale-change-notification",
+      "topic": "testing",
+      "with_skill": {
+        "assertions": [
+          {"id": "TS3.1", "text": "Recommends observing NSLocale.currentLocaleDidChangeNotification", "passed": true, "evidence": "Shows NotificationCenter observer for NSLocale.currentLocaleDidChangeNotification"},
+          {"id": "TS3.2", "text": "Shows invalidation of cached DateFormatters/NumberFormatters", "passed": true, "evidence": "Shows FormatterCache class with invalidateAll() that nils out _dateFormatter, _numberFormatter, _currencyFormatter"},
+          {"id": "TS3.3", "text": "Explains the scenario: user changes locale while app is backgrounded", "passed": true, "evidence": "Describes exact scenario: user runs app, changes language in Settings, returns to app from background with stale formatters"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "TS3.1", "text": "Recommends observing NSLocale.currentLocaleDidChangeNotification", "passed": true, "evidence": "Shows NSLocale.currentLocaleDidChangeNotification observer"},
+          {"id": "TS3.2", "text": "Shows invalidation of cached DateFormatters/NumberFormatters", "passed": true, "evidence": "Shows invalidateFormatters() that nils cachedDateFormatter and cachedNumberFormatter"},
+          {"id": "TS3.3", "text": "Explains the scenario: user changes locale while app is backgrounded", "passed": true, "evidence": "Describes scenario: user opens app, backgrounds it, changes language in Settings, returns, needs notification to refresh"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    },
+    {
+      "id": 34,
+      "name": "enum-rawvalue-localization",
+      "topic": "swiftui-localization",
+      "with_skill": {
+        "assertions": [
+          {"id": "SL6.1", "text": "Identifies that rawValue is a String variable — not a literal — so no localization occurs", "passed": true, "evidence": "States tab.rawValue is a String variable not a literal, SwiftUI uses StringProtocol overload, no localization"},
+          {"id": "SL6.2", "text": "Recommends adding a displayName computed property with LocalizedStringKey", "passed": true, "evidence": "Shows displayName computed property returning LocalizedStringKey with switch statement"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SL6.1", "text": "Identifies that rawValue is a String variable — not a literal — so no localization occurs", "passed": true, "evidence": "States tab.rawValue is a String variable, SwiftUI uses StringProtocol initializer, no localization"},
+          {"id": "SL6.2", "text": "Recommends adding a displayName computed property with LocalizedStringKey", "passed": true, "evidence": "Shows displayName computed property returning LocalizedStringKey with switch statement"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      }
+    },
+    {
+      "id": 35,
+      "name": "custom-view-string-parameter",
+      "topic": "swiftui-localization",
+      "with_skill": {
+        "assertions": [
+          {"id": "SL7.1", "text": "Identifies that String parameter prevents LocalizedStringKey auto-localization", "passed": true, "evidence": "States String parameter prevents LocalizedStringKey auto-localization, StringProtocol overload used"},
+          {"id": "SL7.2", "text": "Recommends changing parameter to LocalizedStringKey", "passed": true, "evidence": "Shows fix: let title: LocalizedStringKey"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "SL7.1", "text": "Identifies that String parameter prevents LocalizedStringKey auto-localization", "passed": true, "evidence": "Explains String variable causes Text to use StringProtocol initializer, no localization"},
+          {"id": "SL7.2", "text": "Recommends changing parameter to LocalizedStringKey", "passed": true, "evidence": "Shows fix: let title: LocalizedStringKey"}
+        ],
+        "pass_count": 2,
+        "total": 2
+      }
+    },
+    {
+      "id": 36,
+      "name": "date-parsing-buddhist-calendar",
+      "topic": "date-formatting",
+      "with_skill": {
+        "assertions": [
+          {"id": "DF4.1", "text": "Identifies that Thai locale uses Buddhist calendar by default (year = Gregorian + 543)", "passed": true, "evidence": "States Thai locale uses Buddhist calendar, year is Gregorian plus 543 so 2025 becomes 2568"},
+          {"id": "DF4.2", "text": "Distinguishes: for API output use en_US_POSIX locale, for display use .dateStyle", "passed": true, "evidence": "Shows decision tree: API/server = en_US_POSIX, user display = .dateStyle or Date.formatted()"},
+          {"id": "DF4.3", "text": "For display to Thai users, the Buddhist year IS correct — only server communication needs Gregorian", "passed": true, "evidence": "Explicitly states: Buddhist year 2568 IS correct for Thai users, only server communication needs Gregorian"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      },
+      "without_skill": {
+        "assertions": [
+          {"id": "DF4.1", "text": "Identifies that Thai locale uses Buddhist calendar by default (year = Gregorian + 543)", "passed": true, "evidence": "States Thailand uses Buddhist calendar where year is Gregorian year plus 543"},
+          {"id": "DF4.2", "text": "Distinguishes: for API output use en_US_POSIX locale, for display use .dateStyle", "passed": true, "evidence": "Shows: API/server = en_US_POSIX, user display = .dateStyle or Date.formatted()"},
+          {"id": "DF4.3", "text": "For display to Thai users, the Buddhist year IS correct — only server communication needs Gregorian", "passed": true, "evidence": "States: the Buddhist year (2568) is correct for Thai users, don't force Gregorian on user-facing dates"}
+        ],
+        "pass_count": 3,
+        "total": 3
+      }
+    }
+  ],
+  "summary": {
+    "with_skill_total_pass": 103,
+    "without_skill_total_pass": 101,
+    "total_assertions": 103,
+    "delta_percentage": 1.9
+  }
+}

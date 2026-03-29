@@ -1,0 +1,821 @@
+{
+  "skill_name": "ios-localization",
+  "methodology": "discriminating-only, 10 topics, 36 evals, ~115 assertions targeting AI failure patterns",
+  "topics": [
+    "string-management",
+    "pluralization",
+    "swiftui-localization",
+    "date-formatting",
+    "number-currency",
+    "rtl-layout",
+    "accessibility-localization",
+    "string-catalogs",
+    "enterprise-patterns",
+    "testing"
+  ],
+  "evals": [
+    {
+      "id": 1,
+      "name": "hardcoded-strings",
+      "topic": "string-management",
+      "prompt": "I have this UIKit code. Is there any issue?\n\n```swift\nclass OnboardingViewController: UIViewController {\n    override func viewDidLoad() {\n        super.viewDidLoad()\n        titleLabel.text = \"Welcome to MyApp\"\n        subtitleLabel.text = \"Get started in minutes\"\n        continueButton.setTitle(\"Continue\", for: .normal)\n    }\n}\n```",
+      "assertions": [
+        {
+          "id": "SM1.1",
+          "text": "Identifies all three strings as hardcoded and missing localization",
+          "rationale": "Skill rule 1: never hardcode user-facing strings"
+        },
+        {
+          "id": "SM1.2",
+          "text": "Recommends String(localized:) for iOS 15+ or NSLocalizedString for older targets",
+          "rationale": "Skill provides modern vs legacy API guidance"
+        },
+        {
+          "id": "SM1.3",
+          "text": "Provides meaningful translator comments (not empty comment: \"\")",
+          "rationale": "Skill rule 3: always provide comments with UI context; WITHOUT often uses empty comments"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "string-concatenation",
+      "topic": "string-management",
+      "prompt": "What's the localization problem with this code?\n\n```swift\nlet message = NSLocalizedString(\"hello\", comment: \"\") + \", \" + userName + \"!\"\n```",
+      "assertions": [
+        {
+          "id": "SM2.1",
+          "text": "Identifies concatenation as preventing word reordering for other languages",
+          "rationale": "Skill rule 4: concatenation locks into English word order"
+        },
+        {
+          "id": "SM2.2",
+          "text": "Recommends a single format string with placeholder (e.g., String(format:) with %@)",
+          "rationale": "Skill pattern: single format string allows translator reordering"
+        },
+        {
+          "id": "SM2.3",
+          "text": "Uses positional format specifiers (%1$@) in the fix",
+          "rationale": "Skill rule 5: positional specifiers allow argument reordering; WITHOUT often uses non-positional %@"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "ambiguous-english-keys",
+      "topic": "string-management",
+      "prompt": "I'm building an app with a menu and a garden feature. Both use the word \"Water\". How should I handle this in localization?",
+      "assertions": [
+        {
+          "id": "SM3.1",
+          "text": "Recommends separate keys for different contexts (e.g., 'menu.drink.water' and 'garden.action.water')",
+          "rationale": "Skill rule 2/6: same English word may need different translations"
+        },
+        {
+          "id": "SM3.2",
+          "text": "Provides different translator comments explaining each context",
+          "rationale": "Skill rule 3: comments disambiguate for translators"
+        },
+        {
+          "id": "SM3.3",
+          "text": "Uses semantic dot-notation keys (not the English word as key)",
+          "rationale": "Skill rule 2: semantic keys not English text; WITHOUT often uses 'Water' as key"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "non-positional-specifiers",
+      "topic": "string-management",
+      "prompt": "Review this localized format string for correctness:\n\n```swift\nlet format = NSLocalizedString(\"invite_format\", comment: \"Invitation message\")\n// English: \"%@ invited %@ to the group\"\nlet message = String(format: format, senderName, receiverName)\n```",
+      "assertions": [
+        {
+          "id": "SM4.1",
+          "text": "Identifies non-positional %@ as preventing translator reordering",
+          "rationale": "Skill rule 5: Korean/Japanese/Arabic may need reversed argument order"
+        },
+        {
+          "id": "SM4.2",
+          "text": "Recommends %1$@ and %2$@ positional specifiers",
+          "rationale": "Skill shows exact Korean reordering example as motivation"
+        },
+        {
+          "id": "SM4.3",
+          "text": "Provides a concrete example of how a translator would reorder (e.g., Korean, Japanese, or Arabic)",
+          "rationale": "Skill gives Korean example; WITHOUT often fixes without showing why reordering matters"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "russian-plural-categories",
+      "topic": "pluralization",
+      "prompt": "I need to display \"X files\" in Russian. I have this:\n\n```swift\n// .stringsdict with:\n// one: \"%lld файл\"\n// other: \"%lld файлов\"\n```\n\nIs this correct for Russian?",
+      "assertions": [
+        {
+          "id": "PL1.1",
+          "text": "Identifies that Russian needs 4 categories: one, few, many, other (not just one/other)",
+          "rationale": "Skill rule 8: #1 AI pluralization failure"
+        },
+        {
+          "id": "PL1.2",
+          "text": "Provides the correct Russian forms: one=файл, few=файла, many=файлов, other=файла",
+          "rationale": "Skill's Russian plural table with all four forms"
+        },
+        {
+          "id": "PL1.3",
+          "text": "Explains that 'few' covers numbers ending in 2-4 (not 12-14), like 2, 3, 4, 22, 23, 24",
+          "rationale": "Skill documents exact category rules; WITHOUT often states categories but not the number rules"
+        },
+        {
+          "id": "PL1.4",
+          "text": "Mentions the verification test set or provides specific test numbers like 1, 2, 5, 11, 21, 22",
+          "rationale": "Skill provides verification set [0,1,2,3,4,5,10,11,12,14,20,21,22,25,100,101,111,1.5]"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "polish-vs-russian-plurals",
+      "topic": "pluralization",
+      "prompt": "I'm adding Polish support to my app. Can I copy the Russian plural rules? Both are Slavic languages with 4 categories.",
+      "assertions": [
+        {
+          "id": "PL2.1",
+          "text": "States that Polish 'one' is ONLY the integer 1, while Russian 'one' includes 21, 31, 101 etc.",
+          "rationale": "Skill rule 10: Polish one ≠ Russian one"
+        },
+        {
+          "id": "PL2.2",
+          "text": "Shows a concrete example: number 21 maps to 'one' in Russian but 'many' in Polish",
+          "rationale": "Skill gives the 21 example as the clearest difference"
+        },
+        {
+          "id": "PL2.3",
+          "text": "Warns against copying plural logic between Slavic languages",
+          "rationale": "Skill explicitly warns about cross-language copying; WITHOUT often says 'same 4 categories'"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "count-ternary-plural",
+      "topic": "pluralization",
+      "prompt": "What's wrong with this pluralization approach?\n\n```swift\nlet text = count == 1 ? \"\\(count) item\" : \"\\(count) items\"\n```",
+      "assertions": [
+        {
+          "id": "PL3.1",
+          "text": "Identifies the ternary as breaking for languages with more than 2 plural forms",
+          "rationale": "Skill rule 9: never use count == 1 ternary for plurals"
+        },
+        {
+          "id": "PL3.2",
+          "text": "Recommends .stringsdict or String Catalog plural variations",
+          "rationale": "Skill redirects to system plural handling"
+        },
+        {
+          "id": "PL3.3",
+          "text": "Names specific languages affected (Russian, Polish, Arabic, or similar)",
+          "rationale": "Skill lists affected language families; WITHOUT often just says 'some languages'"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "arabic-plural-categories",
+      "topic": "pluralization",
+      "prompt": "I'm adding Arabic localization. How many plural categories does Arabic need?",
+      "assertions": [
+        {
+          "id": "PL4.1",
+          "text": "States Arabic needs all 6 CLDR categories: zero, one, two, few, many, other",
+          "rationale": "Skill documents Arabic as the most complex plural system"
+        },
+        {
+          "id": "PL4.2",
+          "text": "Explains that 'two' is specifically for the number 2 (dual form)",
+          "rationale": "Arabic dual is unique; WITHOUT often misses the 'two' category"
+        },
+        {
+          "id": "PL4.3",
+          "text": "Provides example number ranges for at least few and many categories",
+          "rationale": "Skill's Arabic rules table with number ranges per category"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "text-string-variable",
+      "topic": "swiftui-localization",
+      "prompt": "Why doesn't this localization work?\n\n```swift\nlet key = \"greeting_key\"\nText(key)\n```",
+      "assertions": [
+        {
+          "id": "SL1.1",
+          "text": "Identifies that String variable uses StringProtocol overload, not LocalizedStringKey",
+          "rationale": "Skill documents the literal vs variable trap"
+        },
+        {
+          "id": "SL1.2",
+          "text": "Shows the fix: Text(LocalizedStringKey(key))",
+          "rationale": "Skill provides explicit conversion for dynamic keys"
+        },
+        {
+          "id": "SL1.3",
+          "text": "Explains that only string LITERALS trigger localization, not variables",
+          "rationale": "Skill's core SwiftUI trap; WITHOUT often just shows the fix without explaining why"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "verbatim-missing",
+      "topic": "swiftui-localization",
+      "prompt": "I see version strings and URLs appearing in my String Catalog. How do I prevent that?\n\n```swift\nText(\"v2.0.1\")\nText(\"https://example.com/terms\")\n```",
+      "assertions": [
+        {
+          "id": "SL2.1",
+          "text": "Recommends Text(verbatim:) for non-localizable strings",
+          "rationale": "Skill rule 11: verbatim prevents extraction"
+        },
+        {
+          "id": "SL2.2",
+          "text": "Explains that Text() with literals auto-extracts to String Catalog",
+          "rationale": "Skill documents the auto-extraction behavior"
+        },
+        {
+          "id": "SL2.3",
+          "text": "Mentions #if DEBUG for debug-only text as another prevention technique",
+          "rationale": "Skill covers both verbatim and conditional compilation; WITHOUT often only shows verbatim"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "package-bundle-missing",
+      "topic": "swiftui-localization",
+      "prompt": "My Swift Package's localized strings aren't appearing — it shows the key instead of the translation:\n\n```swift\n// Inside MyPackage/Sources/FeatureAuth/LoginView.swift\nText(\"login_title\")\nString(localized: \"login_subtitle\")\n```",
+      "assertions": [
+        {
+          "id": "SL3.1",
+          "text": "Identifies missing bundle: .module parameter",
+          "rationale": "Skill rule 14: package strings default to Bundle.main without bundle:"
+        },
+        {
+          "id": "SL3.2",
+          "text": "Shows the fix with bundle: .module on both Text and String(localized:)",
+          "rationale": "Skill shows both SwiftUI and String(localized:) fixes"
+        },
+        {
+          "id": "SL3.3",
+          "text": "Mentions that Package.swift needs defaultLocalization: \"en\"",
+          "rationale": "Skill's enterprise patterns require this setting; WITHOUT often misses it"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "interpolation-type-trap",
+      "topic": "swiftui-localization",
+      "prompt": "Why does my Image disappear in this localized string?\n\n```swift\nlet label = \"Delete \\(Image(systemName: \\\"trash\\\"))\"\nText(label)\n```",
+      "assertions": [
+        {
+          "id": "SL4.1",
+          "text": "Identifies that Swift infers String type, using DefaultStringInterpolation",
+          "rationale": "Skill documents the interpolation type trap"
+        },
+        {
+          "id": "SL4.2",
+          "text": "Shows the fix: explicit LocalizedStringKey type annotation",
+          "rationale": "Skill's exact fix: let label: LocalizedStringKey = ..."
+        },
+        {
+          "id": "SL4.3",
+          "text": "Explains that LocalizedStringKey has custom StringInterpolation for Image/Date/Text",
+          "rationale": "Skill explains the mechanism; WITHOUT often just shows the fix"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "nslocalized-interpolation",
+      "topic": "swiftui-localization",
+      "prompt": "Is this correct?\n\n```swift\nlet message = NSLocalizedString(\"Hello \\(userName)\", comment: \"Greeting\")\n```",
+      "assertions": [
+        {
+          "id": "SL5.1",
+          "text": "Identifies that interpolation creates a unique key per value (\"Hello Alice\", \"Hello Bob\")",
+          "rationale": "Skill rule 15: NSLocalizedString with interpolation creates dynamic keys"
+        },
+        {
+          "id": "SL5.2",
+          "text": "Recommends String(format:) with a static key",
+          "rationale": "Skill's fix pattern: static key + format"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "en-us-posix-missing",
+      "topic": "date-formatting",
+      "prompt": "My date parsing breaks for some users:\n\n```swift\nlet formatter = DateFormatter()\nformatter.dateFormat = \"yyyy-MM-dd'T'HH:mm:ss\"\nlet date = formatter.date(from: serverResponse.createdAt)\n```",
+      "assertions": [
+        {
+          "id": "DF1.1",
+          "text": "Identifies missing en_US_POSIX locale as the cause",
+          "rationale": "Skill rule 16: most damaging date bug"
+        },
+        {
+          "id": "DF1.2",
+          "text": "Explains that Buddhist calendar users get wrong year (2568 instead of 2025)",
+          "rationale": "Skill provides specific Buddhist calendar example; WITHOUT often just says 'some calendars'"
+        },
+        {
+          "id": "DF1.3",
+          "text": "Explains that 12-hour time users break HH:mm parsing",
+          "rationale": "Skill documents both failure modes; WITHOUT often only mentions one"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "custom-dateformat-display",
+      "topic": "date-formatting",
+      "prompt": "Is this the right way to display a date to the user?\n\n```swift\nlet formatter = DateFormatter()\nformatter.dateFormat = \"MM/dd/yyyy\"\nlabel.text = formatter.string(from: date)\n```",
+      "assertions": [
+        {
+          "id": "DF2.1",
+          "text": "Identifies MM/dd/yyyy as US-specific format that's wrong for most of the world",
+          "rationale": "Skill rule 17: never custom dateFormat for user-facing dates"
+        },
+        {
+          "id": "DF2.2",
+          "text": "Recommends .dateStyle/.timeStyle or Date.formatted() (iOS 15+)",
+          "rationale": "Skill provides multiple modern alternatives"
+        },
+        {
+          "id": "DF2.3",
+          "text": "Mentions setLocalizedDateFormatFromTemplate() for custom patterns",
+          "rationale": "Skill's template approach auto-reorders per locale; WITHOUT often only mentions dateStyle"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "yyyy-vs-YYYY",
+      "topic": "date-formatting",
+      "prompt": "My date format shows wrong year near January 1st:\n\n```swift\nformatter.dateFormat = \"YYYY-MM-dd\"\n```",
+      "assertions": [
+        {
+          "id": "DF3.1",
+          "text": "Identifies YYYY as ISO week-numbering year, not calendar year",
+          "rationale": "Skill rule 18: YYYY vs yyyy"
+        },
+        {
+          "id": "DF3.2",
+          "text": "Explains the specific scenario: Dec 30, 2024 shows as 2025 with YYYY",
+          "rationale": "Skill provides concrete example of the year boundary bug"
+        },
+        {
+          "id": "DF3.3",
+          "text": "Also warns about DD (day of year) vs dd (day of month)",
+          "rationale": "Skill pairs both format specifier traps; WITHOUT often misses DD"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "currency-interpolation",
+      "topic": "number-currency",
+      "prompt": "How should I display prices in my app?\n\n```swift\nlet priceText = \"$\\(product.price)\"\n```",
+      "assertions": [
+        {
+          "id": "NC1.1",
+          "text": "Identifies string interpolation as wrong for currencies (symbol position, decimals, grouping vary)",
+          "rationale": "Skill rule 20: never interpolate currency"
+        },
+        {
+          "id": "NC1.2",
+          "text": "Recommends .formatted(.currency(code:)) for iOS 15+ or NumberFormatter",
+          "rationale": "Skill provides both modern and legacy formatters"
+        },
+        {
+          "id": "NC1.3",
+          "text": "Shows how the same amount renders differently in different locales (e.g., US vs Germany vs France)",
+          "rationale": "Skill's currency table shows $1,234.56 vs 1.234,56 $ vs 1 234,56 $"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "number-digits-locale",
+      "topic": "number-currency",
+      "prompt": "My app shows Western Arabic digits (1, 2, 3) even for Arabic locale users. How do I fix this?",
+      "assertions": [
+        {
+          "id": "NC2.1",
+          "text": "Identifies String(format:) as always outputting Western digits",
+          "rationale": "Skill rule 21: String(format:) ignores locale"
+        },
+        {
+          "id": "NC2.2",
+          "text": "Recommends String.localizedStringWithFormat() or .formatted()",
+          "rationale": "Skill's locale-aware formatting APIs"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "left-right-constraints",
+      "topic": "rtl-layout",
+      "prompt": "What's the localization issue with this layout?\n\n```swift\nNSLayoutConstraint.activate([\n    label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),\n    label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16)\n])\n```",
+      "assertions": [
+        {
+          "id": "RT1.1",
+          "text": "Identifies left/right as never flipping for RTL languages (Arabic, Hebrew)",
+          "rationale": "Skill rule 22: always leading/trailing"
+        },
+        {
+          "id": "RT1.2",
+          "text": "Replaces with leadingAnchor/trailingAnchor",
+          "rationale": "Skill's exact fix pattern"
+        },
+        {
+          "id": "RT1.3",
+          "text": "Mentions that this affects 400M+ Arabic/Hebrew users or provides RTL user count",
+          "rationale": "Skill emphasizes the population impact; WITHOUT often just shows the fix"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "text-alignment-left",
+      "topic": "rtl-layout",
+      "prompt": "Should I use .left or .natural for text alignment in a localized app?",
+      "assertions": [
+        {
+          "id": "RT2.1",
+          "text": "Recommends .natural and explains it auto-adapts to RTL",
+          "rationale": "Skill rule 24: .natural not .left"
+        },
+        {
+          "id": "RT2.2",
+          "text": "Explains that .left stays left regardless of language direction",
+          "rationale": "Skill documents why .left is wrong for RTL"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "force-ltr-exceptions",
+      "topic": "rtl-layout",
+      "prompt": "I'm building an RTL-compatible app. Should ALL content flip to RTL?",
+      "assertions": [
+        {
+          "id": "RT3.1",
+          "text": "Lists exceptions: phone numbers, playback controls, progress bars",
+          "rationale": "Skill documents inherently LTR content types"
+        },
+        {
+          "id": "RT3.2",
+          "text": "Shows semanticContentAttribute = .forceLeftToRight (UIKit) or .environment(\\.layoutDirection, .leftToRight) (SwiftUI)",
+          "rationale": "Skill provides both UIKit and SwiftUI force-LTR patterns"
+        },
+        {
+          "id": "RT3.3",
+          "text": "Mentions directional images (arrows, chevrons) should flip but logos should not",
+          "rationale": "Skill's image flipping guidance; WITHOUT often misses image considerations"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "fixed-width-localized-text",
+      "topic": "rtl-layout",
+      "prompt": "My German translations are getting truncated:\n\n```swift\nText(localizedString).frame(width: 120)\n```",
+      "assertions": [
+        {
+          "id": "RT4.1",
+          "text": "Identifies fixed width as the problem (German averages 30% longer than English)",
+          "rationale": "Skill rule 25: no fixed widths on localized text"
+        },
+        {
+          "id": "RT4.2",
+          "text": "Recommends flexible constraints (maxWidth: .infinity or no width constraint)",
+          "rationale": "Skill's fix: flexible Auto Layout"
+        },
+        {
+          "id": "RT4.3",
+          "text": "Mentions Double Length pseudolanguage for testing text expansion",
+          "rationale": "Skill's testing reference covers pseudolanguage testing; WITHOUT rarely mentions it"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "hardcoded-accessibility-labels",
+      "topic": "accessibility-localization",
+      "prompt": "Are these accessibility labels correct?\n\n```swift\ncloseButton.accessibilityLabel = \"Close\"\nslider.accessibilityValue = \"50 percent\"\nimage.accessibilityLabel = \"User profile photo\"\n```",
+      "assertions": [
+        {
+          "id": "AL1.1",
+          "text": "Identifies all three as hardcoded English — broken for non-English VoiceOver users",
+          "rationale": "Skill rule 26: localize all accessibility labels"
+        },
+        {
+          "id": "AL1.2",
+          "text": "Shows the fix using String(localized:) with accessibility-specific comments",
+          "rationale": "Skill's localized accessibility pattern"
+        },
+        {
+          "id": "AL1.3",
+          "text": "Confirms accessibilityIdentifier should NOT be localized",
+          "rationale": "Skill rule 27: identifier is for test automation; WITHOUT sometimes confuses the two"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "swiftui-accessibility-localization",
+      "topic": "accessibility-localization",
+      "prompt": "How do I localize accessibility labels in SwiftUI? I have:\n\n```swift\nButton(action: share) { Image(systemName: \"square.and.arrow.up\") }\n    .accessibilityLabel(\"Share\")\n```",
+      "assertions": [
+        {
+          "id": "AL2.1",
+          "text": "Explains that SwiftUI .accessibilityLabel with a string literal auto-localizes (it's a LocalizedStringKey)",
+          "rationale": "Skill notes SwiftUI auto-localization from literals"
+        },
+        {
+          "id": "AL2.2",
+          "text": "But warns that the key must exist in the String Catalog / .strings file",
+          "rationale": "Auto-localization only works if the translation exists"
+        },
+        {
+          "id": "AL2.3",
+          "text": "Recommends using a semantic key with comment for translation context",
+          "rationale": "Skill: semantic keys with comments for translators; WITHOUT often keeps English word as key"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "xcstrings-validation",
+      "topic": "string-catalogs",
+      "prompt": "I have a large .xcstrings file with 500+ keys. How do I check if all translations are complete and plurals are correct?",
+      "assertions": [
+        {
+          "id": "SC1.1",
+          "text": "Recommends using the xcstrings_tool.py validate command (or similar programmatic approach)",
+          "rationale": "Skill bundles scripts for large file operations"
+        },
+        {
+          "id": "SC1.2",
+          "text": "Mentions checking for missing translations (state = 'new'), stale entries, and empty values",
+          "rationale": "Skill's validation checks all three categories"
+        },
+        {
+          "id": "SC1.3",
+          "text": "Mentions auditing plural completeness per language",
+          "rationale": "Skill's audit-plurals command checks CLDR requirements; WITHOUT rarely mentions automated plural auditing"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "xcstrings-merge-conflicts",
+      "topic": "string-catalogs",
+      "prompt": "My team keeps getting merge conflicts in our Localizable.xcstrings file. What's the best approach?",
+      "assertions": [
+        {
+          "id": "SC2.1",
+          "text": "Explains that .xcstrings is a single large JSON file where Git text merge fails",
+          "rationale": "Skill documents the merge conflict problem"
+        },
+        {
+          "id": "SC2.2",
+          "text": "Recommends splitting strings across multiple catalogs or Swift Packages",
+          "rationale": "Skill's mitigation: split by feature/module"
+        },
+        {
+          "id": "SC2.3",
+          "text": "Mentions the comment order randomization Xcode bug as another source of false diffs",
+          "rationale": "Skill documents this known bug; WITHOUT rarely mentions it"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "xcstrings-plural-without-number",
+      "topic": "string-catalogs",
+      "prompt": "I need to localize 'Day' / 'Days' without showing the count. Can String Catalogs handle this?",
+      "assertions": [
+        {
+          "id": "SC3.1",
+          "text": "States that String Catalogs CANNOT handle pluralization without a visible number",
+          "rationale": "Skill documents this limitation explicitly"
+        },
+        {
+          "id": "SC3.2",
+          "text": "Recommends .stringsdict as the fallback for this specific case",
+          "rationale": "Skill identifies .stringsdict as still required for this edge case; WITHOUT often doesn't mention the limitation"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "xcstrings-migration",
+      "topic": "string-catalogs",
+      "prompt": "I have an existing project with .strings and .stringsdict files. How do I migrate to String Catalogs?",
+      "assertions": [
+        {
+          "id": "SC4.1",
+          "text": "Mentions Xcode's built-in migration: right-click .strings → Migrate to String Catalog",
+          "rationale": "Skill documents the migration path"
+        },
+        {
+          "id": "SC4.2",
+          "text": "Warns that .strings and .xcstrings CANNOT coexist with the same table name",
+          "rationale": "Skill's coexistence warning; WITHOUT often misses this constraint"
+        },
+        {
+          "id": "SC4.3",
+          "text": "Migration must be complete per table",
+          "rationale": "Skill requires complete migration per table"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "package-default-localization",
+      "topic": "enterprise-patterns",
+      "prompt": "My Swift Package's localized strings work in the main app but not when imported as a dependency in another project. What's wrong?",
+      "assertions": [
+        {
+          "id": "EP1.1",
+          "text": "Checks for defaultLocalization in Package.swift",
+          "rationale": "Skill's enterprise patterns require this setting"
+        },
+        {
+          "id": "EP1.2",
+          "text": "Checks for bundle: .module in localization calls",
+          "rationale": "Skill rule 14: most common enterprise bug"
+        },
+        {
+          "id": "EP1.3",
+          "text": "Mentions that .lproj directories must be in the package's Resources folder",
+          "rationale": "Skill documents the directory structure; WITHOUT often misses resource paths"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "white-label-localization",
+      "topic": "enterprise-patterns",
+      "prompt": "We're building a white-label app with 3 different brand variants. Each brand needs different marketing text but shares most UI strings. What's the architecture?",
+      "assertions": [
+        {
+          "id": "EP2.1",
+          "text": "Describes at least 2 of: multiple Xcode targets, runtime bundle loading, or OTA localization",
+          "rationale": "Skill documents all three architectures"
+        },
+        {
+          "id": "EP2.2",
+          "text": "Recommends a shared catalog for common UI strings and per-brand catalogs for marketing text",
+          "rationale": "Skill's split pattern for white-label"
+        },
+        {
+          "id": "EP2.3",
+          "text": "Mentions BrandManager or similar runtime bundle resolution pattern",
+          "rationale": "Skill's BrandManager pattern; WITHOUT often suggests only target-based approach"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "pseudolanguage-testing",
+      "topic": "testing",
+      "prompt": "How do I test my iOS app's localization without actual translations?",
+      "assertions": [
+        {
+          "id": "TS1.1",
+          "text": "Lists Xcode pseudolanguages: Double Length, Right to Left, Accented, Bounded",
+          "rationale": "Skill's testing reference covers all four"
+        },
+        {
+          "id": "TS1.2",
+          "text": "Explains what each pseudolanguage tests (expansion, RTL, hardcoded strings, truncation)",
+          "rationale": "Skill maps each pseudolanguage to its testing purpose"
+        },
+        {
+          "id": "TS1.3",
+          "text": "Mentions -NSShowNonLocalizedStrings YES launch argument",
+          "rationale": "Skill documents this flag; WITHOUT often misses it"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "locale-test-automation",
+      "topic": "testing",
+      "prompt": "How do I write automated tests that verify localization works correctly for Russian?",
+      "assertions": [
+        {
+          "id": "TS2.1",
+          "text": "Shows launch arguments for forcing locale: -AppleLocale ru_RU and -AppleLanguages (ru)",
+          "rationale": "Skill's locale-specific test pattern"
+        },
+        {
+          "id": "TS2.2",
+          "text": "Uses accessibilityIdentifier (not accessibilityLabel) for element lookup",
+          "rationale": "Skill rule: identifier for tests, label for users; WITHOUT often uses label for lookup"
+        },
+        {
+          "id": "TS2.3",
+          "text": "Mentions testing plural forms with the verification number set",
+          "rationale": "Skill's test set [0,1,2,3,4,5,10,11...]; WITHOUT rarely suggests specific test numbers"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "locale-change-notification",
+      "topic": "testing",
+      "prompt": "My app shows stale date formats after the user changes their language in Settings without restarting the app. How do I fix this?",
+      "assertions": [
+        {
+          "id": "TS3.1",
+          "text": "Recommends observing NSLocale.currentLocaleDidChangeNotification",
+          "rationale": "Skill rule 30: invalidate cached formatters on locale change"
+        },
+        {
+          "id": "TS3.2",
+          "text": "Shows invalidation of cached DateFormatters/NumberFormatters",
+          "rationale": "Skill's formatter cache invalidation pattern"
+        },
+        {
+          "id": "TS3.3",
+          "text": "Explains the scenario: user changes locale while app is backgrounded",
+          "rationale": "Skill documents this runtime behavior; WITHOUT often suggests app restart instead"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "enum-rawvalue-localization",
+      "topic": "swiftui-localization",
+      "prompt": "My tab bar shows raw enum values instead of translated text:\n\n```swift\nenum Tab: String {\n    case home, search, profile\n}\n\nText(tab.rawValue)\n```",
+      "assertions": [
+        {
+          "id": "SL6.1",
+          "text": "Identifies that rawValue is a String variable — not a literal — so no localization occurs",
+          "rationale": "Skill's enum rawValue trap"
+        },
+        {
+          "id": "SL6.2",
+          "text": "Recommends adding a displayName computed property with LocalizedStringKey",
+          "rationale": "Skill's exact pattern: switch with localized strings"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "custom-view-string-parameter",
+      "topic": "swiftui-localization",
+      "prompt": "My custom SwiftUI view takes a String title. Callers pass string literals but they don't get localized:\n\n```swift\nstruct CardView: View {\n    let title: String\n    var body: some View { Text(title) }\n}\n\nCardView(title: \"welcome_title\")  // Shows \"welcome_title\" literally\n```",
+      "assertions": [
+        {
+          "id": "SL7.1",
+          "text": "Identifies that String parameter prevents LocalizedStringKey auto-localization",
+          "rationale": "Skill rule 13: accept LocalizedStringKey for user-facing text"
+        },
+        {
+          "id": "SL7.2",
+          "text": "Recommends changing parameter to LocalizedStringKey",
+          "rationale": "Skill's fix: let title: LocalizedStringKey"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "date-parsing-buddhist-calendar",
+      "topic": "date-formatting",
+      "prompt": "A Thai user reports that dates in my app show year 2568 instead of 2025. My code:\n\n```swift\nlet formatter = DateFormatter()\nformatter.dateFormat = \"yyyy-MM-dd\"\nlet dateString = formatter.string(from: Date())\n```",
+      "assertions": [
+        {
+          "id": "DF4.1",
+          "text": "Identifies that Thai locale uses Buddhist calendar by default (year = Gregorian + 543)",
+          "rationale": "Skill's en_US_POSIX motivation includes Buddhist calendar"
+        },
+        {
+          "id": "DF4.2",
+          "text": "Distinguishes: for API output use en_US_POSIX locale, for display use .dateStyle",
+          "rationale": "Skill's parsing vs display decision tree"
+        },
+        {
+          "id": "DF4.3",
+          "text": "For display to Thai users, the Buddhist year IS correct — only server communication needs Gregorian",
+          "rationale": "Skill nuance: don't force Gregorian on user-facing display; WITHOUT often applies POSIX to everything"
+        }
+      ]
+    }
+  ]
+}

@@ -6,10 +6,10 @@
   <a href="https://github.com/rusel95/ios-agent-skills"><img src="https://visitor-badge.laobi.icu/badge?page_id=rusel95.ios-agent-skills&left_color=gray&right_color=blue&left_text=visitors" alt="visitors"/></a>
   <a href="https://github.com/rusel95/ios-agent-skills"><img src="https://img.shields.io/github/stars/rusel95/ios-agent-skills?style=flat-square&color=yellow" alt="stars"/></a>
   <a href="https://github.com/rusel95/ios-agent-skills"><img src="https://img.shields.io/github/forks/rusel95/ios-agent-skills?style=flat-square&color=blue" alt="forks"/></a>
-  <img src="https://img.shields.io/badge/skills-9-purple?style=flat-square" alt="skills"/>
+  <img src="https://img.shields.io/badge/skills-10-purple?style=flat-square" alt="skills"/>
   <img src="https://img.shields.io/badge/models_tested-3-teal?style=flat-square" alt="models"/>
-  <img src="https://img.shields.io/badge/assertions-664-orange?style=flat-square" alt="assertions"/>
-  <img src="https://img.shields.io/badge/scenarios-197-green?style=flat-square" alt="scenarios"/>
+  <img src="https://img.shields.io/badge/assertions-767-orange?style=flat-square" alt="assertions"/>
+  <img src="https://img.shields.io/badge/scenarios-233-green?style=flat-square" alt="scenarios"/>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="license"/></a>
 </p>
 
@@ -30,9 +30,9 @@
 
 # iOS Agent Skills
 
-Production-tested iOS Agent Skills for Claude Code, Codex, and 40+ AI coding tools.
+**The first and most comprehensively benchmarked iOS skill marketplace** for Claude Code, Codex, and 40+ AI coding tools.
 
-9 enterprise-grade skills covering architecture, concurrency, testing, security, and accessibility — built by a Lead iOS Engineer with real production experience.
+10 enterprise-grade skills covering architecture, concurrency, testing, security, accessibility, and localization — every skill benchmarked with discriminating assertions and blind A/B quality scoring across multiple LLMs. No other iOS skill collection has this level of rigorous, reproducible evaluation — 767 assertions across 233 scenarios, tested on Claude Sonnet 4.6, GPT-5.4, and Gemini 3.1 Pro.
 
 ## Benchmark Results
 
@@ -49,6 +49,7 @@ Every skill is benchmarked against multiple LLMs with discriminating assertions 
 | **ios-testing** | +44.2% | +30.0% | +33.6% | 27 | 77 |
 | **ios-security** | +29.7% | +26.4% | — | 17 | 37 |
 | **ios-accessibility** | +18.3% | — | — | 36 | 115 |
+| **ios-localization** | +1.9% | — | — | 36 | 103 |
 
 > Delta = percentage point improvement in discriminating assertion pass rate (with skill vs without skill). Higher = more value added. "—" = not yet benchmarked for that model.
 
@@ -57,7 +58,7 @@ Every skill is benchmarked against multiple LLMs with discriminating assertions 
 - **Discriminating assertions**: binary checks that distinguish skill-guided output from baseline. Each assertion targets a specific pattern AI tools consistently miss without the skill.
 - **A/B quality scoring**: blind judge scores both outputs 0–10 without knowing which used the skill. Position randomized to prevent bias.
 - **Multi-model**: tested across Claude Sonnet 4.6, GPT-5.4, and Gemini 3.1 Pro to ensure skill value isn't model-specific.
-- **Tiered difficulty**: simple / medium / complex scenarios. Skills show largest gains on medium and complex tiers.
+- **Topic-based scenarios**: each skill covers all its domain topics with focused evaluation prompts. Earlier skills used tiered difficulty (simple/medium/complex); newer skills use flat topic-based evals.
 
 ## Skills
 
@@ -72,6 +73,7 @@ Every skill is benchmarked against multiple LLMs with discriminating assertions 
 | **ios-testing** | Testing across all architectures | iOS 13+ |
 | **ios-security** | OWASP MASVS Security Audit | iOS 13+ |
 | **ios-accessibility** | VoiceOver, Dynamic Type, WCAG 2.2 | iOS 13+ |
+| **ios-localization** | String Catalogs, CLDR Plurals, RTL, Formatting | iOS 13+ |
 
 ## Install
 
@@ -103,8 +105,8 @@ Clone and copy the `skills/` directory into your project.
 - **Production-first** — every pattern comes from real enterprise codebases, not tutorials
 - **Iterative refactoring** — small, reviewable PRs (≤200 lines) instead of "rewrite everything" approaches
 - **Anti-pattern prevention** — AI tools consistently generate broken patterns (retain cycles in VIPER, outdated TCA APIs, unsafe GCD). These skills prevent that
-- **Architecture coverage** — the only collection covering VIPER, TCA, GCD, and Security Audit. No major iOS skill author has claimed these domains
-- **Benchmarked** — tested against 3 LLMs with 664 discriminating assertions across 197 scenarios
+- **Architecture coverage** — the only collection covering VIPER, TCA, GCD, Security Audit, Accessibility, and Localization. No other iOS skill marketplace covers these domains
+- **Rigorously benchmarked** — the most comprehensively evaluated iOS skill collection available: 767 discriminating assertions across 233 scenarios, tested against 3 LLMs with blind A/B quality scoring. Every skill ships with reproducible eval data
 
 ## Skill Details
 
@@ -134,6 +136,9 @@ OWASP MASVS v2.1.0 audit (24 controls, 8 categories). Keychain, ATS, certificate
 
 ### ios-accessibility
 VoiceOver, Dynamic Type, color contrast, motion preferences, Switch Control, Voice Control, WCAG 2.2 AA mapping. Corrects 11 documented AI failure patterns (onTapGesture, hardcoded fonts, missing labels, trait assignment). **+18.3% on Sonnet 4.6** (115 assertions, 100% with-skill, 21 discriminating wins).
+
+### ios-localization
+String Catalogs (.xcstrings), CLDR pluralization (Russian, Polish, Arabic), SwiftUI/UIKit localization APIs, date/number/currency formatting, RTL layout, accessibility localization, enterprise patterns (modular apps, white-label). Corrects 30 documented AI localization failures. Includes Python scripts for .xcstrings validation and plural auditing. **+1.9% on Sonnet 4.6** (103 assertions; 27W 0L 9T A/B — skill value is in depth and edge cases, not core knowledge gaps).
 
 ## Author
 
