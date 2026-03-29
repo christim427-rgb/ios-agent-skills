@@ -1,0 +1,28 @@
+{
+  "eval_id": 11,
+  "eval_name": "enterprise-medium",
+  "reference": "enterprise-patterns",
+  "prompt": "Implement a retry mechanism for network requests that has good observability. We want exponential backoff with jitter.",
+  "assertions": [
+    {
+      "id": "EP2.1",
+      "text": "Reports to crash SDK only after all retries are exhausted (not on each attempt)",
+      "rationale": "Skill explicitly teaches this \u2014 prevents noise from transient failures"
+    },
+    {
+      "id": "EP2.2",
+      "text": "Adds breadcrumb for each failed retry attempt",
+      "rationale": "Skill's observability pattern \u2014 breadcrumbs provide retry history in crash reports"
+    },
+    {
+      "id": "EP2.3",
+      "text": "Uses Logger.warning (not .error) for intermediate retry failures",
+      "rationale": "Skill distinguishes log levels \u2014 intermediate failures are warnings, final failure is error"
+    },
+    {
+      "id": "EP2.4",
+      "text": "Includes jitter in the backoff delay (not just pure exponential)",
+      "rationale": "Skill includes jitter to prevent thundering herd \u2014 baseline often omits jitter"
+    }
+  ]
+}

@@ -48,6 +48,7 @@ Every skill is benchmarked against multiple LLMs with discriminating assertions 
 | **gcd-operations** | +47.4% | +4.8% | +16.1% | 13 | 19 |
 | **ios-testing** | +44.2% | +30.0% | +33.6% | 27 | 77 |
 | **ios-security** | +29.7% | +26.4% | — | 17 | 37 |
+| **ios-logging** | +41.4%* | — | — | 15 | 58 |
 | **ios-accessibility** | +18.3% | — | — | 36 | 115 |
 | **ios-localization** | +1.9% | — | — | 36 | 103 |
 
@@ -73,6 +74,7 @@ Every skill is benchmarked against multiple LLMs with discriminating assertions 
 | **ios-testing** | Testing across all architectures | iOS 13+ |
 | **ios-security** | OWASP MASVS Security Audit | iOS 13+ |
 | **ios-accessibility** | VoiceOver, Dynamic Type, WCAG 2.2 | iOS 13+ |
+| **ios-logging** | Production Error Observability & Logging | iOS 15+ |
 | **ios-localization** | String Catalogs, CLDR Plurals, RTL, Formatting | iOS 13+ |
 
 ## Install
@@ -133,6 +135,9 @@ Swift Testing (@Test/@Suite/#expect), XCTest, async testing, architecture-specif
 
 ### ios-security
 OWASP MASVS v2.1.0 audit (24 controls, 8 categories). Keychain, ATS, certificate pinning, WebView, biometric auth, compliance mapping (HIPAA, PCI DSS, GDPR). **+29.7% on Sonnet, +26.4% on GPT-5.4.**
+
+### ios-logging
+Production error observability: `os.Logger` with privacy annotations, crash SDK integration (Sentry/Crashlytics/PostHog), MetricKit for OOM/watchdog detection, silent failure pattern elimination (`try?`, `Task {}`, Combine `.replaceError()`), PII compliance, centralized error handling, retry with backoff, app extension monitoring. Recommends remote logging SDKs and MCP/CLI connections for AI-assisted debugging. **+41.4% on Opus 4.6** (58 assertions, 15 scenarios).
 
 ### ios-accessibility
 VoiceOver, Dynamic Type, color contrast, motion preferences, Switch Control, Voice Control, WCAG 2.2 AA mapping. Corrects 11 documented AI failure patterns (onTapGesture, hardcoded fonts, missing labels, trait assignment). **+18.3% on Sonnet 4.6** (115 assertions, 100% with-skill, 21 discriminating wins).

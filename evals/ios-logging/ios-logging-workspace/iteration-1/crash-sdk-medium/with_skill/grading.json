@@ -1,0 +1,29 @@
+{
+  "eval_id": 8,
+  "eval_name": "crash-sdk-medium",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Identifies that URLSession does not throw for HTTP 4xx/5xx (only transport errors throw)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Adds breadcrumb before the network request",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Uses Logger with privacy annotations (.public for URL path and status code)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Calls ErrorReporter.recordNonFatal() or SentrySDK.capture() in the error path",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

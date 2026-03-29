@@ -1,0 +1,23 @@
+{
+  "eval_id": 10,
+  "eval_name": "enterprise-simple",
+  "reference": "enterprise-patterns",
+  "prompt": "How should I handle errors in SwiftUI views? Right now my catch blocks just set an error string and show an alert.",
+  "assertions": [
+    {
+      "id": "EP1.1",
+      "text": "Recommends centralized ErrorHandler as ObservableObject with environment injection",
+      "rationale": "Skill's enterprise pattern \u2014 baseline typically handles errors per-view"
+    },
+    {
+      "id": "EP1.2",
+      "text": "Recommends CategorizedError protocol with retryable/nonRetryable/requiresLogout categories",
+      "rationale": "Skill's error categorization pattern \u2014 baseline uses generic error handling"
+    },
+    {
+      "id": "EP1.3",
+      "text": "Mentions SwiftUI lacks Error Boundaries (unlike React) as motivation for centralized handling",
+      "rationale": "Skill explicitly calls out this SwiftUI limitation"
+    }
+  ]
+}

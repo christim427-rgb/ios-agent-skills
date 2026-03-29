@@ -1,0 +1,24 @@
+{
+  "eval_id": 14,
+  "eval_name": "objc-exceptions-simple",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "States that Objective-C NSExceptions are NOT caught by Swift do/catch",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Lists specific NSException triggers (NSArray out-of-bounds, invalid KVO, unrecognized selector)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Mentions that Swift traps (force unwrap nil) also bypass do/catch (caught by signal handlers only)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    }
+  ],
+  "pass_count": 3,
+  "total": 3
+}

@@ -1,0 +1,23 @@
+{
+  "eval_id": 2,
+  "eval_name": "silent-failures-medium",
+  "reference": "silent-failures",
+  "prompt": "This Combine search pipeline works once but then stops responding. What's wrong?\n\n```swift\n$searchQuery\n    .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)\n    .flatMap { query in\n        APIService.search(query)\n    }\n    .replaceError(with: [])\n    .assign(to: &$results)\n```",
+  "assertions": [
+    {
+      "id": "SF2.1",
+      "text": "Explains that .replaceError() kills the entire pipeline permanently (changes Failure type to Never)",
+      "rationale": "Skill explicitly covers this critical Combine behavior \u2014 baseline may suggest a different fix"
+    },
+    {
+      "id": "SF2.2",
+      "text": "Recommends moving error handling inside flatMap to keep the outer pipeline alive",
+      "rationale": "The correct fix from the skill \u2014 error recovery must be scoped to the inner publisher"
+    },
+    {
+      "id": "SF2.3",
+      "text": "Includes ErrorReporter or crash SDK call inside the error recovery",
+      "rationale": "Skill requires every error path to report remotely \u2014 baseline just fixes the pipeline without observability"
+    }
+  ]
+}

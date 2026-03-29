@@ -1,0 +1,29 @@
+{
+  "eval_id": 1,
+  "eval_name": "silent-failures-simple",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Identifies Task {} as a silent error swallowing pattern because Task.init is @discardableResult",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Identifies try? as destroying diagnostic information (error type, message, stack context)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Recommends Logger.error() with privacy annotations instead of print()",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Recommends reporting to a crash SDK (ErrorReporter.recordNonFatal or Sentry/Crashlytics)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

@@ -1,0 +1,23 @@
+{
+  "eval_id": 14,
+  "eval_name": "objc-exceptions-simple",
+  "reference": "objc-exceptions",
+  "prompt": "Will Swift's do/catch handle all errors in my iOS app? Are there exceptions it won't catch?",
+  "assertions": [
+    {
+      "id": "OE1.1",
+      "text": "States that Objective-C NSExceptions are NOT caught by Swift do/catch",
+      "rationale": "Fundamental gap in Swift error handling \u2014 skill covers this explicitly"
+    },
+    {
+      "id": "OE1.2",
+      "text": "Lists specific NSException triggers (NSArray out-of-bounds, invalid KVO, unrecognized selector)",
+      "rationale": "Skill provides actionable examples \u2014 baseline may be vague"
+    },
+    {
+      "id": "OE1.3",
+      "text": "Mentions that Swift traps (force unwrap nil) also bypass do/catch (caught by signal handlers only)",
+      "rationale": "Skill's error type coverage table \u2014 shows the full picture"
+    }
+  ]
+}

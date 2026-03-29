@@ -1,0 +1,28 @@
+{
+  "eval_id": 9,
+  "eval_name": "crash-sdk-complex",
+  "reference": "crash-sdk-integration",
+  "prompt": "We're using both Sentry and Crashlytics in our iOS app. Crashes sometimes don't appear in either dashboard. What's going wrong and how do we fix it?",
+  "assertions": [
+    {
+      "id": "CS3.1",
+      "text": "Identifies signal handler conflict (SIGABRT, SIGSEGV, SIGBUS \u2014 only last registered handler receives the signal)",
+      "rationale": "Skill covers this specific technical root cause \u2014 baseline may only say 'they conflict'"
+    },
+    {
+      "id": "CS3.2",
+      "text": "Identifies NSSetUncaughtExceptionHandler supports only one handler",
+      "rationale": "Second mechanism that causes conflicts \u2014 skill covers this explicitly"
+    },
+    {
+      "id": "CS3.3",
+      "text": "Recommends disabling crash handler on one SDK (e.g., options.enableCrashHandler = false)",
+      "rationale": "Specific actionable fix from the skill \u2014 baseline may just say 'remove one SDK'"
+    },
+    {
+      "id": "CS3.4",
+      "text": "Recommends MetricKit for crashes that in-process reporters miss (OOM, watchdog)",
+      "rationale": "Skill's layered approach \u2014 MetricKit catches what neither SDK can"
+    }
+  ]
+}

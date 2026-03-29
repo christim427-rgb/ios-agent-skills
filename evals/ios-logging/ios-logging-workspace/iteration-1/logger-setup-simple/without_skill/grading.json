@@ -1,0 +1,29 @@
+{
+  "eval_id": 4,
+  "eval_name": "logger-setup-simple",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Recommends os.Logger (not OSLog, not custom logging framework, not third-party like CocoaLumberjack)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Shows Logger extension pattern with subsystem = Bundle.main.bundleIdentifier and named categories",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Mentions privacy annotations as a key feature (dynamic strings redacted by default in production)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Explains that .debug level messages have zero cost in production (compiler optimizes away)",
+      "passed": false,
+      "evidence": "Keyword-based assertion check"
+    }
+  ],
+  "pass_count": 3,
+  "total": 4
+}

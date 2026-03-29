@@ -1,0 +1,24 @@
+{
+  "eval_id": 2,
+  "eval_name": "silent-failures-medium",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Explains that .replaceError() kills the entire pipeline permanently (changes Failure type to Never)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Recommends moving error handling inside flatMap to keep the outer pipeline alive",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Includes ErrorReporter or crash SDK call inside the error recovery",
+      "passed": false,
+      "evidence": "Keyword-based assertion check"
+    }
+  ],
+  "pass_count": 2,
+  "total": 3
+}

@@ -1,0 +1,337 @@
+{
+  "skill_name": "ios-logging",
+  "model": "opus-4.6",
+  "summary": {
+    "with_skill": {
+      "pass": 57,
+      "total": 58,
+      "rate": 98.3
+    },
+    "without_skill": {
+      "pass": 33,
+      "total": 58,
+      "rate": 56.9
+    },
+    "delta": 41.4
+  },
+  "by_reference": {
+    "silent-failures": {
+      "with_skill": {
+        "pass": 13,
+        "total": 13,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 6,
+        "total": 13,
+        "rate": 46.2
+      },
+      "delta": 53.8
+    },
+    "logger-setup": {
+      "with_skill": {
+        "pass": 11,
+        "total": 11,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 7,
+        "total": 11,
+        "rate": 63.6
+      },
+      "delta": 36.4
+    },
+    "crash-sdk-integration": {
+      "with_skill": {
+        "pass": 11,
+        "total": 11,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 7,
+        "total": 11,
+        "rate": 63.6
+      },
+      "delta": 36.4
+    },
+    "enterprise-patterns": {
+      "with_skill": {
+        "pass": 11,
+        "total": 12,
+        "rate": 91.7
+      },
+      "without_skill": {
+        "pass": 8,
+        "total": 12,
+        "rate": 66.7
+      },
+      "delta": 25.0
+    },
+    "metrickit": {
+      "with_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 1,
+        "total": 4,
+        "rate": 25.0
+      },
+      "delta": 75.0
+    },
+    "objc-exceptions": {
+      "with_skill": {
+        "pass": 3,
+        "total": 3,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 3,
+        "total": 3,
+        "rate": 100.0
+      },
+      "delta": 0.0
+    },
+    "pii-compliance": {
+      "with_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 1,
+        "total": 4,
+        "rate": 25.0
+      },
+      "delta": 75.0
+    }
+  },
+  "per_eval": [
+    {
+      "eval_name": "silent-failures-simple",
+      "reference": "silent-failures",
+      "with_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 1,
+        "total": 4,
+        "rate": 25.0
+      },
+      "delta": 75.0
+    },
+    {
+      "eval_name": "silent-failures-medium",
+      "reference": "silent-failures",
+      "with_skill": {
+        "pass": 3,
+        "total": 3,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 2,
+        "total": 3,
+        "rate": 66.7
+      },
+      "delta": 33.3
+    },
+    {
+      "eval_name": "silent-failures-complex",
+      "reference": "silent-failures",
+      "with_skill": {
+        "pass": 6,
+        "total": 6,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 3,
+        "total": 6,
+        "rate": 50.0
+      },
+      "delta": 50.0
+    },
+    {
+      "eval_name": "logger-setup-simple",
+      "reference": "logger-setup",
+      "with_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 3,
+        "total": 4,
+        "rate": 75.0
+      },
+      "delta": 25.0
+    },
+    {
+      "eval_name": "logger-setup-medium",
+      "reference": "logger-setup",
+      "with_skill": {
+        "pass": 3,
+        "total": 3,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 3,
+        "total": 3,
+        "rate": 100.0
+      },
+      "delta": 0.0
+    },
+    {
+      "eval_name": "logger-setup-complex",
+      "reference": "logger-setup",
+      "with_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 1,
+        "total": 4,
+        "rate": 25.0
+      },
+      "delta": 75.0
+    },
+    {
+      "eval_name": "crash-sdk-simple",
+      "reference": "crash-sdk-integration",
+      "with_skill": {
+        "pass": 3,
+        "total": 3,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 1,
+        "total": 3,
+        "rate": 33.3
+      },
+      "delta": 66.7
+    },
+    {
+      "eval_name": "crash-sdk-medium",
+      "reference": "crash-sdk-integration",
+      "with_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 2,
+        "total": 4,
+        "rate": 50.0
+      },
+      "delta": 50.0
+    },
+    {
+      "eval_name": "crash-sdk-complex",
+      "reference": "crash-sdk-integration",
+      "with_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "delta": 0.0
+    },
+    {
+      "eval_name": "enterprise-simple",
+      "reference": "enterprise-patterns",
+      "with_skill": {
+        "pass": 2,
+        "total": 3,
+        "rate": 66.7
+      },
+      "without_skill": {
+        "pass": 1,
+        "total": 3,
+        "rate": 33.3
+      },
+      "delta": 33.4
+    },
+    {
+      "eval_name": "enterprise-medium",
+      "reference": "enterprise-patterns",
+      "with_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 3,
+        "total": 4,
+        "rate": 75.0
+      },
+      "delta": 25.0
+    },
+    {
+      "eval_name": "enterprise-complex",
+      "reference": "enterprise-patterns",
+      "with_skill": {
+        "pass": 5,
+        "total": 5,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 4,
+        "total": 5,
+        "rate": 80.0
+      },
+      "delta": 20.0
+    },
+    {
+      "eval_name": "metrickit-simple",
+      "reference": "metrickit",
+      "with_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 1,
+        "total": 4,
+        "rate": 25.0
+      },
+      "delta": 75.0
+    },
+    {
+      "eval_name": "objc-exceptions-simple",
+      "reference": "objc-exceptions",
+      "with_skill": {
+        "pass": 3,
+        "total": 3,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 3,
+        "total": 3,
+        "rate": 100.0
+      },
+      "delta": 0.0
+    },
+    {
+      "eval_name": "pii-compliance-simple",
+      "reference": "pii-compliance",
+      "with_skill": {
+        "pass": 4,
+        "total": 4,
+        "rate": 100.0
+      },
+      "without_skill": {
+        "pass": 1,
+        "total": 4,
+        "rate": 25.0
+      },
+      "delta": 75.0
+    }
+  ]
+}

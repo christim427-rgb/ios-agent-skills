@@ -1,0 +1,39 @@
+{
+  "eval_id": 3,
+  "eval_name": "silent-failures-complex",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Identifies all three methods have silent failure patterns (try? in loadOrders, try? in placeOrder, unhandled throw in deleteOrder)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Identifies that placeOrder's two try? calls create a logic error (confirmation email sent even if order submission fails)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Identifies print('Order placed successfully') is invisible in production (not part of unified logging system)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Identifies Task.detached strips priority and cancellation propagation (rarely correct choice)",
+      "passed": false,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Provides fix with os.Logger using privacy annotations (not just print or generic logging)",
+      "passed": false,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Adds ErrorReporter.recordNonFatal() or crash SDK call in every catch block",
+      "passed": false,
+      "evidence": "Keyword-based assertion check"
+    }
+  ],
+  "pass_count": 3,
+  "total": 6
+}

@@ -1,0 +1,28 @@
+{
+  "eval_id": 6,
+  "eval_name": "logger-setup-complex",
+  "reference": "logger-setup",
+  "prompt": "We're a health tech app (HIPAA-adjacent). Design a logging strategy that gives us good debugging capability while staying compliant. We use SwiftUI + async/await and talk to a REST API.",
+  "assertions": [
+    {
+      "id": "LS3.1",
+      "text": "Addresses HIPAA/health data compliance specifically in the logging strategy",
+      "rationale": "Skill's PII compliance reference covers health data explicitly"
+    },
+    {
+      "id": "LS3.2",
+      "text": "Recommends PrivacyInfo.xcprivacy manifest (required since May 2024)",
+      "rationale": "Skill covers privacy manifests as mandatory for App Store \u2014 baseline often omits this"
+    },
+    {
+      "id": "LS3.3",
+      "text": "Recommends a Redactor utility or @Redacted property wrapper for model-level PII protection",
+      "rationale": "Enterprise pattern from the skill \u2014 prevents accidental PII exposure through string interpolation"
+    },
+    {
+      "id": "LS3.4",
+      "text": "Recommends MetricKit alongside crash SDK for out-of-process diagnostics",
+      "rationale": "Skill teaches MetricKit as complementary to crash SDKs \u2014 baseline rarely mentions it"
+    }
+  ]
+}

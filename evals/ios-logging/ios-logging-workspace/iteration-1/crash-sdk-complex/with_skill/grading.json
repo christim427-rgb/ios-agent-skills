@@ -1,0 +1,29 @@
+{
+  "eval_id": 9,
+  "eval_name": "crash-sdk-complex",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Identifies signal handler conflict (SIGABRT, SIGSEGV, SIGBUS \u2014 only last registered handler receives the signal)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Identifies NSSetUncaughtExceptionHandler supports only one handler",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Recommends disabling crash handler on one SDK (e.g., options.enableCrashHandler = false)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Recommends MetricKit for crashes that in-process reporters miss (OOM, watchdog)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

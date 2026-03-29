@@ -1,0 +1,28 @@
+{
+  "eval_id": 15,
+  "eval_name": "pii-compliance-simple",
+  "reference": "pii-compliance",
+  "prompt": "What should I watch out for with logging and GDPR compliance in my iOS app?",
+  "assertions": [
+    {
+      "id": "PC1.1",
+      "text": "Mentions operational leaks (HTTP bodies with auth headers, DB queries with user params, URL paths with emails)",
+      "rationale": "Skill covers commonly missed PII vectors \u2014 baseline only mentions obvious PII"
+    },
+    {
+      "id": "PC1.2",
+      "text": "Mentions PrivacyInfo.xcprivacy manifests required since May 2024",
+      "rationale": "Skill covers this App Store requirement \u2014 baseline rarely mentions privacy manifests"
+    },
+    {
+      "id": "PC1.3",
+      "text": "States crash reporting generally does not require ATT consent",
+      "rationale": "Skill clarifies this common confusion \u2014 crash diagnostics are not 'tracking'"
+    },
+    {
+      "id": "PC1.4",
+      "text": "Recommends .private(mask: .hash) for correlation without PII exposure",
+      "rationale": "Skill's specific privacy annotation recommendation \u2014 baseline may just say 'don't log PII'"
+    }
+  ]
+}

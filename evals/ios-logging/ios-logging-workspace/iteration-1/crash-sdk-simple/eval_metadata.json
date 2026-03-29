@@ -1,0 +1,23 @@
+{
+  "eval_id": 7,
+  "eval_name": "crash-sdk-simple",
+  "reference": "crash-sdk-integration",
+  "prompt": "I want to add crash reporting to my iOS app. Should I use Sentry or Crashlytics? What are the trade-offs?",
+  "assertions": [
+    {
+      "id": "CS1.1",
+      "text": "Mentions Crashlytics limitation of 8 non-fatal exceptions per session",
+      "rationale": "Skill-specific knowledge about Crashlytics limits \u2014 baseline almost never mentions this"
+    },
+    {
+      "id": "CS1.2",
+      "text": "Warns against running both for fatal crash reporting (signal handler conflicts)",
+      "rationale": "Skill covers signal handler conflicts \u2014 critical production knowledge"
+    },
+    {
+      "id": "CS1.3",
+      "text": "Recommends wrapping behind a protocol/abstraction layer (ErrorReporter)",
+      "rationale": "Skill's architectural pattern \u2014 enables vendor swapping and testability"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "eval_id": 8,
+  "eval_name": "crash-sdk-medium",
+  "reference": "crash-sdk-integration",
+  "prompt": "Add proper error handling with crash reporting to this network call:\n\n```swift\nfunc fetchProducts() async throws -> [Product] {\n    let (data, response) = try await URLSession.shared.data(from: productsURL)\n    return try JSONDecoder().decode([Product].self, from: data)\n}\n```",
+  "assertions": [
+    {
+      "id": "CS2.1",
+      "text": "Identifies that URLSession does not throw for HTTP 4xx/5xx (only transport errors throw)",
+      "rationale": "Skill explicitly covers this \u2014 one of the most commonly missed silent failure patterns"
+    },
+    {
+      "id": "CS2.2",
+      "text": "Adds breadcrumb before the network request",
+      "rationale": "Skill teaches breadcrumbs before risky operations \u2014 baseline never adds breadcrumbs"
+    },
+    {
+      "id": "CS2.3",
+      "text": "Uses Logger with privacy annotations (.public for URL path and status code)",
+      "rationale": "Skill mandates privacy annotations \u2014 baseline uses print() or bare string interpolation"
+    },
+    {
+      "id": "CS2.4",
+      "text": "Calls ErrorReporter.recordNonFatal() or SentrySDK.capture() in the error path",
+      "rationale": "Remote error reporting \u2014 the skill's core requirement for every error path"
+    }
+  ]
+}

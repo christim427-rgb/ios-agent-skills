@@ -1,0 +1,28 @@
+{
+  "eval_id": 4,
+  "eval_name": "logger-setup-simple",
+  "reference": "logger-setup",
+  "prompt": "I'm setting up logging for my iOS app. Currently using print() everywhere. What should I use instead and why?",
+  "assertions": [
+    {
+      "id": "LS1.1",
+      "text": "Recommends os.Logger (not OSLog, not custom logging framework, not third-party like CocoaLumberjack)",
+      "rationale": "Skill prescribes os.Logger as the standard \u2014 baseline may suggest alternatives"
+    },
+    {
+      "id": "LS1.2",
+      "text": "Shows Logger extension pattern with subsystem = Bundle.main.bundleIdentifier and named categories",
+      "rationale": "Skill provides the exact setup pattern \u2014 baseline may show inline Logger creation"
+    },
+    {
+      "id": "LS1.3",
+      "text": "Mentions privacy annotations as a key feature (dynamic strings redacted by default in production)",
+      "rationale": "The most important Logger feature that baseline responses almost never mention"
+    },
+    {
+      "id": "LS1.4",
+      "text": "Explains that .debug level messages have zero cost in production (compiler optimizes away)",
+      "rationale": "Skill-specific knowledge about Logger performance characteristics"
+    }
+  ]
+}

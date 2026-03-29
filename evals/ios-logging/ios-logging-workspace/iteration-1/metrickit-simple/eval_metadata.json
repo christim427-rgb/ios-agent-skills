@@ -1,0 +1,28 @@
+{
+  "eval_id": 13,
+  "eval_name": "metrickit-simple",
+  "reference": "metrickit",
+  "prompt": "What is MetricKit and should I use it alongside Sentry?",
+  "assertions": [
+    {
+      "id": "MK1.1",
+      "text": "Explains MetricKit runs out-of-process (not inside the app)",
+      "rationale": "Key architectural difference \u2014 this is why it catches what Sentry/Crashlytics miss"
+    },
+    {
+      "id": "MK1.2",
+      "text": "Identifies OOM and watchdog kills as things MetricKit catches that in-process reporters miss",
+      "rationale": "Skill's primary reason for recommending MetricKit"
+    },
+    {
+      "id": "MK1.3",
+      "text": "Mentions the opt-in limitation ('Share with App Developers' in Settings)",
+      "rationale": "Critical limitation that affects coverage \u2014 skill explicitly warns about this"
+    },
+    {
+      "id": "MK1.4",
+      "text": "Recommends using both MetricKit and a third-party crash SDK",
+      "rationale": "Skill's layered approach \u2014 use both for comprehensive coverage"
+    }
+  ]
+}

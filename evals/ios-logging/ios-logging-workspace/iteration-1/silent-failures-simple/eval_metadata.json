@@ -1,0 +1,28 @@
+{
+  "eval_id": 1,
+  "eval_name": "silent-failures-simple",
+  "reference": "silent-failures",
+  "prompt": "What's wrong with this error handling?\n\n```swift\nfunc loadUserProfile() {\n    Task {\n        let profile = try? await api.fetchProfile(userId: currentUser.id)\n        self.profile = profile\n    }\n}\n```",
+  "assertions": [
+    {
+      "id": "SF1.1",
+      "text": "Identifies Task {} as a silent error swallowing pattern because Task.init is @discardableResult",
+      "rationale": "Skill-specific knowledge about Task {} error handling \u2014 baseline may just suggest adding do/catch without explaining why"
+    },
+    {
+      "id": "SF1.2",
+      "text": "Identifies try? as destroying diagnostic information (error type, message, stack context)",
+      "rationale": "Skill emphasizes try? is the most dangerous convenience for observability \u2014 baseline often accepts try? as fine"
+    },
+    {
+      "id": "SF1.3",
+      "text": "Recommends Logger.error() with privacy annotations instead of print()",
+      "rationale": "Skill mandates os.Logger over print \u2014 baseline typically suggests print(error)"
+    },
+    {
+      "id": "SF1.4",
+      "text": "Recommends reporting to a crash SDK (ErrorReporter.recordNonFatal or Sentry/Crashlytics)",
+      "rationale": "Skill requires remote error reporting in every catch block \u2014 baseline rarely mentions crash SDKs"
+    }
+  ]
+}

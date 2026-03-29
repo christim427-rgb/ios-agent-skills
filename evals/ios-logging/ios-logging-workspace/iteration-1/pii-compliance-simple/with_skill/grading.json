@@ -1,0 +1,29 @@
+{
+  "eval_id": 15,
+  "eval_name": "pii-compliance-simple",
+  "variant": "with_skill",
+  "expectations": [
+    {
+      "text": "Mentions operational leaks (HTTP bodies with auth headers, DB queries with user params, URL paths with emails)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Mentions PrivacyInfo.xcprivacy manifests required since May 2024",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "States crash reporting generally does not require ATT consent",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Recommends .private(mask: .hash) for correlation without PII exposure",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    }
+  ],
+  "pass_count": 4,
+  "total": 4
+}

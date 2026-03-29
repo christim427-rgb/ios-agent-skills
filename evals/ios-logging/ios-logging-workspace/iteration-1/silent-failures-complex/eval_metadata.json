@@ -1,0 +1,38 @@
+{
+  "eval_id": 3,
+  "eval_name": "silent-failures-complex",
+  "reference": "silent-failures",
+  "prompt": "Audit this ViewModel for silent failure patterns and fix them:\n\n```swift\nclass OrderViewModel: ObservableObject {\n    @Published var orders: [Order] = []\n    @Published var isLoading = false\n    \n    func loadOrders() {\n        isLoading = true\n        Task {\n            let result = try? await OrderService.shared.fetchOrders()\n            await MainActor.run {\n                self.orders = result ?? []\n                self.isLoading = false\n            }\n        }\n    }\n    \n    func placeOrder(_ order: Order) {\n        Task {\n            try? await OrderService.shared.submitOrder(order)\n            try? await OrderService.shared.sendConfirmationEmail(order)\n            print(\"Order placed successfully\")\n        }\n    }\n    \n    func deleteOrder(_ id: String) {\n        Task.detached {\n            try await OrderService.shared.deleteOrder(id)\n        }\n    }\n}\n```",
+  "assertions": [
+    {
+      "id": "SF3.1",
+      "text": "Identifies all three methods have silent failure patterns (try? in loadOrders, try? in placeOrder, unhandled throw in deleteOrder)",
+      "rationale": "Comprehensive audit requires finding all three \u2014 skill trains systematic scanning"
+    },
+    {
+      "id": "SF3.2",
+      "text": "Identifies that placeOrder's two try? calls create a logic error (confirmation email sent even if order submission fails)",
+      "rationale": "Skill teaches that try? hides control flow bugs, not just diagnostic loss"
+    },
+    {
+      "id": "SF3.3",
+      "text": "Identifies print('Order placed successfully') is invisible in production (not part of unified logging system)",
+      "rationale": "Skill rule: print() is not error handling, not visible on production devices"
+    },
+    {
+      "id": "SF3.4",
+      "text": "Identifies Task.detached strips priority and cancellation propagation (rarely correct choice)",
+      "rationale": "Skill cross-references with swift-concurrency knowledge about detached tasks"
+    },
+    {
+      "id": "SF3.5",
+      "text": "Provides fix with os.Logger using privacy annotations (not just print or generic logging)",
+      "rationale": "Skill mandates privacy-annotated Logger \u2014 the key differentiator from baseline"
+    },
+    {
+      "id": "SF3.6",
+      "text": "Adds ErrorReporter.recordNonFatal() or crash SDK call in every catch block",
+      "rationale": "Remote reporting in every error path \u2014 the core skill requirement"
+    }
+  ]
+}

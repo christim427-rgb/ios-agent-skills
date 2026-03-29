@@ -1,0 +1,24 @@
+{
+  "eval_id": 7,
+  "eval_name": "crash-sdk-simple",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Mentions Crashlytics limitation of 8 non-fatal exceptions per session",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Warns against running both for fatal crash reporting (signal handler conflicts)",
+      "passed": false,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Recommends wrapping behind a protocol/abstraction layer (ErrorReporter)",
+      "passed": false,
+      "evidence": "Keyword-based assertion check"
+    }
+  ],
+  "pass_count": 1,
+  "total": 3
+}

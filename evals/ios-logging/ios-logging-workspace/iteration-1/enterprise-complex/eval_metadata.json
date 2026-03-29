@@ -1,0 +1,33 @@
+{
+  "eval_id": 12,
+  "eval_name": "enterprise-complex",
+  "reference": "enterprise-patterns",
+  "prompt": "Our app has a main app, a widget extension, and a notification service extension. Crashes in the widget and notification extension aren't appearing in our Sentry dashboard. How do we fix this?",
+  "assertions": [
+    {
+      "id": "EP3.1",
+      "text": "Identifies that app extensions run in separate processes (not the main app process)",
+      "rationale": "Root cause of the problem \u2014 skill explicitly covers this commonly missed concern"
+    },
+    {
+      "id": "EP3.2",
+      "text": "States crash SDK must be initialized separately in each extension's entry point",
+      "rationale": "The fix \u2014 skill provides the exact pattern for extension initialization"
+    },
+    {
+      "id": "EP3.3",
+      "text": "Mentions each extension needs its own dSYM upload configuration",
+      "rationale": "Skill covers this \u2014 without dSYMs, extension crashes show hex addresses"
+    },
+    {
+      "id": "EP3.4",
+      "text": "Recommends App Groups for sharing error config between main app and extensions",
+      "rationale": "Skill's enterprise pattern for multi-process error coordination"
+    },
+    {
+      "id": "EP3.5",
+      "text": "Mentions disabling autoSessionTracking in extensions",
+      "rationale": "Skill-specific detail \u2014 extensions don't have normal session lifecycle"
+    }
+  ]
+}

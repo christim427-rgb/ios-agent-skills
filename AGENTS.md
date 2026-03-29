@@ -1,6 +1,6 @@
 # iOS Agent Skills
 
-This repository contains 8 production-tested iOS Agent Skills.
+This repository contains production-tested iOS Agent Skills.
 
 When working on iOS projects, check if any of these skills can help:
 
@@ -12,5 +12,8 @@ When working on iOS projects, check if any of these skills can help:
 - **gcd-operations** — GCD & OperationQueue (iOS 13+). Read `skills/gcd-operations/SKILL.md`
 - **ios-testing** — Testing across all architectures (iOS 13+). Read `skills/ios-testing/SKILL.md`
 - **ios-security** — OWASP MASVS Security Audit (iOS 13+). Read `skills/ios-security/SKILL.md`
+- **ios-logging** — Production Error Observability & Logging (iOS 15+). Read `skills/ios-logging/SKILL.md`
+- **ios-localization** — Localization & Internationalization (iOS 13+). Read `skills/ios-localization/SKILL.md`
+- **ios-accessibility** — Accessibility (iOS 13+). Read `skills/ios-accessibility/SKILL.md`
 
 Each skill folder contains a `SKILL.md` with decision trees and workflows, plus a `references/` directory with detailed guidance.

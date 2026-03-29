@@ -1,0 +1,29 @@
+{
+  "eval_id": 11,
+  "eval_name": "enterprise-medium",
+  "variant": "without_skill",
+  "expectations": [
+    {
+      "text": "Reports to crash SDK only after all retries are exhausted (not on each attempt)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Adds breadcrumb for each failed retry attempt",
+      "passed": false,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Uses Logger.warning (not .error) for intermediate retry failures",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    },
+    {
+      "text": "Includes jitter in the backoff delay (not just pure exponential)",
+      "passed": true,
+      "evidence": "Keyword-based assertion check"
+    }
+  ],
+  "pass_count": 3,
+  "total": 4
+}
