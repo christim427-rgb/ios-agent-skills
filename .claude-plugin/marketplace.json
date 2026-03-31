@@ -5,14 +5,14 @@
     "url": "https://github.com/rusel95"
   },
   "metadata": {
-    "description": "Production-tested iOS Agent Skills — 8 enterprise-grade skills covering SwiftUI MVVM, UIKit MVVM, VIPER, TCA, Swift Concurrency, GCD, Testing, and Security Audit.",
-    "version": "1.0.0",
-    "tags": ["ios", "swift", "agent-skills", "claude-code", "swiftui", "uikit", "viper", "tca", "concurrency", "testing", "security"]
+    "description": "Production-tested iOS Agent Skills — 11 enterprise-grade skills covering SwiftUI MVVM, UIKit MVVM, VIPER, TCA, Swift Concurrency, GCD, Testing, Security Audit, Accessibility, Localization, and Logging.",
+    "version": "1.1.0",
+    "tags": ["ios", "swift", "agent-skills", "claude-code", "swiftui", "uikit", "viper", "tca", "concurrency", "testing", "security", "accessibility", "localization", "logging"]
   },
   "plugins": [
     {
       "name": "ios-all",
-      "description": "All 8 iOS skills: swiftui-mvvm, uikit-mvvm, viper-uikit, tca-swiftui, swift-concurrency, gcd-operations, ios-testing, ios-security.",
+      "description": "All 11 iOS skills: swiftui-mvvm, uikit-mvvm, viper-uikit, tca-swiftui, swift-concurrency, gcd-operations, ios-testing, ios-security, ios-accessibility, ios-localization, ios-logging.",
       "source": "./",
       "strict": false,
       "skills": [
@@ -23,7 +23,10 @@
         "./skills/swift-concurrency",
         "./skills/gcd-operations",
         "./skills/ios-testing",
-        "./skills/ios-security"
+        "./skills/ios-security",
+        "./skills/ios-accessibility",
+        "./skills/ios-localization",
+        "./skills/ios-logging"
       ]
     },
     {

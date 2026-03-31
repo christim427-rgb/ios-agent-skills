@@ -1,7 +1,7 @@
 {
   "name": "ios-agent-skills",
-  "version": "1.0.0",
-  "description": "Production-tested iOS Agent Skills — 8 enterprise-grade skills for architecture, concurrency, testing, and security.",
+  "version": "1.1.0",
+  "description": "Production-tested iOS Agent Skills — 11 enterprise-grade skills for architecture, concurrency, testing, security, accessibility, localization, and logging.",
   "skills": [
     "./skills/swiftui-mvvm",
     "./skills/uikit-mvvm",
