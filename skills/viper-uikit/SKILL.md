@@ -1,6 +1,6 @@
 ---
 name: viper-uikit-architecture
-description: "Production-first enterprise skill for UIKit VIPER architecture (iOS 13+). This skill should be used when building new VIPER modules, refactoring legacy MVC/MVVM codebases to VIPER through phased PRs, decomposing god ViewControllers into View-Interactor-Presenter-Entity-Router layers, implementing Router/Wireframe navigation, testing Presenters and Interactors in isolation, fixing retain cycles in VIPER module wiring, migrating VIPER Views to SwiftUI via UIHostingController, or setting up module assembly with dependency injection. Use this skill any time someone works with VIPER architecture, passive Views, single-use-case Interactors, UIKit-free Presenters, or module protocol contracts — even if they don't explicitly mention 'VIPER.'"
+description: "Use when working with VIPER architecture in iOS/UIKit apps. Triggers on: creating new VIPER modules (View/Interactor/Presenter/Entity/Router); fixing retain cycles between VIPER layers; removing UIKit imports from Presenters; refactoring massive ViewControllers into VIPER layers; migrating VIPER Views to SwiftUI via UIHostingController; handling navigation with VIPER Routers; moving business logic from Presenter into Interactor; wiring module Builders with dependency injection; testing Presenters or Interactors in isolation; or managing UITabBarController across VIPER modules. Also use when decomposing god ViewControllers, defining module protocol contracts, or phasing an MVC-to-VIPER migration."
 metadata:
   version: 1.0.0
 ---
