@@ -1,6 +1,6 @@
 ---
 name: mvvm-uikit-architecture
-description: "Production-first enterprise skill for UIKit MVVM architecture (iOS 13+). This skill should be used when refactoring legacy UIKit MVC codebases to modern MVVM through phased, low-risk PRs tracked in a `refactoring/` directory, creating new UIKit screens, setting up Coordinator navigation, implementing Combine bindings, migrating GCD completion handlers to Combine, building DI with factories, adopting DiffableDataSource, or writing ViewModel tests. Use this skill any time someone is working with UIKit ViewModels, Combine @Published + sink bindings, Coordinator patterns, UIViewController lifecycle, or UIKit architecture decisions — even if they don't explicitly mention 'MVVM.' Also covers ViewState enum, GCD-to-Combine migration, constructor injection, and programmatic Auto Layout."
+description: "Use for hands-on UIKit MVVM questions: setting up Combine bindings between UIViewController and ViewModel (@Published + sink), extracting business logic from massive ViewControllers step by step, testing ViewModels with XCTestExpectation + Combine publishers, fixing [weak self] retain cycles in sink closures, migrating DispatchQueue/GCD completion handlers to Combine, or replacing reloadData() with DiffableDataSource. Also covers Coordinator navigation patterns, constructor injection, ViewState enum, and incremental MVC-to-MVVM refactoring. Trigger on any UIKit architecture decision — even when the user doesn't mention 'MVVM' explicitly."
 metadata:
   version: 1.0.2
 ---
