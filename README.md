@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/rusel95/ios-agent-skills"><img src="https://visitor-badge.laobi.icu/badge?page_id=rusel95.ios-agent-skills&left_color=gray&right_color=blue&left_text=visitors" alt="visitors"/></a>
   <a href="https://github.com/rusel95/ios-agent-skills"><img src="https://img.shields.io/github/stars/rusel95/ios-agent-skills?style=flat-square&color=yellow" alt="stars"/></a>
-  <img src="https://img.shields.io/badge/skills-10-purple?style=flat-square" alt="skills"/>
+  <img src="https://img.shields.io/badge/skills-11-purple?style=flat-square" alt="skills"/>
   <img src="https://img.shields.io/badge/models_tested-3-teal?style=flat-square" alt="models"/>
   <img src="https://img.shields.io/badge/assertions-800-orange?style=flat-square" alt="assertions"/>
   <img src="https://img.shields.io/badge/scenarios-245-green?style=flat-square" alt="scenarios"/>
@@ -16,7 +16,7 @@
 
 **The first and most comprehensively benchmarked iOS skill marketplace** for Claude Code, Codex, and 40+ AI coding tools.
 
-10 enterprise-grade skills covering architecture, concurrency, testing, security, accessibility, and localization — every skill benchmarked with discriminating assertions and blind A/B quality scoring across multiple LLMs. No other iOS skill collection has this level of rigorous, reproducible evaluation — 800 assertions across 245 scenarios, tested on Claude Sonnet 4.6, GPT-5.4, and Gemini 3.1 Pro.
+11 enterprise-grade skills covering architecture, concurrency, testing, security, accessibility, and localization — every skill benchmarked with discriminating assertions and blind A/B quality scoring across multiple LLMs. No other iOS skill collection has this level of rigorous, reproducible evaluation — 800 assertions across 245 scenarios, tested on Claude Sonnet 4.6, GPT-5.4, and Gemini 3.1 Pro.
 
 ## Benchmark Results
 
