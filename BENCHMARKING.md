@@ -2,6 +2,8 @@
 
 This document explains how skill benchmarks work, how to run them for any model, and the methodology behind assertion design.
 
+All benchmarks are run using **Claude Code** with subagents for context isolation. No external scripts or tooling required.
+
 ---
 
 ## What We Measure
@@ -45,12 +47,12 @@ Binary assertions can't distinguish "mentions the concept" from "provides a stru
 1. Both responses (WITH and WITHOUT) are shown to a blind judge as "Response A" and "Response B"
 2. Position is **randomized** per eval to prevent position bias
 3. The judge scores each response 0-10 on: correctness, completeness, specificity, structure, actionability
-4. The judge declares a winner (or tie if scores differ by <= 0.5)
+4. The judge declares a winner (or tie if scores differ by ≤ 0.5)
 5. The judge does **not know** which response used the skill
 
 **What it captures:** Quality differences invisible to binary pass/fail.
 
-**Shown in README as:** `15W 9T 0L` (wins, ties, losses) with average scores `8.9-8.5`.
+**Shown in README as:** `15W 9T 0L` (wins, ties, losses) with average scores `8.9↑8.5`.
 
 ### How Methods Combine
 
@@ -72,7 +74,7 @@ Not all assertions are equal. We follow three rules to keep benchmarks honest:
 An assertion is kept **only if at least one model fails it without the skill** across all benchmarked models. If every model passes an assertion both WITH and WITHOUT the skill, that assertion is noise — it inflates the denominator and dilutes the delta. It gets removed.
 
 ```
-# This assertion stays (Sonnet WITHOUT fails it):
+# This assertion stays (model WITHOUT fails it):
 "Recommends OSAllocatedUnfairLock for iOS 16+ as safe alternative"
 
 # This assertion gets removed (everyone passes it):
@@ -112,12 +114,6 @@ After each benchmark round:
 4. Remove library name-dropping and trivia
 5. Re-grade with cleaned set
 
-This makes delta go in two directions simultaneously:
-- **UP** from removing non-discriminating noise (smaller denominator)
-- **DOWN** from removing overfitted assertions (smaller numerator)
-
-The net result is closer to truth.
-
 ---
 
 ## Evidence-Only Grading
@@ -135,7 +131,7 @@ This strictness prevents inflation and makes results reproducible.
 ## Grader Isolation
 
 ```
-GENERATOR context                    GRADER context (separate agent)
+GENERATOR context                    GRADER context (separate Claude Code subagent)
 ├── SKILL.md  <-- loaded             ├── eval assertions
 ├── references/*.md  <-- loaded      ├── response.md (from generator)
 └── prompt --> response.md           └── NO access to SKILL.md
@@ -145,47 +141,56 @@ The grader must never see the skill. If it does, it marks responses as passing w
 
 ---
 
-## Running a Benchmark
+## Running a Benchmark with Claude Code
+
+All benchmark phases run inside Claude Code using subagents for context isolation.
 
 ### Phase 1: Generate responses
 
-For each eval, the model answers the prompt twice:
-- **WITH skill**: read SKILL.md + reference files first, then answer
-- **WITHOUT skill**: answer directly, no skill files
+Open this repo in Claude Code and run:
 
-Save responses to:
 ```
-workspaces/ios/<skill>/iteration-N/eval-<name>/<slug>-with/run-1/outputs/response.md
-workspaces/ios/<skill>/iteration-N/eval-<name>/<slug>-without/run-1/outputs/response.md
+Benchmark the skill skills/ios-testing/ against evals/ios/ios-testing/evals.json.
+
+For each eval:
+1. Spawn a WITH-skill subagent: give it SKILL.md + all references/*.md, then the eval prompt. Save response to workspaces/ios/ios-testing/iteration-1/eval-<name>/with/response.md
+2. Spawn a WITHOUT-skill subagent: give it only the eval prompt (no skill files). Save response to workspaces/ios/ios-testing/iteration-1/eval-<name>/without/response.md
+
+Run max 2-3 subagents in parallel to avoid rate limits.
 ```
 
-For non-Claude models, generate responses externally and use `unpack-outputs.py` to place them.
+For non-Claude models (GPT, Gemini), generate responses externally and place them at the same paths manually.
 
 ### Phase 2: Grade
 
-Grade with an isolated grader agent that has NOT seen the skill:
+```
+Grade the responses in workspaces/ios/ios-testing/iteration-1/ against the assertions in evals/ios/ios-testing/evals.json.
 
-```bash
-# Auto-grade keyword assertions
-python scripts/benchmarking/grade_responses.py \
-  workspaces/ios/<skill>/iteration-N \
-  --config <slug>
-
-# For content/structure assertions, use AI grader
-# See scripts/benchmarking/references/grader-prompt.md
+Use an isolated grader subagent that has NOT seen the skill files. For each response:
+- Check each assertion: PASS only if explicitly stated, include a direct quote as evidence
+- FAIL if implied, close but missing exact API/term, or not mentioned
+- Save results to grading.json alongside each response
 ```
 
-### Phase 3: Aggregate
+### Phase 3: A/B Comparison
 
-```bash
-python scripts/benchmarking/aggregate_benchmark.py \
-  workspaces/ios/<skill>/iteration-N \
-  --skill-name <name>
+```
+Run blind A/B comparison for workspaces/ios/ios-testing/iteration-1/.
+
+For each eval pair (with/without):
+- Randomize which is "Response A" and "Response B" (odd evals: with=A, even evals: with=B)
+- Score each 0-10 on: correctness, completeness, specificity, structure, actionability
+- Declare winner if score gap > 0.5, otherwise tie
+- Save to ab-result.json
 ```
 
-### Phase 4: A/B Comparison
+### Phase 4: Aggregate and update READMEs
 
-Run blind A/B judging on the same response pairs. See `scripts/benchmarking/references/comparator-prompt.md`.
+```
+Aggregate results from workspaces/ios/ios-testing/iteration-1/ and update:
+- skills/ios-testing/README.md with the benchmark table
+- Root README.md with the updated row for ios-testing
+```
 
 ---
 
@@ -196,19 +201,14 @@ evals/ios/<skill>/
 ├── evals.json              # Canonical eval definitions (prompts + assertions)
 └── *-outputs.json          # Pre-generated responses for non-Claude models
 
-workspaces/ios/<skill>/     # Gitignored — raw outputs
+workspaces/ios/<skill>/     # Raw outputs — not committed
 ├── iteration-N/
 │   ├── eval-<name>/
-│   │   ├── eval_metadata.json       # Snapshot used for isolated grading
-│   │   ├── <model>-with/run-1/
-│   │   │   ├── outputs/response.md
-│   │   │   ├── grading.json          # Original grading
-│   │   │   ├── grading-v2.json       # After harder assertions
-│   │   │   └── grading-v3.json       # After cleanup
-│   │   ├── <model>-without/run-1/
-│   │   │   └── (same structure)
-│   │   └── ab-<model>.json           # A/B comparison result
-│   └── benchmark-<model>.json
+│   │   ├── with/response.md
+│   │   ├── without/response.md
+│   │   ├── grading.json
+│   │   └── ab-result.json
+│   └── benchmark-summary.json
 ```
 
 ### What gets committed vs ignored
@@ -216,28 +216,16 @@ workspaces/ios/<skill>/     # Gitignored — raw outputs
 | Tracked | Ignored |
 |---------|---------|
 | `evals/ios/<skill>/evals.json` | `workspaces/` (all raw outputs) |
-| `skills/<skill>/README.md` (results) | `*-workspace/` |
+| `skills/<skill>/README.md` (results) | |
 | Root `README.md` (summary table) | |
-
----
-
-## Scripts Reference
-
-| Script | Purpose |
-|--------|---------|
-| `scripts/benchmarking/scaffold.py` | Create workspace directories |
-| `scripts/benchmarking/unpack-outputs.py` | Write response.md from pre-generated JSON |
-| `scripts/benchmarking/ingest-grades.py` | Write grading.json from batch grader output |
-| `scripts/benchmarking/aggregate_benchmark.py` | Compute deltas, write benchmark JSON |
-| `scripts/benchmarking/grade_responses.py` | Auto-grade keyword assertions |
 
 ---
 
 ## Adding a New Model
 
-1. Generate responses (direct or external)
-2. Grade with the isolated Claude grader
-3. Run `aggregate_benchmark.py`
-4. Add results to skill README and root README
+1. Generate responses for each eval (externally for non-Claude models, or via Claude Code subagents for Claude)
+2. Place responses at `workspaces/ios/<skill>/iteration-N/eval-<name>/with/response.md` and `without/response.md`
+3. Ask Claude Code to grade and run A/B comparison
+4. Ask Claude Code to update skill README and root README with results
 
-See [EVALUATION.md](EVALUATION.md) for the full pipeline and [CONTRIBUTING.md](CONTRIBUTING.md) for skill development.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to create a new skill.

@@ -19,7 +19,7 @@ Enterprise-grade UIKit MVVM architecture skill for iOS 13+. Ensures consistency 
 ## Install
 
 ```bash
-npx skills add git@git.epam.com:epm-ease/research/agent-skills.git --skill mvvm-uikit-architecture
+npx skills add rusel95/ios-agent-skills --skill uikit-mvvm
 ```
 
 Verify installation by asking your AI agent to refactor a UIKit ViewController — it should follow Coordinator + ViewModel + Combine patterns and reference the `refactoring/` directory.

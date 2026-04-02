@@ -110,7 +110,7 @@ Gemini 3.1 Pro is a stronger baseline (83.9% vs GPT-5.4's 72.6%), handling all s
 ## Install
 
 ```bash
-npx skills add git@git.epam.com:epm-ease/research/agent-skills.git --skill gcd-operationqueue --copy
+npx skills add rusel95/ios-agent-skills --skill gcd-operations
 ```
 
 Verify installation by asking your AI agent to review concurrent code — it should detect deadlock patterns, recommend proper lock selection, and reference `dispatchPrecondition`.

@@ -63,7 +63,7 @@ Each subagent has an **isolated context window**. The WITH subagent cannot "leak
 
 ### What requires human action
 
-Generating responses for non-Claude models (GPT, Gemini, etc.) — these must be generated externally and imported via `unpack-outputs.py`.
+Generating responses for non-Claude models (GPT, Gemini, etc.) — these must be generated externally and placed manually at the workspace paths.
 
 ---
 
