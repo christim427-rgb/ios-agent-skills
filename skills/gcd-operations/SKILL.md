@@ -1,6 +1,6 @@
 ---
 name: gcd-operationqueue
-description: "Enterprise skill for GCD and OperationQueue concurrency on Apple platforms (iOS, macOS, watchOS, tvOS, visionOS). This skill should be used when reviewing or writing DispatchQueue code, fixing deadlocks, preventing thread explosion, implementing thread-safe collections, creating AsyncOperation subclasses, using DispatchGroup or DispatchSemaphore, setting up reader-writer locks with barriers, selecting lock types, debugging data races with Thread Sanitizer, or migrating GCD patterns to Swift Concurrency. GCD is NOT deprecated — use this skill any time someone works with dispatch queues, OperationQueue, locks, or thread safety in iOS, even if they don't explicitly mention 'GCD' or 'concurrency.'"
+description: "Use for iOS/macOS concurrency problems involving dispatch queues, locks, or thread safety. Triggers on: deadlocks (sync on main, nested sync, ABBA lock ordering), thread explosion from too many DispatchQueue.global() calls, data races flagged by Thread Sanitizer (TSan), DispatchGroup enter/leave imbalance, DispatchSource timer leaks, lock selection (NSLock vs OSAllocatedUnfairLock vs os_unfair_lock), reader-writer barriers, AsyncOperation subclasses, dispatchPrecondition usage, and OperationQueue throttling. Also use when migrating GCD patterns to Swift Concurrency actors. Apply whenever someone asks about thread-safe properties, concurrent access to shared state, or sees TSan warnings in Apple platform code — even if they don't say 'GCD' or 'concurrency.'"
 metadata:
   version: 1.0.2
 ---
