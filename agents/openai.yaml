@@ -1,0 +1,33 @@
+# OpenAI Codex Skills UI metadata
+# Skills are organized by department. Install a full department or individual skills.
+
+# --- iOS department ---
+skills:
+  - name: ios
+    description: "All iOS department skills: SwiftUI MVVM architecture (@Observable, iOS 17+), UIKit MVVM architecture (Coordinator, Combine, iOS 13+), GCD/OperationQueue concurrency patterns, iOS security auditing (OWASP MASVS), and Swift Concurrency (async/await, actors, Sendable, Swift 6.x)."
+    paths:
+      - skills/ios/swiftui-mvvm-architecture
+      - skills/ios/mvvm-uikit-architecture
+      - skills/ios/gcd-operationqueue
+      - skills/ios/ios-security-audit
+      - skills/ios/swift-concurrency
+
+  - name: swiftui-mvvm-architecture
+    description: "Production-first enterprise skill for SwiftUI MVVM architecture with @Observable (iOS 17+). Use when refactoring legacy SwiftUI code in phased PRs, migrating from ObservableObject, auditing for anti-patterns, creating new screens to enterprise standards, or writing ViewModel tests."
+    path: skills/ios/swiftui-mvvm-architecture
+
+  - name: mvvm-uikit-architecture
+    description: "Production-first enterprise skill for UIKit MVVM architecture (iOS 13+). Use when refactoring legacy UIKit MVC code in phased PRs, extracting ViewModels from Massive ViewControllers, setting up Coordinator navigation, implementing Combine bindings, migrating GCD patterns, building DI with factories, adopting DiffableDataSource, or writing ViewModel tests."
+    path: skills/ios/mvvm-uikit-architecture
+
+  - name: gcd-operationqueue
+    description: "Enterprise skill for GCD and OperationQueue concurrency on Apple platforms (iOS, macOS, watchOS, tvOS, visionOS). Use when reviewing or writing DispatchQueue code, fixing deadlocks, preventing thread explosion, implementing thread-safe collections, creating AsyncOperation subclasses, using DispatchGroup or DispatchSemaphore, setting up reader-writer locks with barriers, selecting lock types (os_unfair_lock, NSLock, OSAllocatedUnfairLock), debugging data races with Thread Sanitizer, profiling with Instruments, or migrating GCD patterns to Swift Concurrency."
+    path: skills/ios/gcd-operationqueue
+
+  - name: ios-security-audit
+    description: "Enterprise skill for iOS security auditing against OWASP MASVS v2.1.0 (24 controls, 8 categories). Use when reviewing iOS code for security vulnerabilities, auditing Keychain and storage usage, checking ATS and network configuration, detecting hardcoded secrets or weak cryptography, reviewing Objective-C runtime attack surface, validating certificate pinning, auditing WebView security, checking biometric auth implementation, assessing jailbreak detection, reviewing URL scheme handlers, or mapping compliance requirements (HIPAA, PCI DSS, GDPR, SOC 2)."
+    path: skills/ios/ios-security-audit
+
+  - name: swift-concurrency
+    description: "Enterprise skill for Swift Concurrency on Apple platforms (iOS, macOS, watchOS, tvOS, visionOS). Use when writing or reviewing async/await code, fixing actor reentrancy or isolation bugs, debugging cooperative pool deadlocks, preventing continuation misuse, migrating to strict concurrency (SWIFT_STRICT_CONCURRENCY=complete), adopting Swift 6 or 6.2, handling Sendable conformance, using TaskGroup or AsyncStream correctly, fixing concurrency-related security vulnerabilities (TOCTOU, token races), or setting up Thread Sanitizer CI."
+    path: skills/ios/swift-concurrency

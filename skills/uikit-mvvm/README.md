@@ -123,4 +123,4 @@ Gemini 3.1 Pro without-skill baseline is only 38% — the lowest of all tested m
 
 ## Author
 
-[Ruslan Popesku](https://git.epam.com/Ruslan_Popesku)
+[Ruslan Popesku](https://github.com/rusel95)

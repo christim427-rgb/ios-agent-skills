@@ -130,4 +130,4 @@ Verify installation by asking your AI agent to review concurrent code — it sho
 
 ## Author
 
-[Ruslan Popesku](https://git.epam.com/Ruslan_Popesku)
+[Ruslan Popesku](https://github.com/rusel95)

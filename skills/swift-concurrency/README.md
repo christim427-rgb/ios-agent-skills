@@ -130,4 +130,4 @@ Gemini 3.1 Pro has a stronger simple/medium baseline (81.8%/79.2%) but only 37% 
 
 ## Author
 
-[Ruslan Popesku](https://git.epam.com/Ruslan_Popesku)
+[Ruslan Popesku](https://github.com/rusel95)

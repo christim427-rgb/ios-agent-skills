@@ -119,4 +119,4 @@ Gemini 3.1 Pro without-skill baseline defaults entirely to Combine-era patterns.
 
 ## Author
 
-[Ruslan Popesku](https://git.epam.com/Ruslan_Popesku)
+[Ruslan Popesku](https://github.com/rusel95)
