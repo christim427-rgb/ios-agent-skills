@@ -19,7 +19,7 @@ Enterprise-grade UIKit MVVM architecture skill for iOS 13+. Ensures consistency 
 ## Install
 
 ```bash
-npx skills add rusel95/ios-agent-skills --skill uikit-mvvm
+npx skills add git@git.epam.com:epm-ease/research/agent-skills.git --skill mvvm-uikit-architecture
 ```
 
 Verify installation by asking your AI agent to refactor a UIKit ViewController — it should follow Coordinator + ViewModel + Combine patterns and reference the `refactoring/` directory.
@@ -50,9 +50,9 @@ Tested on **24 scenarios** (8 topics × 3 difficulty tiers) with **51 discrimina
 
 | Model | With Skill | Without Skill | Delta | A/B Quality |
 | --- | --- | --- | --- | --- |
-| **Sonnet 4.6** | 51/51 (100%) | 44/51 (86.3%) | **+13.7%** | **20W 2T 2L** (avg 9.1 vs 8.2) |
-| **GPT-5.4** | 100% | 59.2% | **+40.8%** | **23/24 wins**, 1 tie (avg 8.5 vs 7.1) |
-| **Gemini 3.1 Pro** | 93.0% | 38.0% | **+54.9%** | **24/24 wins** (avg 8.5 vs 6.7) |
+| **Sonnet 4.6** | 51/51 (100%) | 42/51 (82.3%) | **+17.6%** | **20W 2T 2L** (avg 9.1 vs 8.2) |
+| **GPT-5.4** | 50/51 (98.0%) | 44/51 (86.3%) | **+11.8%** | **24W 0T 0L** (avg 9.0 vs 7.4) |
+| **Gemini 3.1 Pro** | 50/51 (98.0%) | 11/51 (21.6%) | **+76.5%** | **24W** 0T 0L (avg 9.2 vs 5.7) |
 
 > A/B Quality: blind judge scores each response 0–10 and picks the better one without knowing which used the skill. Position (A/B) is randomized across evals to prevent bias.
 
@@ -61,66 +61,68 @@ Tested on **24 scenarios** (8 topics × 3 difficulty tiers) with **51 discrimina
 | Metric | Value |
 | --- | --- |
 | With Skill | 51/51 (100%) |
-| Without Skill | 44/51 (86.3%) |
-| Delta | **+13.7%** |
+| Without Skill | 42/51 (82.3%) |
+| Delta | **+17.6%** |
 | A/B Quality | **20W 2T 2L** (avg 9.1 vs 8.2) |
 
-**Interpretation:** Sonnet 4.6 without the skill misses 7 of 51 discriminating assertions — concentrated on `ViewState<T>` enum usage, Combine lifecycle mistakes, coordinator cleanup and back-button handling, Storyboard DI with `instantiateViewController(creator:)`, and phased refactoring discipline. A/B confirms with 20 wins — the strongest A/B result across all skills for this model.
+**Interpretation:** Sonnet 4.6 without the skill misses 9 of 51 discriminating assertions — concentrated on `ViewState<T>` enum usage, Combine lifecycle mistakes, coordinator cleanup and back-button handling, Storyboard DI with `instantiateViewController(creator:)`, and phased refactoring discipline. A/B confirms with 20 wins — the strongest A/B result across all skills for this model. (Graded: Claude Sonnet 4.6, strict, iteration-6)
 
 ### Results (GPT-5.4)
 
-| Difficulty | With Skill | Without Skill | Delta | A/B Quality |
-| --- | --- | --- | --- | --- |
-| Simple | 22/22 (100%) | 22/22 (100%) | **0%** | **7/8 wins**, 1 tie (avg 8.2 vs 7.1) |
-| Medium | 23/23 (100%) | 9/23 (39.1%) | **+60.9%** | **8/8 wins** (avg 8.6 vs 7.2) |
-| Complex | 26/26 (100%) | 11/26 (42.3%) | **+57.7%** | **8/8 wins** (avg 8.8 vs 7.1) |
-| **Total** | **71/71 (100%)** | **42/71 (59.2%)** | **+40.8%** | **23/24 wins**, 1 tie (avg 8.5 vs 7.1) |
+| Metric | Value |
+| --- | --- |
+| With Skill | 50/51 (98.0%) |
+| Without Skill | 44/51 (86.3%) |
+| Delta | **+11.8%** |
+| A/B | **24W 0T 0L** (avg 9.0 vs 7.4) |
 
-### Results (Gemini 3.1 Pro)
-
-| Difficulty | With Skill | Without Skill | Delta | A/B Quality |
-| --- | --- | --- | --- | --- |
-| Simple | 20/22 (90.9%) | 13/22 (59.1%) | **+31.8%** | **8/8 wins** (avg 8.2 vs 6.9) |
-| Medium | 22/23 (95.7%) | 8/23 (34.8%) | **+60.9%** | **8/8 wins** (avg 8.8 vs 6.6) |
-| Complex | 24/26 (92.3%) | 6/26 (23.1%) | **+69.2%** | **8/8 wins** (avg 8.6 vs 6.6) |
-| **Total** | **66/71 (93.0%)** | **27/71 (38.0%)** | **+54.9%** | **24/24 wins** (avg 8.5 vs 6.7) |
+**Interpretation:** GPT-5.4 is already a solid UIKit MVVM baseline at 86.3% without the skill and rises to 98.0% with it — a +11.8% delta. The recovered gaps cluster around MVVM boundary enforcement: GPT-5.4 without the skill consistently misses `private(set)` on `@Published` properties, the concrete cost of `import UIKit` in a ViewModel (simulator-only unit tests), intermediate-state race conditions between separate publisher emissions, the `@Published` immediate-replay mechanism (causing nil-outlet crashes), `.receive(on: DispatchQueue.main)` as a separate combine-bindings violation, and the hide-all-then-show pattern with DiffableDataSource. One with-skill regression: `testing-simple` still uses `wait(for:)` instead of `await fulfillment(of:)`. Blind A/B strongly favors the skill at 24W 0T 0L — no losses — with average quality 9.0 vs 7.4.
 
 ### Key Discriminating Assertions — GPT-5.4
 
 | Topic | Assertion | Why It Matters |
 | --- | --- | --- |
-| viewmodel | `ViewState<T>` replaces impossible flag combinations | Prevents contradictory UI state and simplifies rendering |
-| viewmodel | UITableView references in a ViewModel are a critical retain-cycle and UIKit-coupling violation | Prevents VM↔VC retention bugs and broken MVVM boundaries |
-| combine-bindings | `sink` must be stored in `cancellables` | Explains why subscriptions silently stop receiving values |
-| combine-bindings | Bind in `viewDidLoad`, not `init` | Avoids nil outlets and duplicate lifecycle bugs |
-| combine-bindings | `.receive(on: DispatchQueue.main)` before UI writes | Prevents off-main-thread UI mutation from service callbacks |
-| coordinator | Coordinators must clean up children and observe back-button pops | Prevents child-flow leaks in real navigation stacks |
-| dependency-injection | `instantiateViewController(creator:)` enables non-optional storyboard DI | Removes fragile property injection on iOS 13+ |
-| dependency-injection | ScreenFactory + MockScreenFactory isolate construction from navigation | Keeps coordinators testable and wiring centralized |
-| viewstate | `reconfigureItems` / `reloadItems` instead of `reloadData()` with DiffableDataSource | Preserves diffing integrity and avoids UIKit assertion failures |
-| refactoring | Existing tests stay green during MVVM extraction | Enforces the skill’s production-first migration discipline |
+| viewmodel | `UIKit` import is the core violation | Keeps the ViewModel platform-neutral and testable. |
+| viewmodel | UIKit dependency breaks unit testability because UIKit requires a simulator | Explains the concrete cost of the architecture violation. |
+| viewmodel | Missing `private(set)` on `@Published` properties | Enforces unidirectional data flow — only the ViewModel writes its own state. |
+| viewmodel | Warns about race conditions between separate publisher emissions | `ViewState<T>` enum eliminates intermediate inconsistent states. |
+| combine-bindings | `@Published` fires immediately on subscription — explains nil-outlet crash | Drives correct `viewDidLoad` timing for all Combine subscriptions. |
+| combine-bindings | Missing `.receive(on: DispatchQueue.main)` — UI updates from wrong thread | Prevents intermittent layout crashes on background queue. |
+| viewstate | Hide-all-then-show reset pattern before `switch` over `ViewState` | Prevents stale loading/error views overlapping new content. |
+| viewstate | `DiffableDataSource` `applySnapshot` for `.loaded` — warns against `reloadData()` | Crash-free, animatable table updates with no index-path arithmetic. |
 
-### Key Discriminating Assertions — Gemini 3.1 Pro (39 total)
+### Results (Gemini 3.1 Pro)
 
-Gemini 3.1 Pro without-skill baseline is only 38% — the lowest of all tested models for this skill. Key gaps span refactoring discipline, coordinator lifecycle, ViewState, and testing patterns:
+| Metric | Value |
+| --- | --- |
+| With Skill | 50/51 (98.0%) |
+| Without Skill | 11/51 (21.6%) |
+| Delta | **+76.5%** |
 
-| Topic | ID | Assertion | Why It Matters |
+**Interpretation:** Gemini 3.1 Pro without the skill is the weakest baseline of the three models at 21.6% — it passes only the most obvious surface-level assertions. Without the skill, it completely misses all 9 refactoring assertions (phased PRs, discovered.md, severity scanning), all 6 dependency injection assertions (protocol-based injection, `instantiateViewController(creator:)`, ScreenFactory), all 6 testing assertions (`addTeardownBlock`, `await fulfillment(of:)`, cooperative-thread deadlock), and nearly all ViewState and anti-pattern assertions. With the skill, it rises to 98.0% (matching GPT-5.4), demonstrating that skill injection recovers nearly all gaps. The single with-skill failure is `testing-simple` (TE1.3) — the code example uses `wait(for:)` while the prose simultaneously warns against it, a self-contradictory response. The 76.5% delta is the largest of all models tested on this skill. (Graded: Claude Sonnet 4.6, strict, iteration-6)
+
+### Key Discriminating Assertions — Gemini 3.1 Pro
+
+| Topic | Assertion | Without | With |
 | --- | --- | --- | --- |
-| refactoring | RF1.1–1.3 | `refactoring/` directory, Phase 1 = critical-only (≤200 lines), new discoveries → `discovered.md` | Enforces production-safe migration without scope creep |
-| refactoring | RF2.2 | Phase 1 PR must contain only critical safety fixes | Prevents mixing safe fixes with architectural changes |
-| coordinator | CO3.1–3.3 | Strong VC reference prevents dealloc; missing `didFinish`; missing `UINavigationControllerDelegate` | Coordinator memory leaks and invisible back-button taps |
-| coordinator | CO2.2–2.3 | `didFinish` closure pattern; `removeAll { $0 === coord }` | Required cleanup for child coordinator lifecycle |
-| anti-patterns | AP3.1, AP3.3 | `static shared` ViewController is Critical; rank 3 Critical before High/Medium | Global state + correct severity ordering |
-| viewmodel | VM3.1, VM3.3, VM3.4 | `UITableView` in ViewModel is Critical; `private(set)` for VM properties; `ViewState<T>` for multiple booleans | Prevents retain cycles, state exposure, and impossible states |
-| dependency-injection | DI3.2–3.3 | `ScreenFactory` protocol + `MockScreenFactory` injected into Coordinator | Keeps Coordinator independently testable |
-| testing | TE3.1–3.3 | `wait(for:)` deadlocks in async test; `await fulfillment(of:)` fix; explains suspends vs blocks | Critical async testing correctness |
-| testing | TE2.2–2.3 | `addTeardownBlock { [weak sut] in XCTAssertNil(sut) }` in `setUp` | Catches silent retain cycles not caught by tearDown |
+| viewmodel | `private(set)` on `@Published` — unidirectional data flow | FAIL | PASS |
+| viewmodel | `UITableView` ref in ViewModel = Critical (retain cycle) | FAIL | PASS |
+| viewmodel | Race conditions between separate publisher emissions | FAIL | PASS |
+| dependency-injection | Protocol-based constructor injection (`NetworkServiceProtocol`) | FAIL | PASS |
+| dependency-injection | `instantiateViewController(creator:)` for Storyboard DI | FAIL | PASS |
+| dependency-injection | `ScreenFactory` protocol injected into Coordinator | FAIL | PASS |
+| viewstate | Hide-all-then-show reset pattern before `switch` | FAIL | PASS |
+| viewstate | `reconfigureItems` (iOS 15+) vs `reloadItems` for single-item updates | FAIL | PASS |
+| testing | `addTeardownBlock { [weak sut] in XCTAssertNil(sut) }` | FAIL | PASS |
+| testing | `await fulfillment(of:)` vs `wait(for:)` deadlock | FAIL | PASS |
+| refactoring | `refactoring/` directory + per-feature plan files | FAIL | PASS |
+| refactoring | Phase 1 = safety fixes only, ≤200 lines | FAIL | PASS |
+| refactoring | New discoveries → `refactoring/discovered.md` | FAIL | PASS |
 
 > Raw data:
-> `mvvm-uikit-architecture-workspace/iteration-1/benchmark-gpt-5-4-tiered.json`
->
-> `mvvm-uikit-architecture-workspace/iteration-1/benchmark-gemini-3-1-pro-tiered.json`
+> `workspaces/ios/mvvm-uikit-architecture/iteration-6/benchmark-gpt-5-4.json`
+> `workspaces/ios/mvvm-uikit-architecture/iteration-6/benchmark-gemini-3-1-pro.json`
 
 ## Author
 
-[Ruslan Popesku](https://github.com/rusel95)
+[Ruslan Popesku](https://git.epam.com/Ruslan_Popesku)
