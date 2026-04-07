@@ -17,7 +17,7 @@ Enterprise-grade SwiftUI MVVM architecture with @Observable (iOS 17+). Takes a *
 ## Install
 
 ```bash
-npx skills add rusel95/ios-agent-skills --skill swiftui-mvvm
+npx skills add git@git.epam.com:epm-ease/research/agent-skills.git --skill swiftui-mvvm-architecture
 ```
 
 Verify installation by asking your AI agent to refactor a SwiftUI view — it should follow @Observable ViewModel + Router patterns and reference the `refactoring/` directory.
@@ -48,40 +48,34 @@ Tested on **23 scenarios** with **63 discriminating assertions**.
 
 | Model | With Skill | Without Skill | Delta | A/B Quality |
 | --- | --- | --- | --- | --- |
-| **Sonnet 4.6** | 63/63 (100%) | 56/63 (88.9%) | **+11.1%** | **9W 15T 0L** (avg 9.2 vs 8.8) |
-| **GPT-5.4** | 100% | 59.2% | **+40.8%** | **24/24 wins** (avg 8.5 vs 7.5) |
-| **Gemini 3.1 Pro** | 98.6% | 22.5% | **+76.0%** | **24/24 wins** (avg 8.8 vs 6.5) |
+| **Sonnet 4.6** | 54/63 (85.7%) | 45/63 (71.4%) | **+14.3%** | **9W 15T 0L** (avg 9.2 vs 8.8) |
+| **GPT-5.4** | 62/63 (98.4%) | 57/63 (90.5%) | **+7.9%** | 5W 17T 1L |
+| **Gemini 3.1 Pro** | 33/55 (60.0%)* | 19/55 (34.5%)* | **+25.5%** | **21W** 0T 0L (avg 9.1 vs 6.2) |
 
 > A/B Quality: blind judge scores each response 0–10 and picks the better one without knowing which used the skill. Position (A/B) is randomized across evals to prevent bias.
+> \* 21/23 evals graded (55 assertions); task-lifecycle-complex and navigation-simple had no responses in the outputs file.
 
 ### Results (Sonnet 4.6)
 
 | Metric | Value |
 | --- | --- |
-| With Skill | 63/63 (100%) |
-| Without Skill | 56/63 (88.9%) |
-| Delta | **+11.1%** |
+| With Skill | 54/63 (85.7%) |
+| Without Skill | 45/63 (71.4%) |
+| Delta | **+14.3%** |
 | A/B Quality | **9W 15T 0L** (avg 9.2 vs 8.8) |
 
-**Interpretation:** Sonnet 4.6 without the skill misses 7 of 63 discriminating assertions — concentrated on `@Bindable` usage, `.task(id:)` for reactive reloads, Observation-native environment injection, navigation state ownership, and focused `@Observable` model splitting. A/B confirms with 9 wins, 15 ties, and zero losses.
+**Interpretation:** Sonnet 4.6 without the skill misses 18 of 63 discriminating assertions — concentrated on `@Bindable` usage, `.task(id:)` for reactive reloads, Observation-native environment injection, navigation state ownership, and focused `@Observable` model splitting. A/B confirms with 9 wins, 15 ties, and zero losses.
 
 ### Results (GPT-5.4)
 
-| Difficulty | With Skill | Without Skill | Delta | A/B Quality |
-| --- | --- | --- | --- | --- |
-| Simple | 22/22 (100%) | 22/22 (100%) | **0%** | **8/8 wins** (avg 8.5 vs 7.4) |
-| Medium | 23/23 (100%) | 11/23 (47.8%) | **+52.2%** | **8/8 wins** (avg 8.4 vs 7.4) |
-| Complex | 26/26 (100%) | 9/26 (34.6%) | **+65.4%** | **8/8 wins** (avg 8.6 vs 7.7) |
-| **Total** | **71/71 (100%)** | **42/71 (59.2%)** | **+40.8%** | **24/24 wins** (avg 8.5 vs 7.5) |
+| Metric | Value |
+| --- | --- |
+| With Skill | 62/63 (98.4%) |
+| Without Skill | 57/63 (90.5%) |
+| Delta | **+7.9%** |
+| A/B | 5W 17T 1L |
 
-### Results (Gemini 3.1 Pro)
-
-| Difficulty | With Skill | Without Skill | Delta | A/B Quality |
-| --- | --- | --- | --- | --- |
-| Simple | 21/22 (95.5%) | 7/22 (31.8%) | **+63.6%** | **8/8 wins** (avg 8.4 vs 6.6) |
-| Medium | 23/23 (100%) | 4/23 (17.4%) | **+82.6%** | **8/8 wins** (avg 8.9 vs 6.5) |
-| Complex | 26/26 (100%) | 5/26 (19.2%) | **+80.8%** | **8/8 wins** (avg 9.0 vs 6.4) |
-| **Total** | **70/71 (98.6%)** | **16/71 (22.5%)** | **+76.0%** | **24/24 wins** (avg 8.8 vs 6.5) |
+**Interpretation:** GPT-5.4 is a strong SwiftUI baseline (90.5%). Skill adds `@Entry` EnvironmentValues registration, `Sendable` on protocol types, migration mapping tables, and `Self._printChanges()` verification workflow. One loss: with-skill misclassified UIViewController severity in anti-patterns-complex. (Graded: Claude Sonnet 4.6, strict, iteration-5)
 
 ### Key Discriminating Assertions — GPT-5.4
 
@@ -97,26 +91,36 @@ Tested on **23 scenarios** with **63 discriminating assertions**.
 | performance | Split large `@Observable` types into focused ViewModels | Reduces redraw scope and keeps observation granular |
 | performance | Separate `@State` app-level models are not shared state | Catches a subtle but severe architecture bug in large SwiftUI apps |
 
-### Key Discriminating Assertions — Gemini 3.1 Pro (54 total)
+> Raw data:
+> `swiftui-mvvm-architecture-workspace/iteration-1/benchmark-gpt-5-4.json`
 
-Gemini 3.1 Pro without-skill baseline defaults entirely to Combine-era patterns. With skill, it scores 98.6% — evidence that the skill content is clear and complete. The 54 gaps (without skill) span all 8 topics:
+### Results (Gemini 3.1 Pro)
 
-| Topic | ID | Assertion | Why It Matters |
-| --- | --- | --- | --- |
-| anti-patterns | AP1.1–1.3, AP2.1–2.3, AP3.1–3.3 | `@StateObject` + `@Observable` is Critical; causes no updates, crashes | Most critical Observation correctness error |
-| observable-viewmodel | OV1.2–1.3, OV2.1–2.3, OV3.1, 3.3–3.4 | `@ObservedObject` wrong for `@Observable`; must use `@State`/`@Bindable`; `@MainActor` required | Core `@Observable` adoption rules |
-| dependency-injection | DI1.2, DI2.1–2.3, DI3.1–3.3 | `@EnvironmentObject` wrong for `@Observable`; use `@Environment(\.key)` and `@Entry` | Observation-native DI replacing Combine patterns |
-| navigation | NA1.2, NA2.1–2.3, NA3.1–3.3 | Navigation booleans in ViewModel is a violation; outer `NavigationStack` wrapping `TabView` is wrong | View-layer navigation ownership |
-| task-lifecycle | TL1.1, TL1.3, TL2.2, TL3.2–3.3 | `.task {}` for managed lifecycle; `.task(id:)` for reactive reloads; `CancellationError` guard | Correct task management tied to view lifecycle |
-| viewstate | VS1.2–1.3, VS2.1, VS3.1–3.3 | `ViewState<T>` enum; direct URLSession in ViewModel; force-`try!` crash | Production-safe state modeling |
-| testing | TE1.2, TE2.1, TE2.3, TE3.2–3.3 | `@MainActor` on test class; memory leak detection; `if case` pattern matching | Correct async test setup and leak detection |
-| performance | PE1.2–1.3, PE2.1–2.3, PE3.2–3.3 | Remove `.printChanges()`; split focused ViewModels; separate `@State` models are not shared | Performance analysis and architecture correctness |
+| Metric | Value |
+| --- | --- |
+| With Skill | 33/55 (60.0%) |
+| Without Skill | 19/55 (34.5%) |
+| Delta | **+25.5%** |
+| Evals Graded | 21/23 |
+
+**Interpretation:** Gemini 3.1 Pro's outputs show significant prompt routing issues — responses for viewstate, dependency-injection (medium/complex), testing-simple, and all anti-patterns evals appear to answer UIKit MVVM prompts rather than the SwiftUI prompts. Among correctly answered evals, the skill adds substantial value: navigation-complex (0→3/3), performance (1→4/4 on PE2.1-2.4), and OV-complex completeness (2→5/5 for final+private(set)+CancellationError+injection). The 34.5% without-skill baseline reflects both genuine SwiftUI gaps and prompt routing failures. (Graded: Claude Sonnet 4.6, strict, iteration-1)
+
+### Key Discriminating Assertions — Gemini 3.1 Pro
+
+| Topic | Assertion | Why It Matters |
+| --- | --- | --- |
+| observable-viewmodel | Corrected declaration requires `final` modifier | Without-skill omits `final` in the corrected class declaration |
+| observable-viewmodel | `private(set)` on state + `CancellationError` handling in corrected code | Without-skill leaves state mutable and skips cancellation guard |
+| observable-viewmodel | Constructor injection for undeclared `repository` dependency | Without-skill leaves `repository` as an undeclared implicit dependency |
+| navigation | `TabRouter @Observable` with typed per-tab route arrays | Without-skill only removes the outer stack without providing a Router architecture |
+| navigation | Navigation state belongs in View layer; ViewModel signals via closures | Without-skill reinforces the anti-pattern by suggesting `@Bindable` on ViewModel booleans |
+| testing | `addTeardownBlock` memory leak detection | Without-skill omits this in both medium and complex test setups |
+| performance | `@Observable` tracks only properties read by the view body | Without-skill does not explain granular tracking mechanism |
+| performance | `Self._printChanges()` verification workflow after splitting | Without-skill does not prescribe a structured post-fix verification |
 
 > Raw data:
-> `swiftui-mvvm-architecture-workspace/iteration-1/benchmark-gpt-5-4-tiered.json`
->
-> `swiftui-mvvm-architecture-workspace/iteration-1/benchmark-gemini-3-1-pro-tiered.json`
+> `workspaces/ios/swiftui-mvvm-architecture/iteration-1/benchmark-gemini-3-1-pro.json`
 
 ## Author
 
-[Ruslan Popesku](https://github.com/rusel95)
+[Ruslan Popesku](https://git.epam.com/Ruslan_Popesku)
