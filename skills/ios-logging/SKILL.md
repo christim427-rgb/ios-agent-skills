@@ -64,12 +64,30 @@ Is this production code?
 ├── YES -> os.Logger with privacy annotations
 │   ├── Debug tracing        -> .debug (free in production, not persisted)
 │   ├── Contextual info      -> .info (memory-only, captured on faults)
-│   ├── Operational events   -> .notice (persisted to disk)
+│   ├── Operational events   -> .notice (persisted to disk)  ← use for sync completions, milestones
 │   ├── Recoverable errors   -> .error (always persisted)
 │   └── Bugs / unrecoverable -> .fault (persisted + process chain)
 └── NO (unit tests, playgrounds, scripts)
     └── print() is fine
 ```
+
+⚠️ **Common mistake — `.info` is NOT persisted to disk.** For events that operators or on-call engineers need to see in production logs (sync completions, user actions, background task results), use `.notice`. Only use `.info` for supplementary context you want captured alongside faults but don't need independently.
+
+### "Which privacy annotation should I use?"
+
+```
+Do you need the value visible to log readers?
+├── YES (URL paths, error codes, status codes, operation names)
+│   └── privacy: .public
+└── NO — Is it PII (user ID, email, name, device ID)?
+    ├── Need to correlate events for the same user across log lines?
+    │   ├── YES → privacy: .private(mask: .hash)   ← stable hash, enables correlation
+    │   └── NO  → privacy: .private                ← hidden as <private>
+    └── Is it a secret (password, token, API key)?
+        └── DO NOT LOG IT. If you must reference it: privacy: .sensitive
+```
+
+⚠️ **`.sensitive` ≠ hash.** `.sensitive` always redacts — it is for passwords/tokens that should not appear even in debug logs. It does NOT produce a hash for correlation. For cross-event user correlation without exposing identity, always use `.private(mask: .hash)`.
 
 ### "How should this catch block look?"
 
