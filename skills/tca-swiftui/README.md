@@ -66,9 +66,9 @@ Tested on **20 scenarios** with **113 assertions** (hardened from 108 — fixed 
 
 | Model | With Skill | Without Skill | Delta |
 | --- | --- | --- | --- |
-| **Sonnet 4.6** | 97/108 (89.8%) | 69/108 (63.9%) | **+25.9%** |
-
-> **Note:** Numbers above are from iteration-1 grading (108 assertions). Re-grading with 113 assertions is pending — expected delta increase due to new discriminating assertions targeting evals where A/B showed skill wins but assertions showed 0 delta.
+| **Sonnet 4.6** | 103/113 (91.1%) | 74/113 (65.5%) | **+25.7%** |
+| **GPT-5.4** | 103/113 (91.1%) | 73/113 (64.6%) | **+26.6%** |
+| **Gemini 3.1 Pro** | 103/113 (91.1%) | 72/113 (63.7%) | **+27.4%** |
 
 ### Per-Scenario Breakdown
 
@@ -122,7 +122,7 @@ Tested on **20 scenarios** with **113 assertions** (hardened from 108 — fixed 
 | iOS 16 migration† | `@Perception.Bindable` for iOS 16 bindings | Baseline only shows iOS 17+ `@Bindable` |
 | Combine effects† | `@DependencyClient` for extracted dependencies | Baseline leaves dependencies as free variables |
 
-†Hardened assertions — scores pending re-grading.
+†Hardened assertions — included in final 113-assertion grading.
 
 ### By Category
 
@@ -145,4 +145,4 @@ A blind judge scored both outputs 0–10 without knowing which used the skill.
 | Refactoring (evals 21–25) | 5 | 0 | 0 | 9.0 | 7.1 |
 | **Total** | **14** | **2** | **4** | **8.7** | **7.8** |
 
-**Interpretation:** The skill provides a **+25.9% assertion delta** and **14W 2T 4L** in blind A/B on Sonnet 4.6. Creation scenarios are roughly even in quality (both 8.6 avg) — the baseline writes idiomatic TCA basics too, the skill's edge shows in assertions where specific patterns matter. The gap widens sharply on migration and refactoring (9W 0L, 9.0↑7.2) where knowing exact modern TCA idioms — `@DependencyClient`, `clock.timer()`, delegate action structure, `@Reducer enum Destination` — is the difference between code that compiles and runs correctly versus code that compiles but misses the point.
+**Interpretation:** The skill provides a **+25.7% assertion delta** (Sonnet 4.6) and **14W 2T 4L** in blind A/B on Sonnet 4.6. All three tested models (Sonnet, GPT-5.4, Gemini) reach the same 91.1% with-skill ceiling and show similar ~25–27% deltas — the skill compensates for the same TCA knowledge gaps across model families. Creation scenarios are roughly even in quality (both 8.6 avg) — the baseline writes idiomatic TCA basics too, the skill's edge shows in assertions where specific patterns matter. The gap widens sharply on migration and refactoring (9W 0L, 9.0↑7.2) where knowing exact modern TCA idioms — `@DependencyClient`, `clock.timer()`, delegate action structure, `@Reducer enum Destination` — is the difference between code that compiles and runs correctly versus code that compiles but misses the point.
