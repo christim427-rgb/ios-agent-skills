@@ -10,9 +10,9 @@ Tested on **27 scenarios** with **77 discriminating assertions**.
 
 | Model | With Skill | Without Skill | Delta | A/B Quality |
 | --- | --- | --- | --- | --- |
-| **Sonnet 4.6** | 77/77 (100%) | 43/77 (55.8%) | **+44.2%** | **23W 7T 0L** (avg 8.9 vs 8.0) |
-| **GPT-5.4** | 100% | 70% | **+30%** | **25/30 wins**, 5 ties (avg 8.4 vs 7.0) |
-| **Gemini 3.1 Pro** | 100% | 66.4% | **+33.6%** | **21/30 wins**, 9 ties (avg 8.2 vs 7.4) |
+| **Sonnet 4.6** | 76/77 (98.7%) | 41/77 (53.2%) | **+45.5%** | **23W 7T 0L** (avg 8.9 vs 8.0) |
+| **GPT-5.4** | 77/77 (100%) | 73/77 (94.8%) | **+5.2%** | 6W 21T 0L |
+| **Gemini 3.1 Pro** | 70/77 (90.9%) | 26/77 (33.8%) | **+57.1%** | **27W** 0T 0L (avg 9.2 vs 6.5) |
 
 > A/B Quality: blind judge scores each response 0–10 and picks the better one without knowing which used the skill. Position (A/B) is randomized across evals to prevent bias.
 
@@ -20,34 +20,25 @@ Tested on **27 scenarios** with **77 discriminating assertions**.
 
 | Metric | Value |
 | --- | --- |
-| With Skill | 77/77 (100%) |
-| Without Skill | 43/77 (55.8%) |
-| Delta | **+44.2%** |
+| With Skill | 76/77 (98.7%) |
+| Without Skill | 41/77 (53.2%) |
+| Delta | **+45.5%** |
 | A/B Quality | **23W 7T 0L** (avg 8.9 vs 8.0) |
 
-**Interpretation:** Sonnet 4.6 without the skill misses 34 of 77 assertions that it consistently passes with the skill. The +44.2% delta reflects the skill's value on assertions that actually matter — anti-pattern severity codes, niche API details (withSnapshotTesting, perceptualPrecision, CustomTestStringConvertible), edge case warnings, framework-mixing hazards, and XCTest-to-Swift-Testing lifecycle differences. A/B confirms with 23 wins and zero losses.
+**Interpretation:** Sonnet 4.6 without the skill misses 36 of 77 assertions that it consistently passes with the skill. The +45.5% delta reflects the skill's value on assertions that actually matter — anti-pattern severity codes, niche API details (withSnapshotTesting, perceptualPrecision, CustomTestStringConvertible), edge case warnings, framework-mixing hazards, and XCTest-to-Swift-Testing lifecycle differences. A/B confirms with 23 wins and zero losses.
 
 ### Results (GPT-5.4)
 
-| Difficulty | With Skill | Without Skill | Delta | A/B Quality |
-| --- | --- | --- | --- | --- |
-| Simple | 25/25 (100%) | 25/25 (100%) | **0%** | **7/10 wins**, 3 ties (avg 8.0 vs 6.8) |
-| Medium | 35/35 (100%) | 21/35 (60%) | **+40%** | **9/10 wins**, 1 tie (avg 8.5 vs 7.0) |
-| Complex | 47/47 (100%) | 29/47 (62%) | **+38%** | **9/10 wins**, 1 tie (avg 8.7 vs 7.3) |
-| **Total** | **107/107 (100%)** | **75/107 (70%)** | **+30%** | **25/30 wins**, 5 ties (avg 8.4 vs 7.0) |
+| Metric | Value |
+| --- | --- |
+| With Skill | 77/77 (100%) |
+| Without Skill | 73/77 (94.8%) |
+| Delta | **+5.2%** |
+| A/B | 6W 21T 0L |
 
-### Results (Gemini 3.1 Pro)
+**Interpretation:** GPT-5.4 is a strong baseline (94.8% without skill). The skill provides a clean +5.2% lift — primarily adding structured classification (severity levels, named anti-pattern categories), the confirmation() vs withCheckedContinuation decision tree, and lifecycle mapping tables that GPT omits without guidance. (Graded: Claude Sonnet 4.6, strict, iteration-9)
 
-| Difficulty | With Skill | Without Skill | Delta | A/B Quality |
-| --- | --- | --- | --- | --- |
-| Simple | 25/25 (100%) | 25/25 (100%) | **0%** | **2/10 wins**, 8 ties (avg 7.8 vs 7.6) |
-| Medium | 35/35 (100%) | 19/35 (54.3%) | **+45.7%** | **9/10 wins**, 1 tie (avg 8.3 vs 7.3) |
-| Complex | 47/47 (100%) | 27/47 (57.5%) | **+42.5%** | **10/10 wins** (avg 8.6 vs 7.3) |
-| **Total** | **107/107 (100%)** | **71/107 (66.4%)** | **+33.6%** | **21/30 wins**, 9 ties (avg 8.2 vs 7.4) |
-
-**Interpretation:** Simple iOS testing patterns are saturated, while the measurable uplift appears in medium and complex scenarios. The additional gains come from framework-specific testing details and migration edge cases such as `withMainSerialExecutor`, `confirmation()` semantics, TCA version requirements for Swift Testing, framework-mixing hazards, and XCTest-to-Swift-Testing lifecycle differences.
-
-### Tiered Key Discriminating Assertions (GPT-5.4)
+### Key Discriminating Assertions (GPT-5.4)
 
 | Topic | Assertion | Why It Matters |
 | --- | --- | --- |
@@ -56,32 +47,20 @@ Tested on **27 scenarios** with **77 discriminating assertions**.
 | observable-testing | Combine testing pattern for `@Published` | Subscription timing and `dropFirst()` semantics |
 | tca-testing | TCA >= 1.12 for Swift Testing compatibility | TestStore uses `Issue.record()` instead of `XCTFail` |
 
-### Tiered Key Discriminating Assertions (Gemini 3.1 Pro)
+### Results (Gemini 3.1 Pro)
 
-Gemini 3.1 Pro is a comparable baseline to GPT-5.4 on simple tests (100% for both) but has 36 gaps at medium/complex tiers — many targeting framework-specific and Apple-specific nuances:
+| Metric | Value |
+| --- | --- |
+| With Skill | **70/77 (90.9%)** |
+| Without Skill | 26/77 (33.8%) |
+| Delta | **+57.1%** |
+| A/B Quality | — (not collected) |
 
-| Topic | ID | Assertion | Why It Matters |
-| --- | --- | --- | --- |
-| anti-patterns | P3.6 | `#expect` inside XCTestCase silently ignored (anti-pattern C6) | Mixing Swift Testing assertions inside XCTest context never fires |
-| async-testing | A2.2 | `withMainSerialExecutor` from `swift-concurrency-extras` | Serializes Tasks on main actor for deterministic async tests |
-| async-testing | A2.3 | `Task.yield()` inside mock for deterministic suspension | Controls exact suspension point without real async delays |
-| async-testing | A3.3 | `withMainSerialExecutor` for serializing Task execution | Required for reliable async test execution on `@MainActor` |
-| integration-testing | I2.1 | In-memory Core Data store: `NSInMemoryStoreType` | Avoids disk I/O in tests, prevents state leakage between runs |
-| integration-testing | I2.3 | `NSPersistentStoreDescription` with `url = URL(fileURLWithPath: "/dev/null")` | Explicit in-memory store configuration for modern Core Data setup |
-| integration-testing | I3.4 | Keychain state persists across app installs on simulator | Causes false failures; must be cleared manually or in `setUp` |
-| observable-testing | O3.1 | `withObservationTracking` in a loop or multiple times | Tracks individual observation cycles for `@Observable` ViewModels |
-| swift-testing | S3.1 | `XCTAssert` in `@Test` silently passes (no XCTestCase context) | Framework mixing produces false green tests |
-| swift-testing | S3.2 | `confirmation()` counts when closure **returns**, not when callback fires | Prevents subtle false-positive confirmation tests |
-| test-organization | G3.1 | Quarantine flaky tests in separate Test Plan | Prevents flaky tests from blocking PRs while preserving visibility |
-| xctest-migration | M3.2 | XCTest runs tests in **separate processes**; Swift Testing in **one process** | Shared state between tests causes failures only visible after migration |
+**Interpretation:** Gemini 3.1 Pro has the lowest baseline (33.8%) but the largest skill delta (+57.1%) of the three models tested. Without the skill, it correctly handles basic test structure but misses: Swift Testing framework APIs (`@Test`, `@Suite`, `#expect`, `confirmation()`), `withMainSerialExecutor` for deterministic async testing, `addTeardownBlock` for memory leak detection, TCA `TestStore` patterns, and snapshot testing configuration. With the skill, it recovers to 90.9%. Two anti-patterns evals (anti-patterns-medium, anti-patterns-complex) had mismatched responses — Gemini answered MVVM architecture questions instead of the test anti-patterns prompt — contributing to the 7 with-skill failures. (Graded: Claude Sonnet 4.6, strict, iteration-10)
 
 > Raw data:
-> `ios-testing-workspace/iteration-6/benchmark-gpt-5-4-tiered.json`
->
-> `ios-testing-workspace/iteration-6/benchmark-gemini-3-1-pro-tiered.json`
->
-> `ios-testing-workspace/iteration-1/benchmark-opus-4-5-tiered.json`
->
+> `workspaces/ios/ios-testing/iteration-10/`
+> `ios-testing-workspace/iteration-6/benchmark-gpt-5-4.json`
 > `ios-testing-workspace/iteration-2/benchmark-sonnet-4-6.json`
 
 ---
