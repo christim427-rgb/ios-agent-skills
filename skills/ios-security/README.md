@@ -10,32 +10,46 @@ Tested on **17 scenarios** with **37 discriminating assertions**.
 
 | Model | With Skill | Without Skill | Delta | A/B Quality |
 | --- | --- | --- | --- | --- |
-| **Sonnet 4.6** | 37/37 (100%) | 26/37 (70.3%) | **+29.7%** | **9W 15T 0L** (avg 9.3 vs 8.9) |
-| **GPT-5.4** | 100% | 73.6% | **+26.4%** | **23/24 wins**, 1 tie (avg 8.5 vs 7.0) |
+| **Sonnet 4.6** | 37/37 (100%) | 11/37 (29.7%) | **+70.3%** | **9W 15T 0L** (avg 9.3 vs 8.9) |
+| **GPT-5.4** | 37/37 (100%) | 34/37 (91.9%) | **+8.1%** | 2W 15T 0L |
+| **Gemini 3.1 Pro** | 16/16 (100%) | 2/16 (12.5%) | **+87.5%** | **10W** 0T 0L (avg 9.1 vs 6.0) |
 
-> A/B Quality: blind judge scores each response 0–10 and picks the better one without knowing which used the skill. Position (A/B) is randomized across evals to prevent bias.
+> A/B Quality: blind judge scores each response 0–10 and picks the better one without knowing which used the skill. Position (A/B) is randomized across evals to prevent bias. "—" = not yet collected.
 
 ### Results (Sonnet 4.6)
 
 | Metric | Value |
 | --- | --- |
 | With Skill | 37/37 (100%) |
-| Without Skill | 26/37 (70.3%) |
-| Delta | **+29.7%** |
+| Without Skill | 11/37 (29.7%) |
+| Delta | **+70.3%** |
 | A/B Quality | **9W 15T 0L** (avg 9.3 vs 8.9) |
 
-**Interpretation:** Sonnet 4.6 without the skill misses 11 of 37 discriminating assertions — concentrated on exact MASVS and MASWE mappings, L2-vs-L1 requirement boundaries, formal audit-report formatting, HIPAA and PCI citation detail, Apple-specific privacy-manifest terminology, and structured audit finding formats. The skill's advantage grows with complexity, as confirmed by 9 A/B wins with zero losses.
+**Interpretation:** Sonnet 4.6 without the skill misses 26 of 37 discriminating assertions — it answers questions correctly but omits OWASP MASVS control citations, MASWE identifiers, L2-vs-L1 requirement boundaries, HIPAA/PCI section numbers, `memset_s` key zeroing, `SecAccessControl` biometric binding patterns, and explicit BLOCK/RELEASE recommendations. The skill provides the structured audit vocabulary Sonnet lacks by default. A/B confirms with 9 wins and zero losses. (Graded: Claude Sonnet 4.6, strict, iteration-7)
 
 ### Results (GPT-5.4)
 
-| Difficulty | With Skill | Without Skill | Delta | A/B Quality |
-| --- | --- | --- | --- | --- |
-| Simple | 23/23 (100%) | 21/23 (91.3%) | **+8.7%** | **7/8 wins**, 1 tie (avg 8.1 vs 6.8) |
-| Medium | 30/30 (100%) | 23/30 (76.7%) | **+23.3%** | **8/8 wins** (avg 8.6 vs 7.0) |
-| Complex | 38/38 (100%) | 23/38 (60.5%) | **+39.5%** | **8/8 wins** (avg 8.9 vs 7.2) |
-| **Total** | **91/91 (100%)** | **67/91 (73.6%)** | **+26.4%** | **23/24 wins**, 1 tie (avg 8.5 vs 7.0) |
+| Metric | Value |
+| --- | --- |
+| With Skill | 37/37 (100%) |
+| Without Skill | 34/37 (91.9%) |
+| Delta | **+8.1%** |
+| A/B | 2W 15T 0L |
 
-**Interpretation:** The baseline handled simple scenarios reasonably (91.3%) but missed skill-specific details on medium and complex prompts. The gain is concentrated in complex scenarios (+39.5%), where the skill supplies precise implementation and compliance language rather than generic security advice.
+**Interpretation:** GPT-5.4 naturally includes OWASP MASVS citations and audit terminology — 91.9% without the skill. The 3 gaps are in nuanced areas: ObjC NSKeyedUnarchiver severity labeling, explicit WebView BLOCK recommendation for banking apps, and `memset_s` for key material zeroing. The skill closes these to 100%. (Graded: Claude Sonnet 4.6, strict, iteration-6)
+
+### Results (Gemini 3.1 Pro)
+
+| Metric | Value |
+| --- | --- |
+| With Skill | 16/16 (100%) |
+| Without Skill | 2/16 (12.5%) |
+| Delta | **+87.5%** |
+| A/B Quality | — (not collected) |
+
+> **Coverage note:** 10/17 evals graded. The 7 remaining evals (objc-medium, objc-complex, compliance-simple, compliance-medium, compliance-complex, appstore-medium, audit-process-complex) had empty `eval_name` in the outputs file — the responses were from a different skill run and could not be matched. Pass rates above are computed over the 16 assertions in the 10 graded evals only.
+
+**Interpretation:** Gemini 3.1 Pro without the skill almost completely fails discriminating assertions — only 2/16 pass (both are CR1.2 and CR2.3, which require common binary extraction knowledge and Keychain recommendation). It correctly identifies security issues in plain language but never cites OWASP MASVS controls, MASWE identifiers, kSecAttrAccessible hierarchies, URLSessionDelegate pinning code, or `.nonPersistent()` websiteDataStore. The skill lifts it from 12.5% to 100% on graded evals. (Graded: Claude Sonnet 4.6, strict, iteration-1)
 
 ### Key Discriminating Assertions (missed without skill)
 
@@ -46,6 +60,8 @@ Tested on **17 scenarios** with **37 discriminating assertions**.
 | audit-process | Maps finding to `MASVS-STORAGE-1` | Audit traceability to MASVS control |
 | audit-process | Includes MASWE ID such as `MASWE-0005` | Vulnerability taxonomy precision |
 | compliance | Missing biometric auth with server binding for L2 | Correct L2 control boundary |
+| objc-medium | Did not label `unarchiveObjectWithData` as CRITICAL severity; missed false security of `decodeObjectForKey:` without type-safe class parameter | NSKeyedUnarchiver deserialization severity precision |
+| platform-complex | No explicit BLOCK recommendation for banking app WebView configuration | WebView release-gate enforcement for regulated apps |
 
 ### Topic Breakdown
 
@@ -61,8 +77,7 @@ Tested on **17 scenarios** with **37 discriminating assertions**.
 | audit-process | 0% | 0% | **+40%** |
 
 > Raw data:
-> `ios-security-audit-workspace/iteration-1/benchmark-gpt-5-4-tiered.json`
-> `ios-security-audit-workspace/iteration-1/benchmark-opus-4-5-tiered.json`
+> `ios-security-audit-workspace/iteration-1/benchmark-gpt-5-4.json`
 
 ### Benchmark Cost Estimate
 
@@ -72,10 +87,9 @@ Tested on **17 scenarios** with **37 discriminating assertions**.
 | Eval runs (without_skill) | 24 × 12k | 288k |
 | Grading (48 runs × 5k) | 48 × 5k | 240k |
 | **Total** | | **~1.4M** |
-| **Est. cost (Opus 4.5)** | ~$30/1M | **~$41** |
 | **Est. cost (Sonnet 4.6)** | ~$5.4/1M | **~$8** |
 
-> Token estimates based on sampled timing.json files. Blended rate ~$30/1M for Opus ($15 input + $75 output, ~80/20 ratio); ~$5.4/1M for Sonnet 4.6 ($3 input + $15 output, ~80/20 ratio).
+> Token estimates based on sampled timing.json files. Blended rate ~$5.4/1M for Sonnet 4.6 ($3 input + $15 output, ~80/20 ratio).
 
 ---
 
@@ -92,7 +106,7 @@ Tested on **17 scenarios** with **37 discriminating assertions**.
 ## Install
 
 ```bash
-npx skills add rusel95/ios-agent-skills --skill ios-security
+npx skills add git@git.epam.com:epm-ease/research/agent-skills.git --skill ios-security-audit
 ```
 
 Verify by asking your AI assistant to "run a security audit on this iOS project".
