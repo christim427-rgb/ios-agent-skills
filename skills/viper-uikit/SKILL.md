@@ -2,7 +2,7 @@
 name: viper-uikit-architecture
 description: "Use when working with VIPER architecture in iOS/UIKit apps. Triggers on: creating new VIPER modules (View/Interactor/Presenter/Entity/Router); fixing retain cycles between VIPER layers; removing UIKit imports from Presenters; refactoring massive ViewControllers into VIPER layers; migrating VIPER Views to SwiftUI via UIHostingController; handling navigation with VIPER Routers; moving business logic from Presenter into Interactor; wiring module Builders with dependency injection; testing Presenters or Interactors in isolation; or managing UITabBarController across VIPER modules. Also use when decomposing god ViewControllers, defining module protocol contracts, or phasing an MVC-to-VIPER migration."
 metadata:
-  version: 1.0.0
+  version: 1.0.2
 ---
 
 > **Approach: Production-First Iterative Refactoring** — This skill is built for production enterprise codebases where stability and reviewability matter more than speed. Architecture changes are delivered through iterative refactoring — small, focused PRs (<=200 lines, single concern) tracked in a `refactoring/` directory. AI tools consistently generate VIPER code with retain cycles, UIKit in Presenters, business logic in Presenters instead of Interactors, and strong references where weak ones are required. Every rule here exists to prevent those mistakes.
@@ -176,7 +176,24 @@ When generating tests, ALWAYS:
 2. Use protocol mocks with `var stubbed*` and `var *CallCount` tracking
 3. Include memory leak detection: `addTeardownBlock { [weak sut] in XCTAssertNil(sut) }`
 4. Test the full communication chain: View action → Presenter → Interactor → Presenter callback → View display
-5. Router tests need strong VC reference in the test (Router holds weak ref, so VC would dealloc otherwise)
+5. **Router tests MUST create a strong VC reference in the test to prevent premature deallocation.** The Router holds its `viewController` as `weak` (UIKit owns the VC), so if the test doesn't retain the VC itself, it deallocates the moment the test stack frame assigns it, and `sut.viewController` becomes nil before `sut.navigateTo...()` is even called. This is not optional — testing real Router behavior (not just mocks) requires this exact pattern:
+
+```swift
+func test_navigateToDetail_pushesDetailVC() {
+    let sut = CheckoutRouter()
+    // STRONG reference — the test owns the VC, Router only has weak
+    let hostVC = UIViewController()
+    let mockNav = MockNavigationController(rootViewController: hostVC)
+    sut.viewController = hostVC  // assigned to weak ref; hostVC keeps it alive
+
+    sut.navigateToConfirmation(orderId: "123")
+
+    XCTAssertTrue(mockNav.pushedViewController is OrderConfirmationViewController)
+    _ = hostVC  // silence unused-warning; retention is the whole point
+}
+```
+
+A comprehensive VIPER test suite for a feature includes Interactor tests, Presenter tests with a mock Router, AND at least one real-Router test using this pattern to verify the navigation wiring actually works — not just that the Presenter calls `router.navigateTo()`.
 
 ## Fallback Strategies & Loop Breakers
 
@@ -222,33 +239,33 @@ Before finalizing generated or refactored VIPER code, verify ALL:
 
 | Project's concurrency stack | Companion skill | Apply when |
 |---|---|---|
-| `async/await`, actors, Swift 6 | `skills/ios/swift-concurrency/SKILL.md` | Migrating completion handlers, writing async Interactors, actor-based state |
-| `DispatchQueue`, `OperationQueue` | `skills/ios/gcd-operationqueue/SKILL.md` | Reviewing existing queue code, thread-safe Interactor state |
+| `async/await`, actors, Swift 6 | `skills/ios/epam-swift-concurrency/SKILL.md` | Migrating completion handlers, writing async Interactors, actor-based state |
+| `DispatchQueue`, `OperationQueue` | `skills/ios/epam-gcd-operationqueue/SKILL.md` | Reviewing existing queue code, thread-safe Interactor state |
 | Mixed (GCD stays, new code gets async/await) | Both skills | Apply GCD rules to existing code, concurrency rules to new code |
-| Comprehensive testing beyond VIPER | `skills/ios/ios-testing/SKILL.md` | See `references/viper-testing.md` for VIPER-specific patterns |
-| Security audit | `skills/ios/ios-security-audit/SKILL.md` | Auditing Keychain usage, network security in VIPER apps |
+| Comprehensive testing beyond VIPER | `skills/ios/epam-ios-testing/SKILL.md` | See `references/viper-testing.md` for VIPER-specific patterns |
+| Security audit | `skills/ios/epam-ios-security-audit/SKILL.md` | Auditing Keychain usage, network security in VIPER apps |
 
 ## References
 
-> **Core references** (read for every VIPER task): `rules.md`, `module-contracts.md`, `memory-management.md`. Then consult the specific reference based on which layer you're working with.
+> **Core references** (read for every VIPER task): `references/rules.md`, `references/module-contracts.md`, `references/memory-management.md`. Then consult the specific reference based on which layer you're working with.
 
 | Reference | When to Read |
 |-----------|-------------|
 | **Understanding VIPER** | |
-| `rules.md` | Do's and Don'ts quick reference: priority rules and critical anti-patterns |
-| `module-contracts.md` | Protocol design: 6 protocols per module, naming conventions, AnyObject constraints |
-| `memory-management.md` | Ownership chain, retain cycle debugging, closure captures, deallocation verification |
-| `anti-patterns.md` | AI-specific mistakes, severity-ranked violations, detection checklist |
+| `references/rules.md` | Do's and Don'ts quick reference: priority rules and critical anti-patterns |
+| `references/module-contracts.md` | Protocol design: 6 protocols per module, naming conventions, AnyObject constraints |
+| `references/memory-management.md` | Ownership chain, retain cycle debugging, closure captures, deallocation verification |
+| `references/anti-patterns.md` | AI-specific mistakes, severity-ranked violations, detection checklist |
 | **Building Modules** | |
-| `view-patterns.md` | Passive View rules, lifecycle forwarding, UITableView/UICollectionView data flow |
-| `presenter-patterns.md` | UIKit-free Presenter, ViewState mapping, Entity→ViewModel translation |
-| `interactor-patterns.md` | Single use case, service injection, Entity boundaries, async/Combine patterns |
-| `router-navigation.md` | Weak VC reference, push/present/dismiss, deep linking, Coordinator delegation |
-| `module-assembly.md` | Builder/Factory patterns, dependency injection, wiring order, storyboard vs programmatic |
+| `references/view-patterns.md` | Passive View rules, lifecycle forwarding, UITableView/UICollectionView data flow |
+| `references/presenter-patterns.md` | UIKit-free Presenter, ViewState mapping, Entity→ViewModel translation |
+| `references/interactor-patterns.md` | Single use case, service injection, Entity boundaries, async/Combine patterns |
+| `references/router-navigation.md` | Weak VC reference, push/present/dismiss, deep linking, Coordinator delegation |
+| `references/module-assembly.md` | Builder/Factory patterns, dependency injection, wiring order, storyboard vs programmatic |
 | **Testing & Migration** | |
-| `testing.md` | Interactor/Presenter/Router testing, mock patterns, memory leak assertions, snapshot testing |
-| `coordinator-integration.md` | When Routers aren't enough, Coordinator hierarchy, VIPER+Coordinator wiring |
-| `migration-patterns.md` | MVC→VIPER extraction, VIPER→SwiftUI migration via UIHostingController adapter |
+| `references/testing.md` | Interactor/Presenter/Router testing, mock patterns, memory leak assertions, snapshot testing |
+| `references/coordinator-integration.md` | When Routers aren't enough, Coordinator hierarchy, VIPER+Coordinator wiring |
+| `references/migration-patterns.md` | MVC→VIPER extraction, VIPER→SwiftUI migration via UIHostingController adapter |
 | **Enterprise** | |
-| `enterprise-patterns.md` | Error propagation chain, ViewState management, analytics decoration, thread safety |
-| `refactoring-workflow.md` | `refactoring/` directory protocol, per-feature plans, PR sizing, phase ordering |
+| `references/enterprise-patterns.md` | Error propagation chain, ViewState management, analytics decoration, thread safety |
+| `references/refactoring-workflow.md` | `refactoring/` directory protocol, per-feature plans, PR sizing, phase ordering |
