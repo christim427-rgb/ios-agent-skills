@@ -2,7 +2,7 @@
 name: ios-testing
 description: "Invoke any time a user is writing iOS/Swift tests or asking why tests behave a certain way — including XCTest versus Swift Testing (@Test/#expect) choices, async ViewModel tests with @Observable or @Published, snapshot testing across device sizes, mocking protocols for dependency injection, setUp/tearDown lifecycle issues, tests that fail on CI but pass locally, flaky async tests, testing VIPER/TCA/MVVM architectures, and coverage gaps on error paths. The trigger is user intent: they are trying to verify, assert, or validate iOS/Swift behavior in a test context, whether they use the word 'testing' or not."
 metadata:
-  version: 2.1.1
+  version: 2.1.3
 ---
 
 > **Approach: F.I.R.S.T-First, Production-Ready Tests** -- Every test produced by this skill must be Fast, Isolated, Repeatable, Self-validating, and Thorough. Architecture changes to production code and improvements to the test suite both follow phased, low-risk PRs tracked in a `refactoring/` directory.
@@ -165,21 +165,33 @@ When generating or reviewing tests, every output must be **F.I.R.S.T-compliant, 
 
 1. Use Swift Testing (`@Test`/`@Suite`/`#expect`) for new tests -- XCTest only when Xcode 15 or older, or UI/performance testing
 2. One concept per test function -- no `and` in test names
-3. Arrange -> Act -> Assert structure with blank line separators
-4. Mock all external dependencies via protocols -- never use real URLSession, CoreData, or FileManager in unit tests
-5. Mark test type `@MainActor` when SUT is `@MainActor`-isolated
-6. Add memory leak detection to every ViewModel test
-7. Use `try #require()` before unwrapping optionals in test setup
-8. Use test data factories (`Item.sample()`) not raw initializers
-9. Cover at minimum: success, failure, and empty/edge case
-10. Set `.timeLimit(.minutes(1))` on any test that touches async code
-11. Put expressions inside `#expect()` -- never pre-evaluate to Bool
-12. NEVER use XCTAssert* in @Test functions or #expect in XCTestCase -- silently swallowed
-13. For TCA: mutate `$0` in send/receive closures, never use XCTAssertEqual; use case key paths for receive
-14. For @Observable: use withObservationTracking for async changes, direct assertion for sync
-15. For Combine: always dropFirst(), subscribe BEFORE action, capture value from sink (willSet semantics)
-16. Before generating tests, output a brief `<thought>` identifying: what public behaviors to test, what dependencies to mock, which architecture pattern applies, and which F.I.R.S.T principle is most at risk
+3. Mock all external dependencies via protocols -- never use real URLSession, CoreData, or FileManager in unit tests
+4. Mark test type `@MainActor` when SUT is `@MainActor`-isolated
+5. Add memory leak detection to every ViewModel test
+6. Use `try #require()` before unwrapping optionals in test setup
+7. Use test data factories (`Item.sample()`) not raw initializers
+8. Cover at minimum: success, failure, and empty/edge case
+9. Set `.timeLimit(.minutes(1))` on any test that touches async code
+10. Put expressions inside `#expect()` -- never pre-evaluate to Bool
+11. NEVER use XCTAssert* in @Test functions or #expect in XCTestCase -- silently swallowed
+12. For TCA: mutate `$0` in send/receive closures, never use XCTAssertEqual; use case key paths for receive
+13. For @Observable: use withObservationTracking for async changes, direct assertion for sync
+14. For Combine: always dropFirst(), subscribe BEFORE action, capture value from sink (willSet semantics)
+15. Before generating tests, output a brief `<thought>` identifying: what public behaviors to test, what dependencies to mock, which architecture pattern applies, and which F.I.R.S.T principle is most at risk
+16. **When diagnosing a test failure or identifying a testing anti-pattern, always attach an explicit severity label** (🔴 Critical / 🟡 High / 🟢 Medium) before explaining the fix. Severity frames urgency for code review — "hangs forever because `wait(for:)` cannot pump the main queue inside an `async` function" is a **🔴 Critical** issue, not a "hmm, worth looking at". Without an explicit label, reviewers can't triage and the finding gets deferred.
 </critical_rules>
+
+## Severity Levels for Testing Anti-Patterns
+
+Use this table to classify any test issue you surface — during generation, diagnosis, or review.
+
+| Severity | Meaning | Examples |
+|:--------:|---------|----------|
+| 🔴 **Critical** | Test hangs, crashes, or lies — produces wrong signal | `wait(for:)` inside `async` (hang), `XCTAssert*` inside `@Test` (silently swallowed), `#expect` inside `XCTestCase` (no-op), real `URLSession` in unit test (flaky + slow), shared mutable `static var` state between tests |
+| 🟡 **High** | Test runs but breaks F.I.R.S.T or gives false confidence | Missing `@MainActor` on `@MainActor`-isolated SUT, no `await fulfillment(of:)` for async (timeout race), missing `dropFirst()` on Combine, no memory leak detection on ViewModel, testing only the happy path |
+| 🟢 **Medium** | Functional but fragile or hard to maintain | Raw initializers instead of test data factories, `and` in test names, over-mocked boundary, mock over 100 lines, `setUp`/`tearDown` doing unrelated work |
+
+**How to apply:** When answering "why does my test X?" or "what's wrong with this test code?", the response must lead with `🔴 Critical — <short label>` (or High/Medium) before the explanation. If the cause is a hanging async test, it's Critical. If it's a missing `@MainActor`, it's High. Never omit the label.
 
 ## Fallback Strategies & Loop Breakers
 
@@ -218,10 +230,10 @@ Before finalizing generated or reviewed tests, verify ALL:
 
 | Test context | Companion skill | When |
 |---|---|---|
-| Testing `@Observable` / `@MainActor` ViewModels | swiftui-mvvm-architecture skill | ViewModel structure, ViewState enum |
-| Testing UIKit + Combine ViewModels | mvvm-uikit-architecture skill | Combine publisher testing, Coordinator testing |
-| Testing async/await and actor-isolated code | swift-concurrency skill | `withMainSerialExecutor`, Clock injection |
-| Testing code with GCD/OperationQueue | gcd-operationqueue skill | Dispatch queue mocking |
+| Testing `@Observable` / `@MainActor` ViewModels | epam-swiftui-mvvm-architecture skill | ViewModel structure, ViewState enum |
+| Testing UIKit + Combine ViewModels | epam-mvvm-uikit-architecture skill | Combine publisher testing, Coordinator testing |
+| Testing async/await and actor-isolated code | epam-swift-concurrency skill | `withMainSerialExecutor`, Clock injection |
+| Testing code with GCD/OperationQueue | epam-gcd-operationqueue skill | Dispatch queue mocking |
 
 ## References
 
