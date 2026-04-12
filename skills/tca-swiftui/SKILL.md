@@ -2,7 +2,7 @@
 name: tca-swiftui-architecture
 description: "Use for any question about The Composable Architecture (TCA) — defining reducers, managing state, handling navigation, writing tests, or working with dependencies. Essential when encountering TCA-specific types like @Reducer, @ObservableState, StackState, StackAction, @Presents, TestStore, @DependencyClient, Scope, or delegate actions. Also use when debugging TCA compiler errors, decomposing large reducers into child features, migrating from old TCA patterns (WithViewStore, Environment, IfLetStore), or implementing sheet/push navigation in TCA. Claude's training data contains outdated TCA patterns — invoke this skill whenever TCA code is involved to get correct modern (1.7+) patterns."
 metadata:
-  version: 1.0.1
+  version: 1.0.3
 ---
 
 > **Approach: Production-First Iterative Refactoring** — This skill is built for production enterprise codebases using The Composable Architecture. Architecture changes are delivered through iterative refactoring — small, focused PRs tracked in a `refactoring/` directory. AI tools consistently generate outdated TCA code (pre-1.4 patterns, WithViewStore, Environment, Combine Effects). Every rule here exists to prevent those mistakes.
@@ -145,6 +145,48 @@ When working with TCA code, you may encounter cryptic compiler errors. If you fa
 5. **NavigationStack dismiss fights**: Ensure `.navigationDestination` is OUTSIDE `ForEach`/`List`, not inside.
 </fallback_strategies>
 
+## Modernization Migration Cheat-Sheet
+
+When migrating legacy TCA code or writing new features, these 7 tokens come up repeatedly. They are NOT optional — AI tools consistently default to the outdated form on the left. Always use the right column.
+
+| Legacy / outdated | Modern (TCA 1.7+, 2026) | Why |
+|---|---|---|
+| `environment.mainQueue` | `@Dependency(\.continuousClock)` | `mainQueue` was the pre-1.0 scheduler injection. In modern TCA, timing is a `Clock` dependency — override it with `ImmediateClock` or `TestClock` in tests. |
+| `AnySchedulerOf<DispatchQueue>` in State | `@Dependency(\.continuousClock)` | Same as above. Schedulers are no longer passed through State — they are dependencies. Use `try await clock.sleep(for: .seconds(0.3))` in `.run` effects. |
+| `@Bindable var store` (iOS 17+ only) | **iOS 16**: `@Perception.Bindable var store` — **iOS 17+**: `@Bindable var store` | `@Perception.Bindable` is TCA's backport of SwiftUI's `@Bindable` for iOS 16 because Apple's `@Bindable` requires iOS 17. Without it, `$store.binding` fails to compile on iOS 16 targets. |
+| `Bool showLogoutAlert` in State | `@Presents var alert: AlertState<Action>?` | Alerts belong in `AlertState`, not in booleans — this gives you message text, button state, and action dispatching in one value, and it auto-dismisses through standard `@Presents`. |
+| `[Product]` in State | `IdentifiedArrayOf<Product>` | Plain arrays force O(n) updates-by-ID and confuse `ForEachStore`. `IdentifiedArrayOf` (`import IdentifiedCollections`) is the canonical TCA collection — constant-time lookup by `id`, stable animations, required by `forEach(\.items, ...)`. |
+| `var filtered: [T] { state.items.filter { ... } }` (computed) | Stored `var filtered: IdentifiedArrayOf<T>` updated in the reducer | Computed vars on State hide reducer work from TCA's observation system and run on every access. Store the derived value and recompute it in the action that changes the source — it shows up in the action log and is testable. |
+| `.run { try? await api.delete(id) }` | `.run { send in try await api.delete(id); await send(.deleteSucceeded) } catch: { error, send in await send(.deleteFailed(error)) }` | `try?` inside effects is a silent-failure bug — the UI thinks the delete worked but nothing changed on the server. Use the `catch:` parameter on `.run` and emit an explicit failure action. |
+
+### Dismiss-in-delegate-handler pattern
+
+When a child feature finishes (save, cancel, delete) and the parent uses `@Presents`, the parent MUST dismiss in the same handler that processes the delegate action:
+
+```swift
+case .destination(.presented(.editor(.delegate(.saved(let item))))):
+    state.items.append(item)
+    state.destination = nil    // ← REQUIRED. Without this, the sheet stays open.
+    return .none
+```
+
+Forgetting `state.destination = nil` is the #1 TCA navigation bug — the save succeeds but the sheet never dismisses. For an alternative, child features can use `@Dependency(\.dismiss)` and call `await dismiss()` inside their own effects.
+
+### `unimplemented(placeholder:)` for non-Void test dependencies
+
+`@DependencyClient`'s `testValue` auto-generates `unimplemented(...)` for `() -> Void` closures, but returning non-Void requires a placeholder. Without it, the test crashes with "dependency has no implementation":
+
+```swift
+@DependencyClient
+struct ProfileClient {
+    var fetch: @Sendable (User.ID) async throws -> Profile = {
+        _ in unimplemented("ProfileClient.fetch", placeholder: Profile.mock)
+    }
+}
+```
+
+The `placeholder:` value is used only when the test does NOT assert against `fetch` — it prevents the crash while still failing the test if the call is unexpected.
+
 ## Confidence Checks
 
 Before finalizing generated or refactored TCA code, verify ALL:
@@ -161,6 +203,12 @@ Before finalizing generated or refactored TCA code, verify ALL:
 [ ] Navigation — @Presents for modals, StackState for push nav, never nested NavigationStack
 [ ] Dependencies — @DependencyClient struct-of-closures, not protocols
 [ ] Tests — TestStore with exhaustive assertions, @MainActor annotated
+[ ] Schedulers — `@Dependency(\.continuousClock)`, NOT `mainQueue` or `AnySchedulerOf`
+[ ] iOS 16 bindings — `@Perception.Bindable` used instead of `@Bindable` when deployment target is iOS 16
+[ ] Collections in State — `IdentifiedArrayOf` used instead of `[T]`
+[ ] Derived state — stored property updated in reducer, NOT a computed var on State
+[ ] `.run` effects — use `catch:` parameter, never `try?` inside effect closures
+[ ] Alert state — `AlertState<Action>` in `@Presents`, NOT a `Bool showXAlert`
 [ ] File size — new files <= 400 lines; oversized files have split task in refactoring/
 ```
 
@@ -168,22 +216,22 @@ Before finalizing generated or refactored TCA code, verify ALL:
 
 | Project need | Companion skill | Apply when |
 |---|---|---|
-| Swift Concurrency patterns | `skills/ios/swift-concurrency/SKILL.md` | Writing async effects, actor isolation, Sendable compliance |
-| GCD/OperationQueue legacy code | `skills/ios/gcd-operationqueue/SKILL.md` | Legacy async work before migrating to TCA effects |
-| Comprehensive testing guidance | `skills/ios/ios-testing/SKILL.md` | Advanced testing patterns beyond TCA TestStore |
-| Security audit | `skills/ios/ios-security-audit/SKILL.md` | Auditing Keychain usage, network security in TCA apps |
+| Swift Concurrency patterns | `skills/ios/epam-swift-concurrency/SKILL.md` | Writing async effects, actor isolation, Sendable compliance |
+| GCD/OperationQueue legacy code | `skills/ios/epam-gcd-operationqueue/SKILL.md` | Legacy async work before migrating to TCA effects |
+| Comprehensive testing guidance | `skills/ios/epam-ios-testing/SKILL.md` | Advanced testing patterns beyond TCA TestStore |
+| Security audit | `skills/ios/epam-ios-security-audit/SKILL.md` | Auditing Keychain usage, network security in TCA apps |
 
 ## References
 
 | Reference | When to Read |
 |-----------|-------------|
-| `rules.md` | Do's and Don'ts quick reference: modern TCA patterns and critical anti-patterns |
-| `reducer-architecture.md` | @Reducer macro rules, feature decomposition, parent-child scoping, state design |
-| `effects.md` | Effect API (.run, .send, .merge, .cancel), cancellation, long-running effects, anti-patterns |
-| `dependencies.md` | @DependencyClient, DependencyKey, liveValue/testValue, module boundaries, test guards |
-| `navigation.md` | Tree-based (@Presents/ifLet), stack-based (StackState/forEach), dismissal, deep linking |
-| `testing.md` | TestStore exhaustive/non-exhaustive, TestClock, case key paths, per-feature checklist |
-| `migration.md` | Version progression, per-feature migration checklist, syntax transformations, known issues |
-| `anti-patterns.md` | AI-specific mistakes, god reducer signs, performance pitfalls, enterprise concerns |
-| `performance.md` | Action costs, _printChanges, .signpost, scope performance, high-frequency action mitigation |
-| `refactoring-workflow.md` | `refactoring/` directory protocol, per-feature plans, PR sizing, phase ordering |
+| `references/rules.md` | Do's and Don'ts quick reference: modern TCA patterns and critical anti-patterns |
+| `references/reducer-architecture.md` | @Reducer macro rules, feature decomposition, parent-child scoping, state design |
+| `references/effects.md` | Effect API (.run, .send, .merge, .cancel), cancellation, long-running effects, anti-patterns |
+| `references/dependencies.md` | @DependencyClient, DependencyKey, liveValue/testValue, module boundaries, test guards |
+| `references/navigation.md` | Tree-based (@Presents/ifLet), stack-based (StackState/forEach), dismissal, deep linking |
+| `references/testing.md` | TestStore exhaustive/non-exhaustive, TestClock, case key paths, per-feature checklist |
+| `references/migration.md` | Version progression, per-feature migration checklist, syntax transformations, known issues |
+| `references/anti-patterns.md` | AI-specific mistakes, god reducer signs, performance pitfalls, enterprise concerns |
+| `references/performance.md` | Action costs, _printChanges, .signpost, scope performance, high-frequency action mitigation |
+| `references/refactoring-workflow.md` | `refactoring/` directory protocol, per-feature plans, PR sizing, phase ordering |
