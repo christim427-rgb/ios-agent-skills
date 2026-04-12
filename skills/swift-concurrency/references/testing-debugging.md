@@ -8,7 +8,7 @@ Read this when writing tests for async code, debugging flaky tests caused by non
 
 ## Use withMainSerialExecutor for Deterministic Async Tests 🟢
 
-Point-Free's `swift-concurrency-extras` provides `withMainSerialExecutor {}` which forces all async work to execute serially on the main thread. Without it, tests asserting intermediate state (e.g., `isLoading = true` between start and completion) fail nearly 100% of the time.
+Point-Free's `epam-swift-concurrency-extras` provides `withMainSerialExecutor {}` which forces all async work to execute serially on the main thread. Without it, tests asserting intermediate state (e.g., `isLoading = true` between start and completion) fail nearly 100% of the time.
 
 ```swift
 // FLAKY -- scheduler decides when Task body runs
@@ -34,7 +34,7 @@ Point-Free's `swift-concurrency-extras` provides `withMainSerialExecutor {}` whi
 
 **Critical caveat:** Insert `await Task.yield()` inside injected closures that don't perform real async work. Swift can inline synchronous closures past the suspension point, skipping the intermediate state entirely.
 
-**Dependency:** `swift-concurrency-extras` (Point-Free, MIT license)
+**Dependency:** `epam-swift-concurrency-extras` (Point-Free, MIT license)
 
 ---
 
