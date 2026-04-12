@@ -113,7 +113,7 @@ Status icons: ✅ zero findings | ✅ L1 zero L1 findings (RESILIENCE: L2/R not 
 
 ## Cost Optimization for Large Codebases
 
-Full security audits on large codebases consume significant tokens. Use a tiered model strategy:
+Full security audits on large codebases consume significant tokens. Use a phased model strategy:
 
 | Phase | Recommended Model | Why |
 |-------|------------------|-----|
@@ -121,14 +121,14 @@ Full security audits on large codebases consume significant tokens. Use a tiered
 | Contextual analysis | **Sonnet** | Data-flow reasoning, false-positive filtering, cross-file analysis. |
 | Report compilation | **Sonnet** | Template filling, formatting, aggregation. |
 | Compliance mapping (L2) | **Sonnet** | Requires understanding regulatory requirements against implementation. |
-| Fix code generation | **Sonnet / Opus** | Secure replacement code must be correct — use the most capable model available. |
+| Fix code generation | **Sonnet** | Secure replacement code must be correct — use the most capable model available. |
 
 **Practical approach for large projects (500+ Swift files):**
 
 1. Run `scripts/quick-scan.sh` first (zero token cost — local grep)
 2. Feed quick-scan output to **Sonnet** for triage and CRITICAL/HIGH report
 3. Use **Sonnet** for contextual HIGH findings requiring data-flow analysis
-4. Use **Sonnet/Opus** for fix generation and compliance mapping
+4. Use **Sonnet** for fix generation and compliance mapping
 
 This reduces audit cost by 60-80% compared to using the most capable model for all phases.
 
