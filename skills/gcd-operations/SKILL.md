@@ -2,7 +2,7 @@
 name: gcd-operationqueue
 description: "Use for iOS/macOS concurrency problems involving dispatch queues, locks, or thread safety. Triggers on: deadlocks (sync on main, nested sync, ABBA lock ordering), thread explosion from too many DispatchQueue.global() calls, data races flagged by Thread Sanitizer (TSan), DispatchGroup enter/leave imbalance, DispatchSource timer leaks, lock selection (NSLock vs OSAllocatedUnfairLock vs os_unfair_lock), reader-writer barriers, AsyncOperation subclasses, dispatchPrecondition usage, and OperationQueue throttling. Also use when migrating GCD patterns to Swift Concurrency actors. Apply whenever someone asks about thread-safe properties, concurrent access to shared state, or sees TSan warnings in Apple platform code — even if they don't say 'GCD' or 'concurrency.'"
 metadata:
-  version: 1.0.2
+  version: 1.0.3
 ---
 
 # GCD & OperationQueue Concurrency
@@ -150,12 +150,12 @@ Before finalizing generated or refactored concurrent code, verify ALL:
 
 ## Companion Skills
 
-> **Before refactoring GCD code to Swift Concurrency:** load the swift-concurrency skill to understand actor isolation and Sendable constraints. Migration without that context leads to subtle bugs.
+> **Before refactoring GCD code to Swift Concurrency:** load the epam-swift-concurrency skill to understand actor isolation and Sendable constraints. Migration without that context leads to subtle bugs.
 
 | Scenario | Companion skill | Apply when |
 |---|---|---|
-| Migrating GCD patterns to `async/await` or actors | `skills/swift-concurrency/SKILL.md` | Converting completion handlers, replacing DispatchQueue with actors, adopting Swift 6 |
-| GCD used in UIKit MVVM ViewModels | `skills/mvvm-uikit-architecture/SKILL.md` | Refactoring Massive ViewControllers, extracting ViewModels, setting up Combine bindings |
+| Migrating GCD patterns to `async/await` or actors | `skills/ios/epam-swift-concurrency/SKILL.md` | Converting completion handlers, replacing DispatchQueue with actors, adopting Swift 6 |
+| GCD used in UIKit MVVM ViewModels | `skills/ios/epam-mvvm-uikit-architecture/SKILL.md` | Refactoring Massive ViewControllers, extracting ViewModels, setting up Combine bindings |
 
 ## References
 
