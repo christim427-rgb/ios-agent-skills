@@ -1,5 +1,5 @@
 ---
-name: swiftui-mvvm-architecture
+name: swiftui-mvvm
 description: "Use this skill when working with SwiftUI ViewModels — creating, refactoring, or testing them. Triggers for: setting up a ViewModel for a SwiftUI screen, extracting logic from a View into a ViewModel, migrating from ObservableObject to @Observable, modeling async state (instead of separate Bool flags like isLoading/hasError), injecting dependencies into ViewModels, writing unit tests for @Observable ViewModels, NavigationStack/Router setup, or any question about SwiftUI app architecture. Also use when a SwiftUI View imports too much business logic, when someone asks how to structure a SwiftUI screen 'the modern way,' or when they ask about @State/@Bindable ownership, ViewState patterns, or why their ViewModel shouldn't import SwiftUI."
 metadata:
   version: 1.0.4

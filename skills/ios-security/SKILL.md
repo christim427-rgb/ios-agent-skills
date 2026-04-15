@@ -1,5 +1,5 @@
 ---
-name: ios-security-audit
+name: ios-security
 description: "Use for any iOS security question — whether you're asking about a specific vulnerability, checking if a pattern is secure, or running a full audit. Triggers on: Keychain vs UserDefaults decisions, ATS/NSAllowsArbitraryLoads configuration, certificate pinning implementation, WebView security (UIWebView, WKWebView), hardcoded secrets or API keys, jailbreak/tamper detection, biometric authentication, MASVS controls, OWASP mobile security, App Store rejection risks, and compliance requirements (HIPAA, PCI DSS, GDPR). Also use when someone asks 'is this secure?', 'what should I use instead?', or 'how do I fix this?' about any iOS storage, network, or cryptography pattern."
 metadata:
   version: 1.1.4

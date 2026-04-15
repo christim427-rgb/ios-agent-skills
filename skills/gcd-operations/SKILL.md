@@ -1,5 +1,5 @@
 ---
-name: gcd-operationqueue
+name: gcd-operations
 description: "Use for iOS/macOS concurrency problems involving dispatch queues, locks, or thread safety. Triggers on: deadlocks (sync on main, nested sync, ABBA lock ordering), thread explosion from too many DispatchQueue.global() calls, data races flagged by Thread Sanitizer (TSan), DispatchGroup enter/leave imbalance, DispatchSource timer leaks, lock selection (NSLock vs OSAllocatedUnfairLock vs os_unfair_lock), reader-writer barriers, AsyncOperation subclasses, dispatchPrecondition usage, and OperationQueue throttling. Also use when migrating GCD patterns to Swift Concurrency actors. Apply whenever someone asks about thread-safe properties, concurrent access to shared state, or sees TSan warnings in Apple platform code — even if they don't say 'GCD' or 'concurrency.'"
 metadata:
   version: 1.0.3

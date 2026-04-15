@@ -1,5 +1,5 @@
 ---
-name: viper-uikit-architecture
+name: viper-uikit
 description: "Use when working with VIPER architecture in iOS/UIKit apps. Triggers on: creating new VIPER modules (View/Interactor/Presenter/Entity/Router); fixing retain cycles between VIPER layers; removing UIKit imports from Presenters; refactoring massive ViewControllers into VIPER layers; migrating VIPER Views to SwiftUI via UIHostingController; handling navigation with VIPER Routers; moving business logic from Presenter into Interactor; wiring module Builders with dependency injection; testing Presenters or Interactors in isolation; or managing UITabBarController across VIPER modules. Also use when decomposing god ViewControllers, defining module protocol contracts, or phasing an MVC-to-VIPER migration."
 metadata:
   version: 1.0.2

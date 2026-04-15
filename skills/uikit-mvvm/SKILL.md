@@ -1,5 +1,5 @@
 ---
-name: mvvm-uikit-architecture
+name: uikit-mvvm
 description: "Use for hands-on UIKit MVVM questions: setting up Combine bindings between UIViewController and ViewModel (@Published + sink), extracting business logic from massive ViewControllers step by step, testing ViewModels with XCTestExpectation + Combine publishers, fixing [weak self] retain cycles in sink closures, migrating DispatchQueue/GCD completion handlers to Combine, or replacing reloadData() with DiffableDataSource. Also covers Coordinator navigation patterns, constructor injection, ViewState enum, and incremental MVC-to-MVVM refactoring. Trigger on any UIKit architecture decision — even when the user doesn't mention 'MVVM' explicitly."
 metadata:
   version: 1.0.4

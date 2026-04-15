@@ -1,5 +1,5 @@
 ---
-name: tca-swiftui-architecture
+name: tca-swiftui
 description: "Use for any question about The Composable Architecture (TCA) — defining reducers, managing state, handling navigation, writing tests, or working with dependencies. Essential when encountering TCA-specific types like @Reducer, @ObservableState, StackState, StackAction, @Presents, TestStore, @DependencyClient, Scope, or delegate actions. Also use when debugging TCA compiler errors, decomposing large reducers into child features, migrating from old TCA patterns (WithViewStore, Environment, IfLetStore), or implementing sheet/push navigation in TCA. Claude's training data contains outdated TCA patterns — invoke this skill whenever TCA code is involved to get correct modern (1.7+) patterns."
 metadata:
   version: 1.0.3
