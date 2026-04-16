@@ -291,8 +291,8 @@ Before finalizing the audit report, verify:
 
 | Finding type | Companion skill | Apply when |
 |---|---|---|
-| TOCTOU races, token refresh races, actor double-spend | `skills/ios/epam-swift-concurrency/SKILL.md` | Fixing async security bugs, serializing token refresh with actors, TOCTOU prevention |
-| Data races in `DispatchQueue` code, unprotected shared state | `skills/ios/epam-gcd-operationqueue/SKILL.md` | Fixing reader-writer races, adding barrier-based synchronization, thread-safe collections |
+| TOCTOU races, token refresh races, actor double-spend | `skills/swift-concurrency/SKILL.md` | Fixing async security bugs, serializing token refresh with actors, TOCTOU prevention |
+| Data races in `DispatchQueue` code, unprotected shared state | `skills/gcd-operations/SKILL.md` | Fixing reader-writer races, adding barrier-based synchronization, thread-safe collections |
 
 ## References
 

@@ -19,7 +19,7 @@ Enterprise-grade skill for Swift Concurrency on Apple platforms. Prevents the mo
 ## Install
 
 ```bash
-npx skills add git@git.epam.com:epm-ease/research/agent-skills.git --skill swift-concurrency
+npx skills add rusel95/ios-agent-skills --skill swift-concurrency
 ```
 
 Verify installation by asking your AI agent to review async/await code — it should detect cooperative pool blocking, check continuation safety, warn about actor reentrancy, and reference Swift 6.2 behavioral changes.
@@ -100,4 +100,4 @@ Tested on **21 scenarios** with **40 discriminating assertions**.
 
 ## Author
 
-[Ruslan Popesku](https://git.epam.com/Ruslan_Popesku)
+[Ruslan Popesku](https://github.com/rusel95)

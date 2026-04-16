@@ -209,8 +209,8 @@ Before finalizing generated or refactored code, verify ALL:
 
 | Project's concurrency stack | Companion skill | Apply when |
 |---|---|---|
-| `async/await`, actors, Swift 6 (migrating or greenfield) | `skills/ios/epam-swift-concurrency/SKILL.md` | Migrating completion handlers, writing async ViewModel methods, actor-based state |
-| `DispatchQueue`, `OperationQueue` (staying or auditing existing) | `skills/ios/epam-gcd-operationqueue/SKILL.md` | Reviewing existing queue code, writing queue-based concurrency, thread-safe collections |
+| `async/await`, actors, Swift 6 (migrating or greenfield) | `skills/swift-concurrency/SKILL.md` | Migrating completion handlers, writing async ViewModel methods, actor-based state |
+| `DispatchQueue`, `OperationQueue` (staying or auditing existing) | `skills/gcd-operations/SKILL.md` | Reviewing existing queue code, writing queue-based concurrency, thread-safe collections |
 | Mixed (GCD stays, new code gets async/await) | Both skills | Apply GCD rules to existing code, concurrency rules to new code |
 
 **If unclear, ask:** "Is the team migrating to Swift Concurrency or keeping GCD/OperationQueue?"

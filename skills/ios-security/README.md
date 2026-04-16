@@ -106,7 +106,7 @@ Tested on **17 scenarios** with **37 discriminating assertions**.
 ## Install
 
 ```bash
-npx skills add git@git.epam.com:epm-ease/research/agent-skills.git --skill ios-security-audit
+npx skills add rusel95/ios-agent-skills --skill ios-security-audit
 ```
 
 Verify by asking your AI assistant to "run a security audit on this iOS project".

@@ -362,10 +362,10 @@ Before finalizing generated or reviewed code, verify ALL:
 
 | Finding type | Companion skill | Apply when |
 |---|---|---|
-| Architecture patterns affecting accessibility | `skills/ios/epam-swiftui-mvvm-architecture/SKILL.md` | Structuring ViewModels that manage accessibility state |
-| Security + accessibility overlap (biometric auth) | `skills/ios/epam-ios-security-audit/SKILL.md` | LAContext with proper VoiceOver feedback |
-| Testing accessibility in CI | `skills/ios/epam-ios-testing/SKILL.md` | XCTest accessibility audits, snapshot tests |
-| Concurrency in VoiceOver announcements | `skills/ios/epam-swift-concurrency/SKILL.md` | Posting notifications from async contexts |
+| Architecture patterns affecting accessibility | `skills/swiftui-mvvm/SKILL.md` | Structuring ViewModels that manage accessibility state |
+| Security + accessibility overlap (biometric auth) | `skills/ios-security/SKILL.md` | LAContext with proper VoiceOver feedback |
+| Testing accessibility in CI | `skills/ios-testing/SKILL.md` | XCTest accessibility audits, snapshot tests |
+| Concurrency in VoiceOver announcements | `skills/swift-concurrency/SKILL.md` | Posting notifications from async contexts |
 
 ## References
 

@@ -239,11 +239,11 @@ Before finalizing generated or refactored VIPER code, verify ALL:
 
 | Project's concurrency stack | Companion skill | Apply when |
 |---|---|---|
-| `async/await`, actors, Swift 6 | `skills/ios/epam-swift-concurrency/SKILL.md` | Migrating completion handlers, writing async Interactors, actor-based state |
-| `DispatchQueue`, `OperationQueue` | `skills/ios/epam-gcd-operationqueue/SKILL.md` | Reviewing existing queue code, thread-safe Interactor state |
+| `async/await`, actors, Swift 6 | `skills/swift-concurrency/SKILL.md` | Migrating completion handlers, writing async Interactors, actor-based state |
+| `DispatchQueue`, `OperationQueue` | `skills/gcd-operations/SKILL.md` | Reviewing existing queue code, thread-safe Interactor state |
 | Mixed (GCD stays, new code gets async/await) | Both skills | Apply GCD rules to existing code, concurrency rules to new code |
-| Comprehensive testing beyond VIPER | `skills/ios/epam-ios-testing/SKILL.md` | See `references/viper-testing.md` for VIPER-specific patterns |
-| Security audit | `skills/ios/epam-ios-security-audit/SKILL.md` | Auditing Keychain usage, network security in VIPER apps |
+| Comprehensive testing beyond VIPER | `skills/ios-testing/SKILL.md` | See `references/viper-testing.md` for VIPER-specific patterns |
+| Security audit | `skills/ios-security/SKILL.md` | Auditing Keychain usage, network security in VIPER apps |
 
 ## References
 

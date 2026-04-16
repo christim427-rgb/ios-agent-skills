@@ -216,10 +216,10 @@ Before finalizing generated or refactored TCA code, verify ALL:
 
 | Project need | Companion skill | Apply when |
 |---|---|---|
-| Swift Concurrency patterns | `skills/ios/epam-swift-concurrency/SKILL.md` | Writing async effects, actor isolation, Sendable compliance |
-| GCD/OperationQueue legacy code | `skills/ios/epam-gcd-operationqueue/SKILL.md` | Legacy async work before migrating to TCA effects |
-| Comprehensive testing guidance | `skills/ios/epam-ios-testing/SKILL.md` | Advanced testing patterns beyond TCA TestStore |
-| Security audit | `skills/ios/epam-ios-security-audit/SKILL.md` | Auditing Keychain usage, network security in TCA apps |
+| Swift Concurrency patterns | `skills/swift-concurrency/SKILL.md` | Writing async effects, actor isolation, Sendable compliance |
+| GCD/OperationQueue legacy code | `skills/gcd-operations/SKILL.md` | Legacy async work before migrating to TCA effects |
+| Comprehensive testing guidance | `skills/ios-testing/SKILL.md` | Advanced testing patterns beyond TCA TestStore |
+| Security audit | `skills/ios-security/SKILL.md` | Auditing Keychain usage, network security in TCA apps |
 
 ## References
 

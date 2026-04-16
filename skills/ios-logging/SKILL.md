@@ -147,11 +147,11 @@ Does the Task body contain try or await that can throw?
 
 ## Logging Configuration State
 
-On first use of any scanning workflow, check for `.claude/epam-ios-logging-config.md` in the project root. If it doesn't exist, run the **Configuration Phase** below before scanning. If it exists, read it and use those preferences for all fixes.
+On first use of any scanning workflow, check for `.claude/ios-logging-config.md` in the project root. If it doesn't exist, run the **Configuration Phase** below before scanning. If it exists, read it and use those preferences for all fixes.
 
 ### Configuration Phase (runs once per project)
 
-Ask the user these questions and persist answers to `.claude/epam-ios-logging-config.md`:
+Ask the user these questions and persist answers to `.claude/ios-logging-config.md`:
 
 1. **Crash SDK** — "Which crash reporting SDK does this project use?"
    - Sentry / Firebase Crashlytics / Datadog / Bugsnag / None (os.Logger only)
@@ -174,7 +174,7 @@ Ask the user these questions and persist answers to `.claude/epam-ios-logging-co
    - Minimal: add logging to existing catch blocks, don't restructure code
    - Full: replace `try?` with `do/catch`, add error states, restructure where needed
 
-### Config file format: `.claude/epam-ios-logging-config.md`
+### Config file format: `.claude/ios-logging-config.md`
 
 ```markdown
 ---
@@ -196,11 +196,11 @@ The config is a simple YAML frontmatter file. The skill reads it at the start of
 
 **When:** User asks to "scan for silent failures", "audit error handling", "find missing logging", "check for try?", or any variant of "make sure nothing fails silently."
 
-This is the primary scanning workflow — modeled after epam-ios-security-audit's Phase 0 → Scan → Report pattern.
+This is the primary scanning workflow — modeled after ios-security's Phase 0 → Scan → Report pattern.
 
 #### Phase 0: Discover & Configure
 
-1. **Check for `.claude/epam-ios-logging-config.md`** — if missing, run Configuration Phase above
+1. **Check for `.claude/ios-logging-config.md`** — if missing, run Configuration Phase above
 2. **Discover project structure:**
    - Scan for `.xcodeproj`/`.xcworkspace` to list all targets
    - Count `.swift` files per target
@@ -301,7 +301,7 @@ After the report, offer: "Should I fix these? I'll use [SDK from config] and [fi
 
 **When:** Setting up observability for an iOS project from scratch, or migrating from print() to Logger.
 
-1. **Run Configuration Phase** if `.claude/epam-ios-logging-config.md` doesn't exist
+1. **Run Configuration Phase** if `.claude/ios-logging-config.md` doesn't exist
 2. Create Logger extensions with subsystem/category (`references/logger-setup.md`)
 3. Create ErrorReporter protocol and SDK implementation (`references/crash-sdk-integration.md`)
 4. Audit all `print()` calls — replace with appropriate Logger level

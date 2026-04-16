@@ -230,10 +230,10 @@ Before finalizing generated or reviewed tests, verify ALL:
 
 | Test context | Companion skill | When |
 |---|---|---|
-| Testing `@Observable` / `@MainActor` ViewModels | epam-swiftui-mvvm-architecture skill | ViewModel structure, ViewState enum |
-| Testing UIKit + Combine ViewModels | epam-mvvm-uikit-architecture skill | Combine publisher testing, Coordinator testing |
-| Testing async/await and actor-isolated code | epam-swift-concurrency skill | `withMainSerialExecutor`, Clock injection |
-| Testing code with GCD/OperationQueue | epam-gcd-operationqueue skill | Dispatch queue mocking |
+| Testing `@Observable` / `@MainActor` ViewModels | swiftui-mvvm skill | ViewModel structure, ViewState enum |
+| Testing UIKit + Combine ViewModels | uikit-mvvm skill | Combine publisher testing, Coordinator testing |
+| Testing async/await and actor-isolated code | swift-concurrency skill | `withMainSerialExecutor`, Clock injection |
+| Testing code with GCD/OperationQueue | gcd-operations skill | Dispatch queue mocking |
 
 ## References
 

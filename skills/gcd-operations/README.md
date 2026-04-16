@@ -85,7 +85,7 @@ GPT-5.4 now misses 7 of 62 assertions without the skill; 6 of those are recovere
 ## Install
 
 ```bash
-npx skills add git@git.epam.com:epm-ease/research/agent-skills.git --skill gcd-operationqueue --copy
+npx skills add rusel95/ios-agent-skills --skill gcd-operationqueue --copy
 ```
 
 Verify installation by asking your AI agent to review concurrent code — it should detect deadlock patterns, recommend proper lock selection, and reference `dispatchPrecondition`.
@@ -105,4 +105,4 @@ Verify installation by asking your AI agent to review concurrent code — it sho
 
 ## Author
 
-[Ruslan Popesku](https://git.epam.com/Ruslan_Popesku)
+[Ruslan Popesku](https://github.com/rusel95)

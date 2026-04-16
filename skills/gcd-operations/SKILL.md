@@ -150,12 +150,12 @@ Before finalizing generated or refactored concurrent code, verify ALL:
 
 ## Companion Skills
 
-> **Before refactoring GCD code to Swift Concurrency:** load the epam-swift-concurrency skill to understand actor isolation and Sendable constraints. Migration without that context leads to subtle bugs.
+> **Before refactoring GCD code to Swift Concurrency:** load the swift-concurrency skill to understand actor isolation and Sendable constraints. Migration without that context leads to subtle bugs.
 
 | Scenario | Companion skill | Apply when |
 |---|---|---|
-| Migrating GCD patterns to `async/await` or actors | `skills/ios/epam-swift-concurrency/SKILL.md` | Converting completion handlers, replacing DispatchQueue with actors, adopting Swift 6 |
-| GCD used in UIKit MVVM ViewModels | `skills/ios/epam-mvvm-uikit-architecture/SKILL.md` | Refactoring Massive ViewControllers, extracting ViewModels, setting up Combine bindings |
+| Migrating GCD patterns to `async/await` or actors | `skills/swift-concurrency/SKILL.md` | Converting completion handlers, replacing DispatchQueue with actors, adopting Swift 6 |
+| GCD used in UIKit MVVM ViewModels | `skills/uikit-mvvm/SKILL.md` | Refactoring Massive ViewControllers, extracting ViewModels, setting up Combine bindings |
 
 ## References
 

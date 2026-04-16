@@ -205,8 +205,8 @@ Before finalizing generated or refactored code, verify ALL:
 
 | Project's concurrency stack | Companion skill | Apply when |
 |---|---|---|
-| `async/await`, actors, Swift 6, `@MainActor` | `skills/ios/epam-swift-concurrency/SKILL.md` | Writing async ViewModel methods, Task creation, actor-isolated state |
-| `DispatchQueue`, `OperationQueue` (legacy or hybrid) | `skills/ios/epam-gcd-operationqueue/SKILL.md` | Writing queue-based networking, background work, thread-safe state |
+| `async/await`, actors, Swift 6, `@MainActor` | `skills/swift-concurrency/SKILL.md` | Writing async ViewModel methods, Task creation, actor-isolated state |
+| `DispatchQueue`, `OperationQueue` (legacy or hybrid) | `skills/gcd-operations/SKILL.md` | Writing queue-based networking, background work, thread-safe state |
 
 **If unclear, ask:** "Does this project use Swift Concurrency (async/await) or GCD for async operations?"
 

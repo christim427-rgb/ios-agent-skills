@@ -305,10 +305,10 @@ Before finalizing generated or reviewed code, verify ALL:
 
 | Finding type | Companion skill | Apply when |
 |---|---|---|
-| Accessibility labels need localization | `skills/ios/epam-ios-accessibility/SKILL.md` | VoiceOver labels and hints must be localized |
-| SwiftUI architecture for localized ViewModels | `skills/ios/epam-swiftui-mvvm-architecture/SKILL.md` | Managing localized state in ViewModels |
-| Testing localization | `skills/ios/epam-ios-testing/SKILL.md` | XCTest with pseudolanguages, locale-specific tests |
-| Security of localized content | `skills/ios/epam-ios-security-audit/SKILL.md` | Format string vulnerabilities in localized strings |
+| Accessibility labels need localization | `skills/ios-accessibility/SKILL.md` | VoiceOver labels and hints must be localized |
+| SwiftUI architecture for localized ViewModels | `skills/swiftui-mvvm/SKILL.md` | Managing localized state in ViewModels |
+| Testing localization | `skills/ios-testing/SKILL.md` | XCTest with pseudolanguages, locale-specific tests |
+| Security of localized content | `skills/ios-security/SKILL.md` | Format string vulnerabilities in localized strings |
 
 ## References
 
